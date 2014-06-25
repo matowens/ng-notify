@@ -1,0 +1,357 @@
+html, body {
+    background: #EFEFEF;
+    color: #222;
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+}
+
+/* Fix for clickable elements without href */
+.nav, .pagination, .carousel, a {
+    cursor: pointer;
+}
+
+/* Structure and Default */
+
+.header {
+    background: #0e90d2;
+    border-bottom: 1px solid #FFF;
+    color: #FFF;
+    margin: 0;
+    padding: 75px 0 100px;
+    text-align: center;
+    text-shadow: 2px 2px 2px rgba(10, 10, 10, 0.1);
+}
+
+h1 {
+    font-family: 'Source Serif Pro', serif;
+    font-size: 3em;
+}
+
+h2 {
+    font-size: 1em;
+    font-weight: 100;
+    max-width: 450px;
+    margin: 0 auto;
+}
+
+h3 {
+    cursor: default;
+    font-weight: 300;
+    text-align: center;
+    font-size: 1.3em;
+}
+
+h3:hover {
+    animation: mowens-color 150ms linear infinite;
+    -moz-animation: mowens-color 150ms linear infinite;
+    -webkit-animation: mowens-color 150ms linear infinite;
+}
+
+p {
+    text-align: center;
+    max-width: 450px;
+    margin: 0 auto;
+}
+
+p a {
+    color: #0e90d2;
+    text-decoration: none;
+}
+
+p a:hover {
+    animation: mowens-color 150ms linear infinite;
+    -moz-animation: mowens-color 150ms linear infinite;
+    -webkit-animation: mowens-color 150ms linear infinite;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+
+li {
+    display: inline-block;
+}   
+
+.spacer {
+    display: block;
+    max-width: 200px;
+    border-top: 1px solid #FFF;
+    border-bottom: 1px solid #DDD;
+    width: 100%;
+    margin: 50px auto;
+}
+
+.btn {
+    display: inline-block;
+    margin: 5px 5px;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    padding: 10px 25px;
+    line-height: 1.33;
+    border-radius: 6px;
+    width: auto;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    transition: all 0.5s ease;
+}
+
+.main {
+    border-top: 1px solid #AAA;
+}
+
+.foot {
+    margin-bottom: 200px;
+}
+
+.git-share {
+    margin-right: 5px
+}
+
+.twit-share {
+    margin-left: 10px;
+    width: 95px;
+}
+
+/* Theme - Default - Pure */
+
+.default {
+    border-color: #222;
+    color: #222;
+}
+
+.default:hover {
+    background-color: #222;
+    color: #FFF;
+}
+
+.success {
+    border-color: #5eb95e;
+    color: #5eb95e;
+}
+
+.success:hover {
+    background-color: #5eb95e;
+    color: #FFF;
+}
+
+.info {
+    border-color: #0e90d2;
+    color: #0e90d2;
+}
+
+.info:hover {
+    background-color: #0e90d2;
+    color: #FFF;
+}
+
+.warn {
+    border-color: #f37b1d;
+    color: #f37b1d;
+}
+
+.warn:hover {
+    background-color: #f37b1d;
+    color: #FFF;
+}
+
+.error {
+    border-color: #dd514c;
+    color: #dd514c;
+}
+
+.error:hover {
+    background-color: #dd514c;
+    color: #FFF;
+}
+
+.grimace {
+    border-color: #8058a5;
+    color: #8058a5;
+}
+
+.grimace:hover {
+    background-color: #8058a5;
+    color: #FFF;
+}
+
+/* Theme - Prime */
+
+.prime.success {
+    border-color: #00cc00;
+    color: #00cc00;
+}
+
+.prime.success:hover {
+    background-color: #00cc00;
+    color: #FFF;
+}
+
+.prime.info {
+    border-color: #0033cc;
+    color: #0033cc;
+}
+
+.prime.info:hover {
+    background-color: #0033cc;
+    color: #FFF;
+}
+
+.prime.warn {
+    border-color: #ff9900;
+    color: #ff9900;
+}
+
+.prime.warn:hover {
+    background-color: #ff9900;
+    color: #FFF;
+}
+
+.prime.error {
+    border-color: #ff0000;
+    color: #ff0000;
+}
+
+.prime.error:hover {
+    background-color: #ff0000;
+    color: #FFF;
+}
+
+.prime.grimace {
+    border-color: #660099;
+    color: #660099;
+}
+
+.prime.grimace:hover {
+    background-color: #660099;
+    color: #FFF;
+}
+
+/* Theme - Pastel */
+
+.pastel.success {
+    border-color: #82CA9D;
+    color: #82CA9D;
+}
+
+.pastel.success:hover {
+    background-color: #82CA9D;
+    color: #FFF;
+}
+
+.pastel.info {
+    border-color: #7EA7D8;
+    color: #7EA7D8;
+}
+
+.pastel.info:hover {
+    background-color: #7EA7D8;
+    color: #FFF;
+}
+
+.pastel.warn {
+    border-color: #FDC68A;
+    color: #FDC68A;
+}
+
+.pastel.warn:hover {
+    background-color: #FDC68A;
+    color: #FFF;
+}
+
+.pastel.error {
+    border-color: #F6989D;
+    color: #F6989D;
+}
+
+.pastel.error:hover {
+    background-color: #F6989D;
+    color: #FFF;
+}
+
+.pastel.grimace {
+    border-color: #A187BE;
+    color: #A187BE;
+}
+
+.pastel.grimace:hover {
+    background-color: #A187BE;
+    color: #FFF;
+}
+
+/* Theme - Pitchy */
+
+.pitchy.success {
+    border-color: #007236;
+    color: #007236;
+}
+
+.pitchy.success:hover {
+    background-color: #007236;
+    color: #FFF;
+}
+
+.pitchy.info {
+    border-color: #003471;
+    color: #003471;
+}
+
+.pitchy.info:hover {
+    background-color: #003471;
+    color: #FFF;
+}
+
+.pitchy.warn {
+    border-color: #A36209;
+    color: #A36209;
+}
+
+.pitchy.warn:hover {
+    background-color: #A36209;
+    color: #FFF;
+}
+
+.pitchy.error {
+    border-color: #9E0B0F;
+    color: #9E0B0F;
+}
+
+.pitchy.error:hover {
+    background-color: #9E0B0F;
+    color: #FFF;
+}
+
+.pitchy.grimace {
+    border-color: #440E62;
+    color: #440E62;
+}
+
+.pitchy.grimace:hover {
+    background-color: #440E62;
+    color: #FFF;
+}
+
+select {
+    border-radius: 4px;
+    border: 1px solid rgb(204, 204, 204);
+    box-shadow: rgba(0, 0, 0, 0.0745098) 0px 1px 1px 0px inset;
+    color: #777;
+    display: block;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    padding: 6px 12px;
+    text-align: center;
+    max-width: 105px;
+}
+
+@-webkit-keyframes mowens-color{0%{color:red}15%{color:#ff0}25%{color:orange}35%{color:#00f}50%{color:green}65%{color:#000}75%{color:red}85%{color:#fff}100%{color:#00f}}
+@-moz-keyframes mowens-color{0%{color:red}15%{color:#ff0}25%{color:orange}35%{color:#00f}50%{color:green}65%{color:#000}75%{color:red}85%{color:#fff}100%{color:#00f}}
+@keyframes mowens-color{0%{color:red}15%{color:#ff0}25%{color:orange}35%{color:#00f}50%{color:green}65%{color:#000}75%{color:red}85%{color:#fff}100%{color:#00f}}
