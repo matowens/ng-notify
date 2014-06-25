@@ -41,12 +41,6 @@ h3 {
     font-size: 1.3em;
 }
 
-h3:hover {
-    animation: mowens-color 150ms linear infinite;
-    -moz-animation: mowens-color 150ms linear infinite;
-    -webkit-animation: mowens-color 150ms linear infinite;
-}
-
 p {
     text-align: center;
     max-width: 450px;

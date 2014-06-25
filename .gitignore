@@ -10,7 +10,7 @@ Desktop.ini
 vendor
 node_modules
 bower_components
-dist
+dist/demo
 .temp
 logs
 .sass-cache
