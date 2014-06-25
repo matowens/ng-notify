@@ -119,7 +119,7 @@
                     };
 
                     return positions[position] || positions.bottom;
-                }
+                };
 
                 // TODO
                 var addPosition = function() {};

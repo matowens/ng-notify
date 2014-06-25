@@ -1,112 +1,86 @@
 /* System notifications */
 .ng-notify {
-    color: #FFF;
-    display: block;
-    font-size: 1.3em;
-    left: 0;
-    opacity: 1;
-    padding: 25px 50px;
-    position: fixed;
-    right: 0;
-    text-align: center;
-}
+  color: white;
+  display: block;
+  font-size: 1.3em;
+  left: 0;
+  opacity: 1;
+  padding: 25px 50px;
+  position: fixed;
+  right: 0;
+  text-align: center; }
 
 .ng-notify-top {
-    top: 0;
-}
+  top: 0; }
 
 .ng-notify-bottom {
-    bottom: 0;
-}
+  bottom: 0; }
 
 /* Reduce notification size for mobile */
-@media only screen and (max-width : 480px) {
-    .ng-notify {
-        font-size: 1em;
-        padding: 12px 25px;
-    }
-}
-
+@media only screen and (max-width: 480px) {
+  .ng-notify {
+    font-size: 1em;
+    padding: 12px 25px; } }
 /* Themes - Default - Pure */
 .ng-notify-info {
-    background-color: #0e90d2;
-}
+  background-color: #0e90d2; }
 
 .ng-notify-error {
-    background-color: #dd514c;
-}
+  background-color: #dd514c; }
 
 .ng-notify-success {
-    background-color: #5eb95e;
-}
+  background-color: #5eb95e; }
 
 .ng-notify-warn {
-    background-color: #f37b1d;
-}
+  background-color: #f37b1d; }
 
 .ng-notify-grimace {
-    background-color: #8058a5;
-}
+  background-color: #8058a5; }
 
 /* Themes - Prime */
 .ng-notify-prime.ng-notify-info {
-    background-color: #0033cc;
-}
+  background-color: #0033cc; }
 
 .ng-notify-prime.ng-notify-error {
-    background-color: #ff0000;
-}
+  background-color: red; }
 
 .ng-notify-prime.ng-notify-success {
-    background-color: #00cc00;
-}
+  background-color: #00cc00; }
 
 .ng-notify-prime.ng-notify-warn {
-    background-color: #ff9900;
-}
+  background-color: #ff9900; }
 
 .ng-notify-prime.ng-notify-grimace {
-    background-color: #660099;
-}
+  background-color: #660099; }
 
 /* Themes - Pastel */
 .ng-notify-pastel.ng-notify-info {
-    background-color: #7EA7D8;
-}
+  background-color: #7ea7d8; }
 
 .ng-notify-pastel.ng-notify-error {
-    background-color: #F6989D;
-}
+  background-color: #f6989d; }
 
 .ng-notify-pastel.ng-notify-success {
-    background-color: #82CA9D;
-}
+  background-color: #82ca9d; }
 
 .ng-notify-pastel.ng-notify-warn {
-    background-color: #FDC68A;
-}
+  background-color: #fdc68a; }
 
 .ng-notify-pastel.ng-notify-grimace {
-    background-color: #A187BE;
-}
+  background-color: #a187be; }
 
 /* Themes - Pitchy */
 .ng-notify-pitchy.ng-notify-info {
-    background-color: #003471;
-}
+  background-color: #003471; }
 
 .ng-notify-pitchy.ng-notify-error {
-    background-color: #9E0B0F;
-}
+  background-color: #9e0b0f; }
 
 .ng-notify-pitchy.ng-notify-success {
-    background-color: #007236;
-}
+  background-color: #007236; }
 
 .ng-notify-pitchy.ng-notify-warn {
-    background-color: #A36209;
-}
+  background-color: #a36209; }
 
 .ng-notify-pitchy.ng-notify-grimace {
-    background-color: #440E62;
-}
+  background-color: #440e62; }
