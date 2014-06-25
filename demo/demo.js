@@ -3,7 +3,7 @@ var app = angular.module('demo', ['ngNotify']);
 app.controller('MainCtrl', ['$scope', 'ngNotify', 
     function($scope, ngNotify) {
 
-        // Demo for notification...
+        // Demo notifications...
 
         $scope.displayNotify = function(notify) {
             switch(notify) {
