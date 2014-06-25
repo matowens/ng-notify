@@ -1,4 +1,4 @@
 ng-notice
 =========
 
-A simple, lightweight and easily configurable notification provider for AngularJS apps.
+A simple, lightweight module for displaying notifications in your AngularJS app.
