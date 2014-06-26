@@ -14,4 +14,4 @@ dist/demo
 .temp
 logs
 .sass-cache
-github-page
+_gh-pages
