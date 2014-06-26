@@ -116,7 +116,7 @@ Definitions
     - warn
     - grimace
 
-#####config(options)
+####config(options)
 - **options** - *object* - an object of options that overrides the default settings.
     - **theme**: *string* - *optional* - sets the theme to use, altering the styles for each notification type.
         - pure *(default)*
@@ -134,11 +134,11 @@ Definitions
         - top
     - **duration**: *integer* - *optional* - the duration the notification stays visible to the user, in milliseconds.
 
-#####addType(id, class)
+####addType(id, class)
 - **id**: *string* - *required* - the identifier used to trigger this notification type in the *set* method.
 - **class**: *string* - *required* - the class used to target this type in the stylesheet.
 
-#####addTheme(id, class)
+####addTheme(id, class)
 - **id**: *string* - *required* - the identifier used when setting the theme in the *config* object.
 - **class**: *string* - *required* - the class used to target this theme in the stylesheet.
 
