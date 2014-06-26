@@ -28,11 +28,11 @@ After including *ng-notice.min.js* and *ng-notice.min.css*, inject the ng-notice
 
     var app = angular.module('demo', ['ngNotify']);
 
-Now you can provide notifications from anywhere in your app.  To display a notification, just use the `set` method.
+Now you can trigger notifications from anywhere in your app.  To display a notification, just use the `set` method.
 
     ngNotify.set('Your notification message goes here!');
 
-To specify the *type* of notification to display, provide the optional type param. (For available types, check the [definitions](#definitions) below.)
+To specify the *type* of notification to display, provide the optional *type* param. (For available types, check the [definitions](#definitions) below.)
 
     ngNotify.set('Your error message goes here!', 'error');
 
@@ -52,7 +52,7 @@ You can override a few of the default options by using the `config` method. (For
 
 ###Roll Your Own
 
-There are two additional methods that allow for you to create your own types and themes.
+There are two additional methods that allow you to create your own types and themes.
 
 #####Custom Notification Types
 
@@ -64,7 +64,7 @@ Then you can set any of your notifications up to use that type as you would any 
 
     ngNotify.set('This notification is using our new type!', 'notice');
 
-To style your new type, pick a color you'd like to utilize and set it to the background of your new style.
+To style your new type, pick a color you'd like to use and set it to the background color of your new style.
 
     .my-notice-type
         background-color: #ABC123
@@ -81,7 +81,7 @@ Now you can activate your new theme via the config method.
         theme: 'newTheme'
     });
 
-To style your new theme, pick a collection of colors you'd like to utilize for each notification type and set them to each type's background color.
+To style your new theme, pick a collection of colors you'd like to use for each notification type and set them to each type's background color.
 
     .my-new-theme.ngn-info
         background-color: #0033CC
@@ -100,7 +100,7 @@ To style your new theme, pick a collection of colors you'd like to utilize for e
 
 #####Custom Styles
 
-The positioning, size, color, alignment and more are all styled based on the classes of a notification and are all specified in the CSS file. See the style definitions below to see which classes can be used to override any of the styles within your own application.
+The position, size, color, alignment and more are all styled based on the notification's classes and are all specified in the CSS file. See the [style definitions](#styles) below to see which classes can be used to override any of the styles within your own application.
 
 Definitions
 ===========
