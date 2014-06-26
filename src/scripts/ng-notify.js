@@ -17,9 +17,11 @@
 
      module.provider('ngNotify', function() {
 
-        this.$get = ['$document', '$compile', '$rootScope', '$timeout', '$interval', 
+        this.$get = ['$document', '$compile', '$rootScope', '$timeout', '$interval',
 
             function($document, $compile, $rootScope, $timeout, $interval) {
+
+                // Defaults...
 
                 var notifyTimeout;
                 var notifyInterval;
@@ -27,33 +29,56 @@
                     theme: 'pure',
                     position: 'bottom',
                     duration: 3000,
-                    defaultType: 'info',
+                    defaultType: 'info'
                 };
 
+                var themes = {
+                    pure: '',
+                    prime: 'ngn-prime',
+                    pastel: 'ngn-pastel',
+                    pitchy: 'ngn-pitchy'
+                };
+
+                var types = {
+                    infoClass: 'ngn-info',
+                    errorClass: 'ngn-error',
+                    successClass: 'ngn-success',
+                    warnClass: 'ngn-warn',
+                    grimaceClass: 'ngn-grimace'
+                };
+
+                var positions = {
+                    bottom: 'ngn-bottom',
+                    top: 'ngn-top'
+                };
+
+                // Create our own scope and element, add to app.
                 var notifyScope = $rootScope.$new();
-                var tpl = $compile('<div class="ng-notify" ng-class="ngNotify.notifyClass">{{ ngNotify.notifyMessage }}</div>')(notifyScope);
+                var tpl = $compile('<div class="ngn" ng-class="ngNotify.notifyClass">{{ ngNotify.notifyMessage }}</div>')(notifyScope);
 
                 $document.find('body').append(tpl);
 
                 var notifyObject = {
 
+                    // Allow user to customize params.
                     config: function(params) {
                         params = params || {};
                         angular.extend(options, params);
                     },
 
+                    // Set up and trigger our notification.
                     set: function(message, type) {
 
                         if (!message) {
                             return;
                         }
 
+                        // Kill off any currently running notifications if we trigger another before it completes.
                         $interval.cancel(notifyInterval);
                         $timeout.cancel(notifyTimeout);
 
-                        // Check if we have a type provided (or set as default if not provided) 
-                        // If it's valid, use it... otherwise use info.
-                        var notifyClass = setClass(options.defaultType, type) + ' ' + 
+                        // Set our notification options.
+                        var notifyClass = setType(options.defaultType, type) + ' ' + 
                                           setTheme(options.theme) + ' ' +
                                           setPosition(options.position);
                         var duration = angular.isNumber(options.duration) ? options.duration : 3500;
@@ -63,8 +88,10 @@
                             notifyMessage: message
                         };
 
+                        // Add our fade prototype to our element.
                         var el = fadeLib(tpl);
 
+                        // Fade functionality for notifications.
                         el.fadeIn(200, function() {
                             notifyTimeout = $timeout(function() {
                                 el.fadeOut(500, function() {
@@ -72,57 +99,36 @@
                                 });
                             }, duration);
                         });
+                    },
+
+                    // User customizations...
+
+                    addTheme: function(id, name) {
+                        if(!id || !name) { return; }
+                        themes[id] = name;
+                    },
+
+                    addType: function(id, name) {
+                        if(!id || !name) { return; }
+                        types[id + 'Class'] = name;
                     }
+
                 };
 
                 // Provider configurables...
 
-                var setClass = function(defaultType, providedType) {
-
-                    var classes = {
-                        infoClass: 'ng-notify-info',
-                        errorClass: 'ng-notify-error',
-                        successClass: 'ng-notify-success',
-                        warnClass: 'ng-notify-warn',
-                        grimaceClass: 'ng-notify-grimace'
-                    };
-
-                    // Set to user provided type if available, otherwise try the default.
+                var setType = function(defaultType, providedType) {
                     var type = (providedType || defaultType) + 'Class';
-
-                    return classes[type] || classes.infoClass;
+                    return types[type] || types.infoClass;
                 };
 
-                // TODO
-                var addClass = function() {};
-
                 var setTheme = function(theme) {
-
-                    var themes = {
-                        pure: '',
-                        prime: 'ng-notify-prime',
-                        pastel: 'ng-notify-pastel',
-                        pitchy: 'ng-notify-pitchy'
-                    };
-
                     return themes[theme] || '';
                 };
 
-                // TODO
-                var addTheme = function() {};
-
                 var setPosition = function(position) {
-
-                    var positions = {
-                        bottom: 'ng-notify-bottom',
-                        top: 'ng-notify-top'
-                    };
-
                     return positions[position] || positions.bottom;
                 };
-
-                // TODO
-                var addPosition = function() {};
 
                 // Provider helpers...
 
@@ -133,7 +139,7 @@
                     };
                 };
 
-                // Pure JS fade functionality...
+                // Pure JS fade functionality, support for IE8 included...
 
                 var fadeLib = function(el) {
                     return new fadeLib.fn(el);
@@ -144,6 +150,7 @@
                 };
 
                 fadeLib.fn.prototype._fade = function(mode, opacity, duration, callback) {
+
                     var interval = 25;
                     var gap = interval / duration;
                     var el = this.el;
@@ -151,14 +158,16 @@
                     el.css('opacity', opacity);
 
                     var func = function() {
+
                         opacity = opacity + mode * gap;
+
+                        el.css('filter', 'progid:DXImageTransform.Microsoft.Alpha(Opacity=' + opacity * 100 + ')'); // IE8
                         el.css('opacity', opacity);
 
                         if(opacity <= 0 || opacity >= 1) {
                             $interval.cancel(notifyInterval);
 
                             if(opacity <= 0) {
-                                el.oldDisplay = el.css('display');
                                 el.css('display', 'none');
                             }
 
@@ -169,12 +178,11 @@
                     };
 
                     notifyInterval = $interval(func, interval);
-
-                    return;
                 };
 
                 fadeLib.fn.prototype.fadeIn = function(duration, callback) {
-                    this.el.css('display', this.el.oldDisplay);
+                    this.el.css('filter', 'progid:DXImageTransform.Microsoft.Alpha(Opacity=0)');
+                    this.el.css('display', 'block');
                     return this._fade(1, 0, duration, callback);
                 };
 

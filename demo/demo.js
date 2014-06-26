@@ -4,6 +4,28 @@ app.controller('MainCtrl', ['$scope', 'ngNotify',
     function($scope, ngNotify) {
         'use strict';
 
+        // Custom additons...
+
+        /*
+
+        ngNotify.addTheme('newtheme', 'my-new-class');
+
+        ngNotify.config({
+            theme: 'newtheme'
+        });
+
+        */
+
+        // ---
+
+        /*
+
+        ngNotify.addType('notice', 'my-notice-type');
+
+        ngNotify.set('This is my notice type!', 'notice');
+
+        */
+
         // Demo notifications...
 
         $scope.displayNotify = function(notify) {
