@@ -18,7 +18,9 @@ AngularJS is the only dependency.  Animation is achieved with pure JS, jQuery no
 
 ###Installation
 
-// Bower and NPM components coming soon.
+You can install ng-notify wiht Bower.
+
+    bower install ng-notify --save
 
 You can also download source files straight from this repo, they're located in the `dist` dir.  Just include the minified version of both js and css files.
 
