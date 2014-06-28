@@ -1,6 +1,6 @@
 {
   "name": "ng-notify",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "authors": [
     "Mat Owens <mat@peglegg.net>"
   ],
@@ -19,7 +19,12 @@
     "node_modules",
     "bower_components",
     "test",
-    "tests"
+    "tests",
+    "demo",
+    ".gitignore",
+    ".jshintrc",
+    "Gruntfile.js",
+    "package.json"
   ],
   "dependencies": {
     "angular": "~1.2.18"
