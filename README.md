@@ -18,7 +18,7 @@ AngularJS is the only dependency.  Animation is achieved with pure JS, jQuery no
 
 ###Installation
 
-You can install ng-notify wiht Bower.
+You can install ng-notify with Bower.
 
     bower install ng-notify --save
 
