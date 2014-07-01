@@ -26,7 +26,7 @@ You can also download source files straight from this repo, they're located in t
 
 ###Usage
 
-After including *ng-notice.min.js* and *ng-notice.min.css*, inject the ng-notice provider into your project.
+After including *ng-notify.min.js* and *ng-notify.min.css*, inject the ng-notify provider into your project.
 
     var app = angular.module('demo', ['ngNotify']);
 
