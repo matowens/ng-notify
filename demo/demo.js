@@ -31,12 +31,7 @@ app.controller('MainCtrl', ['$scope', 'ngNotify',
         $scope.displayNotify = function(notify) {
             switch(notify) {
                 case 'success':
-                    ngNotify.set('You have successfully logged in!', {
-                        type: 'success',
-                        theme: 'pitchy',
-                        duration: 10000,
-                        position: 'top'
-                    });
+                    ngNotify.set('You have successfully logged in!', 'success');
                     break;
                 case 'info':
                     ngNotify.set('You have a new message in your inbox.', 'info');
@@ -49,9 +44,6 @@ app.controller('MainCtrl', ['$scope', 'ngNotify',
                     break;
                 case 'grimace':
                     ngNotify.set('An additional notification type to use.', 'grimace');
-                    break;
-                case 'asdf':
-                    ngNotify.set('Not sure what just happend.', 'asdf');
                     break;
                 default:
                     ngNotify.set('This is the current default message type.');
