@@ -32,7 +32,10 @@ app.controller('MainCtrl', ['$scope', 'ngNotify',
             switch(notify) {
                 case 'success':
                     ngNotify.set('You have successfully logged in!', {
-
+                        type: 'success',
+                        theme: 'pitchy',
+                        duration: 10000,
+                        position: 'top'
                     });
                     break;
                 case 'info':

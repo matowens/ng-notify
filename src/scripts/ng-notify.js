@@ -67,7 +67,7 @@
                     },
 
                     // Set up and trigger our notification.
-                    set: function(message, type) {
+                    set: function(message, userOpt) {
 
                         if (!message) {
                             return;
@@ -77,11 +77,26 @@
                         $interval.cancel(notifyInterval);
                         $timeout.cancel(notifyTimeout);
 
+                        // Individual notification's settings.
+                        var userOpts = {};
+
+                        // Check for an object of options for our notification.
+                        if(typeof userOpt === 'object') {
+                            userOpts = {
+                                type: userOpt.type || undefined,
+                                theme: userOpt.theme || undefined,
+                                position: userOpt.position || undefined,
+                                duration: userOpt.duration || undefined
+                            };
+                        } else {
+                            userOpts.type = userOpt;
+                        }
+
                         // Set our notification options.
-                        var notifyClass = setType(options.type, type) + ' ' + 
-                                          setTheme(options.theme) + ' ' +
-                                          setPosition(options.position);
-                        var duration = angular.isNumber(options.duration) ? options.duration : 3500;
+                        var notifyClass = setType(userOpts.type) + ' ' + 
+                                          setTheme(userOpts.theme) + ' ' +
+                                          setPosition(userOpts.position);
+                        var duration = setDuration(userOpts.duration);
 
                         notifyScope.ngNotify = {
                             notifyClass: notifyClass,
@@ -117,17 +132,24 @@
 
                 // Provider configurables...
 
-                var setType = function(defaultType, providedType) {
-                    var type = (providedType || defaultType) + 'Class';
+                var setType = function(providedType) {
+                    var type = (providedType || options.type) + 'Class';
                     return types[type] || types.infoClass;
                 };
 
-                var setTheme = function(theme) {
-                    return themes[theme] || '';
+                var setTheme = function(providedTheme) {
+                    var theme = providedTheme || options.theme;
+                    return themes[theme] || themes.pure;
                 };
 
-                var setPosition = function(position) {
+                var setPosition = function(providedPosition) {
+                    var position = providedPosition || options.position;
                     return positions[position] || positions.bottom;
+                };
+
+                var setDuration = function(providedDuration) {
+                    var duration = providedDuration || options.duration;
+                    return angular.isNumber(duration) ? duration : 3500;
                 };
 
                 // Provider helpers...
