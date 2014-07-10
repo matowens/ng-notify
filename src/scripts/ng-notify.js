@@ -29,7 +29,7 @@
                     theme: 'pure',
                     position: 'bottom',
                     duration: 3000,
-                    defaultType: 'info'
+                    type: 'info'
                 };
 
                 var themes = {
@@ -78,7 +78,7 @@
                         $timeout.cancel(notifyTimeout);
 
                         // Set our notification options.
-                        var notifyClass = setType(options.defaultType, type) + ' ' + 
+                        var notifyClass = setType(options.type, type) + ' ' + 
                                           setTheme(options.theme) + ' ' +
                                           setPosition(options.position);
                         var duration = angular.isNumber(options.duration) ? options.duration : 3500;

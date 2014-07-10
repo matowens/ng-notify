@@ -31,7 +31,9 @@ app.controller('MainCtrl', ['$scope', 'ngNotify',
         $scope.displayNotify = function(notify) {
             switch(notify) {
                 case 'success':
-                    ngNotify.set('You have successfully logged in!', 'success');
+                    ngNotify.set('You have successfully logged in!', {
+
+                    });
                     break;
                 case 'info':
                     ngNotify.set('You have a new message in your inbox.', 'info');
@@ -76,9 +78,9 @@ app.controller('MainCtrl', ['$scope', 'ngNotify',
 
         // Configuration actions...
 
-        $scope.setDefaultType = function() {
+        $scope.setType = function() {
             ngNotify.config({
-                defaultType: $scope.defaultType
+                type: $scope.defaultType
             });
         };
 
