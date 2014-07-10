@@ -3,7 +3,7 @@ ng-notify
 
 A simple, lightweight module for displaying notifications in your AngularJS app.
 
-Both JS and CSS files combine for < 3 kBs.
+Both JS and CSS files combine for ~3 kBs.
 
 IE8+ and the latest versions of Chrome, FireFox and Safari have been tested and are supported.
 
@@ -41,15 +41,34 @@ To specify the *type* of notification to display, provide the optional *type* pa
 Advanced Usage
 ==============
 
-###Configuration
+###Individual Configurations
 
-You can override a few of the default options by using the `config` method. (For available options, check the [definitions](#definitions) below.)
+###Default Configuration
+
+You can override a few of the default options for all notifications by using the `config` method. (For available options, check the [definitions](#definitions) below.)
 
     ngNotify.config({
         theme: 'pure',
         position: 'bottom',
         duration: 3000,
         defaultType: 'info'
+    });
+
+As of version 0.3.0, you can pass an object of options on individual notifications.  You can pass through any combination of our 4 available options: type, theme, position and duration.  For example:
+
+    ngNotify.set('Your first message.', {
+        position: 'top'
+    });
+
+    ngNotify.set('Your second message.', {
+        type: 'error',
+        duration: 2000
+    });
+
+    ngNotify.set('Your third message.', 'error'); // Default use case still works, too.
+
+    ngNotify.set('Your fourth message.', {
+        theme: 'pitchy'
     });
 
 ###Roll Your Own
