@@ -43,8 +43,6 @@ To specify the *type* of notification to display, provide the optional *type* pa
 Advanced Usage
 ==============
 
-###Individual Configurations
-
 ###Default Configuration
 
 You can override a few of the default options for all notifications by using the `config` method. (For available options, check the [definitions](#definitions) below.)
@@ -56,7 +54,9 @@ You can override a few of the default options for all notifications by using the
         defaultType: 'info'
     });
 
-As of version 0.3.0, you can pass an object of options on individual notifications.  You can pass through any combination of our 4 available options: type, theme, position and duration.  For example:
+###Individual Configurations
+
+As of version 0.3.0, you can pass an object of options to individual notifications.  You can pass through any combination of our 4 available options: type, theme, position and duration.  For example:
 
     ngNotify.set('Your first message.', {
         position: 'top'
