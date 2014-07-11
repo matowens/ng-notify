@@ -67,7 +67,7 @@ As of version 0.3.0, you can pass an object of options to individual notificatio
         duration: 2000
     });
 
-    ngNotify.set('Your third message.', 'error'); // Default use case still works, too.
+    ngNotify.set('Your third message.', 'error'); // Original use case still works, too.
 
     ngNotify.set('Your fourth message.', {
         theme: 'pitchy'
