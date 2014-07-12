@@ -1,5 +1,5 @@
 /**
- * @license ng-notify v0.1.0
+ * @license ng-notify v0.3.0
  * http://matowens.github.io/ng-notify
  * (c) 2014 MIT License, matowens.com
  */
@@ -61,12 +61,24 @@
                 var notifyObject = {
 
                     // Allow user to customize params.
+                    /**
+                     * [config description]
+                     * 
+                     * @param  {[type]} params [description]
+                     * @return {[type]}        [description]
+                     */
                     config: function(params) {
                         params = params || {};
                         angular.extend(options, params);
                     },
 
                     // Set up and trigger our notification.
+                    /**
+                     * [set description]
+                     * 
+                     * @param {[type]} message [description]
+                     * @param {[type]} userOpt [description]
+                     */
                     set: function(message, userOpt) {
 
                         if (!message) {
@@ -118,11 +130,23 @@
 
                     // User customizations...
 
+                    /**
+                     * [addTheme description]
+                     * 
+                     * @param {[type]} id   [description]
+                     * @param {[type]} name [description]
+                     */
                     addTheme: function(id, name) {
                         if(!id || !name) { return; }
                         themes[id] = name;
                     },
 
+                    /**
+                     * [addType description]
+                     * 
+                     * @param {[type]} id   [description]
+                     * @param {[type]} name [description]
+                     */
                     addType: function(id, name) {
                         if(!id || !name) { return; }
                         types[id + 'Class'] = name;
@@ -132,21 +156,41 @@
 
                 // Provider configurables...
 
+                /**
+                 * Set's the type for the notification (ie. error, warning, etc).
+                 * 
+                 * @param {String} providedType - Optional user provided type that will override our default value.
+                 */
                 var setType = function(providedType) {
                     var type = (providedType || options.type) + 'Class';
                     return types[type] || types.infoClass;
                 };
 
+                /**
+                 * Set's the theme for the notification (ie. pure, pastel, etc).
+                 * 
+                 * @param {String} providedTheme - Optional user provided theme that will override our default value.
+                 */
                 var setTheme = function(providedTheme) {
                     var theme = providedTheme || options.theme;
                     return themes[theme] || themes.pure;
                 };
 
+                /**
+                 * [setPosition description]
+                 * 
+                 * @param {[type]} providedPosition [description]
+                 */
                 var setPosition = function(providedPosition) {
                     var position = providedPosition || options.position;
                     return positions[position] || positions.bottom;
                 };
 
+                /**
+                 * [setDuration description]
+                 * 
+                 * @param {[type]} providedDuration [description]
+                 */
                 var setDuration = function(providedDuration) {
                     var duration = providedDuration || options.duration;
                     return angular.isNumber(duration) ? duration : 3500;
@@ -154,6 +198,11 @@
 
                 // Provider helpers...
 
+                /**
+                 * [notifyReset description]
+                 * 
+                 * @return {[type]} [description]
+                 */
                 var notifyReset = function() {
                     notifyScope.ngNotify = {
                         notifyClass: '',
@@ -163,14 +212,35 @@
 
                 // Pure JS fade functionality, support for IE8 included...
 
+                /**
+                 * [fadeLib description]
+                 * 
+                 * @param  {[type]} el [description]
+                 * @return {[type]}    [description]
+                 */
                 var fadeLib = function(el) {
                     return new fadeLib.fn(el);
                 };
 
+                /**
+                 * [fn description]
+                 * 
+                 * @param  {[type]}   el [description]
+                 * @return {Function}    [description]
+                 */
                 fadeLib.fn = function(el) {
                     this.el = el;
                 };
 
+                /**
+                 * [_fade description]
+                 * 
+                 * @param  {[type]}   mode     [description]
+                 * @param  {[type]}   opacity  [description]
+                 * @param  {[type]}   duration [description]
+                 * @param  {Function} callback [description]
+                 * @return {[type]}            [description]
+                 */
                 fadeLib.fn.prototype._fade = function(mode, opacity, duration, callback) {
 
                     var interval = 25;
@@ -202,12 +272,26 @@
                     notifyInterval = $interval(func, interval);
                 };
 
+                /**
+                 * [fadeIn description]
+                 * 
+                 * @param  {[type]}   duration [description]
+                 * @param  {Function} callback [description]
+                 * @return {[type]}            [description]
+                 */
                 fadeLib.fn.prototype.fadeIn = function(duration, callback) {
                     this.el.css('filter', 'progid:DXImageTransform.Microsoft.Alpha(Opacity=0)');
                     this.el.css('display', 'block');
                     return this._fade(1, 0, duration, callback);
                 };
 
+                /**
+                 * [fadeOut description]
+                 * 
+                 * @param  {[type]}   duration [description]
+                 * @param  {Function} callback [description]
+                 * @return {[type]}            [description]
+                 */
                 fadeLib.fn.prototype.fadeOut = function(duration, callback) {
                     return this._fade(-1, 1, duration, callback);
                 };
