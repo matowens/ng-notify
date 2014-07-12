@@ -25,7 +25,11 @@ app.controller('MainCtrl', ['$scope', 'ngNotify',
         ngNotify.set('This is my notice type!', 'notice');
 
         */
-
+       
+    ngNotify.set('The site will be down for maintenance tomorrow all day.', {
+        position: 'top',
+        sticky: true
+    });       
         // Demo notifications...
 
         $scope.displayNotify = function(notify) {
@@ -73,6 +77,9 @@ app.controller('MainCtrl', ['$scope', 'ngNotify',
         $scope.defaultType = 'info';
         $scope.defaultOptions = ['info', 'success', 'warn', 'error', 'grimace'];
 
+        $scope.sticky = false;
+        $scope.stickyOptions = [true, false];
+
         // Configuration actions...
 
         $scope.setDefaultType = function() {
@@ -96,6 +103,12 @@ app.controller('MainCtrl', ['$scope', 'ngNotify',
         $scope.setDefaultTheme = function() {
             ngNotify.config({
                 theme: $scope.theme
+            });
+        };
+
+        $scope.setDefaultSticky = function() {
+            ngNotify.config({
+                sticky: $scope.sticky
             });
         };
     }

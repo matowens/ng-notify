@@ -115,6 +115,13 @@ li {
     width: 95px;
 }
 
+.new {
+    font-size: .75em;
+    color: red;
+    position: absolute;
+    margin-top: -10px;
+}
+
 /* Theme - Default - Pure */
 
 .default {

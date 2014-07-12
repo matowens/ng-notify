@@ -75,6 +75,10 @@
                 <label for="duration">duration</label>
                 <select ng-model="duration" id="duration" ng-options="item.id as item.value for item in durationOptions" ng-change="setDefaultDuration()"></select>
             </li>
+            <li>
+                <label for="sticky">sticky<span class="new">new</span></label>
+                <select ng-model="sticky" id="sticky" ng-options="value for value in stickyOptions" ng-change="setDefaultSticky()"></select>
+            </li>
         </ul>
         <p>Alter an option and then click through the demo again.  Check out <a href="https://github.com/matowens/ng-notify#configuration">the repo</a> for an example of how to set options for your project.</p>
 
