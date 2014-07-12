@@ -59,7 +59,6 @@
 
                 var notifyObject = {
 
-                    // Allow user to customize params.
                     /**
                      * Merges our user specified options with our default set of options.
                      * 
@@ -82,14 +81,11 @@
                             return;
                         }
 
-                        // Kill off any currently running notifications if we trigger another before it completes.
                         $interval.cancel(notifyInterval);
                         $timeout.cancel(notifyTimeout);
 
-                        // Individual notification's settings.
                         var userOpts = {};
 
-                        // Check for an object of options for our notification.
                         if(typeof userOpt === 'object') {
                             userOpts = {
                                 type: userOpt.type || undefined,
@@ -101,7 +97,6 @@
                             userOpts.type = userOpt;
                         }
 
-                        // Set our notification options.
                         var notifyClass = setType(userOpts.type) + ' ' + 
                                           setTheme(userOpts.theme) + ' ' +
                                           setPosition(userOpts.position);
@@ -112,10 +107,8 @@
                             notifyMessage: message
                         };
 
-                        // Add our fade prototype to our element.
                         var el = fadeLib(tpl);
 
-                        // Fade functionality for notifications.
                         el.fadeIn(200, function() {
                             notifyTimeout = $timeout(function() {
                                 el.fadeOut(500, function() {
