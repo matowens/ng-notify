@@ -82,7 +82,7 @@
     
     "browser"       : true,     // Standard browser globals e.g. `window`, `document`.
     "couch"         : false,    // Enable globals exposed by CouchDB.
-    "devel"         : false,    // Allow development statements e.g. `console.log();`.
+    "devel"         : true,     // Allow development statements e.g. `console.log();`.
     "dojo"          : false,    // Enable globals exposed by Dojo Toolkit.
     "jquery"        : false,    // Enable globals exposed by jQuery JavaScript library.
     "mootools"      : false,    // Enable globals exposed by MooTools JavaScript framework.
