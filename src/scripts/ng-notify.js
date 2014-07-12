@@ -23,14 +23,14 @@
 
                 // Defaults...
 
-                var notifyTimeout;
-                var notifyInterval;
                 var options = {
                     theme: 'pure',
                     position: 'bottom',
                     duration: 3000,
                     type: 'info'
                 };
+
+                // Options...
 
                 var themes = {
                     pure: '',
@@ -51,6 +51,13 @@
                     bottom: 'ngn-bottom',
                     top: 'ngn-top'
                 };
+
+                // Fade params...
+
+                var notifyTimeout;
+                var notifyInterval;
+
+                // Template and scope...
 
                 var notifyScope = $rootScope.$new();
                 var tpl = $compile('<div class="ngn" ng-class="ngNotify.notifyClass">{{ ngNotify.notifyMessage }}</div>')(notifyScope);
