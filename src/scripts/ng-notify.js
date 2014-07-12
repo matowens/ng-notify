@@ -64,6 +64,8 @@
 
                 $document.find('body').append(tpl);
 
+                // Public methods...
+
                 var notifyObject = {
 
                     /**
@@ -153,7 +155,7 @@
 
                 };
 
-                // Provider configurables...
+                // Private methods...
 
                 /**
                  * Sets what type of notification do display, eg, error, warning, etc.
@@ -198,8 +200,6 @@
                     var duration = providedDuration || options.duration;
                     return angular.isNumber(duration) ? duration : 3500;
                 };
-
-                // Provider helpers...
 
                 /**
                  * Resets our notification classes and message.
