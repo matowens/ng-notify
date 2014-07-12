@@ -52,7 +52,6 @@
                     top: 'ngn-top'
                 };
 
-                // Create our own scope and element, add to app.
                 var notifyScope = $rootScope.$new();
                 var tpl = $compile('<div class="ngn" ng-class="ngNotify.notifyClass">{{ ngNotify.notifyMessage }}</div>')(notifyScope);
 
@@ -62,22 +61,20 @@
 
                     // Allow user to customize params.
                     /**
-                     * [config description]
+                     * Merges our user specified options with our default set of options.
                      * 
-                     * @param  {[type]} params [description]
-                     * @return {[type]}        [description]
+                     * @param {Object} params - object of user provided options to configure notifications.
                      */
                     config: function(params) {
                         params = params || {};
                         angular.extend(options, params);
                     },
 
-                    // Set up and trigger our notification.
                     /**
-                     * [set description]
+                     * Sets, configures and displays each notification.
                      * 
-                     * @param {[type]} message [description]
-                     * @param {[type]} userOpt [description]
+                     * @param {String}             message - the message our notification will display to the user.
+                     * @param {String|Object|null} userOpt - optional parameter that contains the type or an object of options used to configure this notification. 
                      */
                     set: function(message, userOpt) {
 
@@ -131,25 +128,27 @@
                     // User customizations...
 
                     /**
-                     * [addTheme description]
+                     * Adds a new, user specified theme to our notification system 
+                     * that they can then use throughout their application.
                      * 
-                     * @param {[type]} id   [description]
-                     * @param {[type]} name [description]
+                     * @param {String} themeName  - the name for this new theme that will be used when applying it via configuration.
+                     * @param {String} themeClass - the class that this theme will use when applying it's styles.
                      */
-                    addTheme: function(id, name) {
-                        if(!id || !name) { return; }
-                        themes[id] = name;
+                    addTheme: function(themeName, themeClass) {
+                        if(!themeName || !themeClass) { return; }
+                        themes[themeName] = themeClass;
                     },
 
                     /**
-                     * [addType description]
+                     * Adds a new, user specified notification type that they
+                     * can then use throoughout their application.
                      * 
-                     * @param {[type]} id   [description]
-                     * @param {[type]} name [description]
+                     * @param {String} typeName  - the name for this new type that will be used when applying it via configuration.
+                     * @param {String} typeClass - the class that this type will use when applying it's styles.
                      */
-                    addType: function(id, name) {
-                        if(!id || !name) { return; }
-                        types[id + 'Class'] = name;
+                    addType: function(typeName, typeClass) {
+                        if(!typeName || !typeClass) { return; }
+                        types[typeName + 'Class'] = typeClass;
                     }
 
                 };
@@ -157,9 +156,10 @@
                 // Provider configurables...
 
                 /**
-                 * Set's the type for the notification (ie. error, warning, etc).
+                 * Sets what type of notification do display, eg, error, warning, etc.
                  * 
-                 * @param {String} providedType - Optional user provided type that will override our default value.
+                 * @param  {String} providedType - optional user provided type that will override our default value.
+                 * @return {String}              - the type that will be assigned to this notification.
                  */
                 var setType = function(providedType) {
                     var type = (providedType || options.type) + 'Class';
@@ -167,9 +167,10 @@
                 };
 
                 /**
-                 * Set's the theme for the notification (ie. pure, pastel, etc).
+                 * Sets the theme for a notification, eg, pure, pastel, etc.
                  * 
-                 * @param {String} providedTheme - Optional user provided theme that will override our default value.
+                 * @param  {String} providedTheme - optional user provided theme that will override our default value.
+                 * @return {String}               - the theme that will be assigned to this notification.
                  */
                 var setTheme = function(providedTheme) {
                     var theme = providedTheme || options.theme;
@@ -177,9 +178,10 @@
                 };
 
                 /**
-                 * [setPosition description]
+                 * Sets the position of the notification, eg, top or bottom.
                  * 
-                 * @param {[type]} providedPosition [description]
+                 * @param  {String} providedPosition - optional user provided position that will override our default value.
+                 * @return {String}                  - the position that will be assigned to this notification.
                  */
                 var setPosition = function(providedPosition) {
                     var position = providedPosition || options.position;
@@ -187,9 +189,10 @@
                 };
 
                 /**
-                 * [setDuration description]
+                 * Sets how long (in ms) to display the notification for.
                  * 
-                 * @param {[type]} providedDuration [description]
+                 * @param  {Integer} providedDuration - optional user provided number of ms a fade lasts.
+                 * @return {Integer}                  - the number of ms a fade on this notification will last.
                  */
                 var setDuration = function(providedDuration) {
                     var duration = providedDuration || options.duration;
@@ -199,9 +202,7 @@
                 // Provider helpers...
 
                 /**
-                 * [notifyReset description]
-                 * 
-                 * @return {[type]} [description]
+                 * Resets our notification classes and message.
                  */
                 var notifyReset = function() {
                     notifyScope.ngNotify = {
@@ -213,33 +214,31 @@
                 // Pure JS fade functionality, support for IE8 included...
 
                 /**
-                 * [fadeLib description]
+                 * Triggers our constructor to add our fade prototypes to our element.
                  * 
-                 * @param  {[type]} el [description]
-                 * @return {[type]}    [description]
+                 * @param  {Object} el - an element generated by our own template and bound to it's own scope.
+                 * @return {Object}    - our element along with new fade prototype methods.
                  */
                 var fadeLib = function(el) {
                     return new fadeLib.fn(el);
                 };
 
                 /**
-                 * [fn description]
+                 * Our constructor that will allow us to invoke a fade on our element.
                  * 
-                 * @param  {[type]}   el [description]
-                 * @return {Function}    [description]
+                 * @param {Object} el - an element generated by our own template and bound to it's own scope.
                  */
                 fadeLib.fn = function(el) {
                     this.el = el;
                 };
 
                 /**
-                 * [_fade description]
+                 * Handles the fading functionality and the duration for each fade. 
                  * 
-                 * @param  {[type]}   mode     [description]
-                 * @param  {[type]}   opacity  [description]
-                 * @param  {[type]}   duration [description]
-                 * @param  {Function} callback [description]
-                 * @return {[type]}            [description]
+                 * @param {Integer}  mode     - used to trigger fade in or out, adds or subtracts opacity until visible or hidden.
+                 * @param {Integer   opacity  - initial opacity for our element.
+                 * @param {Integer}  duration - how long the fade should take to complete, in ms.
+                 * @param {Function} callback - function to invoke once our fade is complete.
                  */
                 fadeLib.fn.prototype._fade = function(mode, opacity, duration, callback) {
 
@@ -273,27 +272,25 @@
                 };
 
                 /**
-                 * [fadeIn description]
+                 * Triggers a fade in, opacity from 0 to 1.
                  * 
-                 * @param  {[type]}   duration [description]
-                 * @param  {Function} callback [description]
-                 * @return {[type]}            [description]
+                 * @param  {Integer}  duration - how long the fade should take to complete, in ms.
+                 * @param  {Function} callback - function to invoke once fade has completed.
                  */
                 fadeLib.fn.prototype.fadeIn = function(duration, callback) {
                     this.el.css('filter', 'progid:DXImageTransform.Microsoft.Alpha(Opacity=0)');
                     this.el.css('display', 'block');
-                    return this._fade(1, 0, duration, callback);
+                    this._fade(1, 0, duration, callback);
                 };
 
                 /**
-                 * [fadeOut description]
+                 * Triggers a fade out, opacity from 1 to 0.
                  * 
-                 * @param  {[type]}   duration [description]
-                 * @param  {Function} callback [description]
-                 * @return {[type]}            [description]
+                 * @param  {Integer}  duration - how long the fade should take to complete, in ms.
+                 * @param  {Function} callback - function to invoke once fade has completed.
                  */
                 fadeLib.fn.prototype.fadeOut = function(duration, callback) {
-                    return this._fade(-1, 1, duration, callback);
+                    this._fade(-1, 1, duration, callback);
                 };
 
                 return notifyObject;
