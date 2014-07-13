@@ -81,11 +81,11 @@ There are two additional methods that allow you to create your own types and the
 
 #####Custom Notification Types
 
-Creating a custom type will allow you to add additional types of notifications within the current theme.  To create a new type, use the `addType` method.  The first param is the *id* you'll use to reference your new type.  The second param is the *class* you'll use to style your new notification type.
+Creating a custom type will allow you to add additional types of notifications to use throughout your application.  To create a new type, use the `addType` method.  The first param is the *name* you'll use to reference your new type.  The second param is the *class* you'll use to style your new notification type.
 
     ngNotify.addType('notice', 'my-notice-type');
 
-Then you can set any of your notifications up to use that type as you would any other.
+Then you can set any of your notifications up to use that type as you would any other, triggering it by using the name you gave it.
 
     ngNotify.set('This notification is using our new type!', 'notice');
 
@@ -96,11 +96,11 @@ To style your new type, pick a color you'd like to use and set it to the backgro
 
 #####Custom Themes
 
-Creating a custom theme will allow you to build an entirely new spectrum of notification messages utilizing the existing notification types.  To create a new theme, use the `addTheme` method.  The first param is the *id* you'll use to reference your new theme.  The second param is the *class* you'll use to style your new theme's notification types.
+Creating a custom theme will allow you to build an entirely new spectrum of notification messages utilizing the existing notification types.  To create a new theme, use the `addTheme` method.  The first param is the *name* you'll use to reference your new theme.  The second param is the *class* you'll use to style your new theme's notification types.
 
     ngNotify.addTheme('newTheme', 'my-new-theme');
 
-Now you can activate your new theme via the config method.
+Now you can activate your new theme via the config method, using the name you previously assigned to it.
 
     ngNotify.config({
         theme: 'newTheme'
@@ -160,12 +160,12 @@ Definitions
     - **duration**: *integer* - *optional* - the duration the notification stays visible to the user, in milliseconds.
     - **sticky**: *bool* - *optional* - determines whether or not the message will fade at the end of the duration or if the message will persist until the user dismisses it themselves *(false by default)*.
 
-####addType(id, class)
-- **id**: *string* - *required* - the identifier used to trigger this notification type in the *set* method.
+####addType(name, class)
+- **name**: *string* - *required* - the name used to trigger this notification type in the *set* method.
 - **class**: *string* - *required* - the class used to target this type in the stylesheet.
 
-####addTheme(id, class)
-- **id**: *string* - *required* - the identifier used when setting the theme in the *config* object.
+####addTheme(name, class)
+- **name**: *string* - *required* - the name used when setting the theme in the *config* object.
 - **class**: *string* - *required* - the class used to target this theme in the stylesheet.
 
 ###Styles
