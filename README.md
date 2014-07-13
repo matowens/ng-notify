@@ -158,7 +158,7 @@ Definitions
         - bottom *(default)*
         - top
     - **duration**: *integer* - *optional* - the duration the notification stays visible to the user, in milliseconds.
-    - **sticky**: *bool* - *optional* - determines whether or not the message will fade at the end of the duration or if the message will persist until the user dismisses it themselves *(false by default)*.
+    - **sticky**: *bool* - *optional* - determines whether or not the message will fade at the end of the duration or if the message will persist until the user dismisses it themselves.  when true, duration will not be set, even if it has a value. *(false by default)*.
 
 ####addType(name, class)
 - **name**: *string* - *required* - the name used to trigger this notification type in the *set* method.
