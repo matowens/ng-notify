@@ -1,6 +1,6 @@
 #ng-notify changelog
 
-##v.0.4.0
+##v0.4.0
 - **new feature**: sticky notifications, dismissable by the user
 - standardized comments throughout module
 - organized module structure
