@@ -26,10 +26,6 @@ app.controller('MainCtrl', ['$scope', 'ngNotify',
 
         */
        
-    ngNotify.set('The site will be down for maintenance tomorrow all day.', {
-        position: 'top',
-        sticky: true
-    });       
         // Demo notifications...
 
         $scope.displayNotify = function(notify) {
