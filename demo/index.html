@@ -27,13 +27,13 @@
     <div class="main">
         <h3>vitals</h3>
         <ul>
-            <li>version<br>v0.3.0</li>
+            <li>version<br>v0.4.0</li>
         </ul>
         <ul>
-            <li>total size<br>~3 kBs</li>
+            <li>total size<br> less than 4 kBs</li>
         </ul>
         <ul>
-            <li>files<br>ng-notify.min.js - 1.98 kBs<br>ng-notify.min.css - 1.08 kBs</li>
+            <li>files<br>ng-notify.min.js - 2.19 kBs<br>ng-notify.min.css - 1.69 kBs</li>
         </ul>
         <ul>
             <li>support<br>ie8+ and latest chrome, firefox & safari</li>
@@ -74,6 +74,10 @@
             <li>
                 <label for="duration">duration</label>
                 <select ng-model="duration" id="duration" ng-options="item.id as item.value for item in durationOptions" ng-change="setDefaultDuration()"></select>
+            </li>
+            <li>
+                <label for="sticky">sticky<span class="new">new</span></label>
+                <select ng-model="sticky" id="sticky" ng-options="value for value in stickyOptions" ng-change="setDefaultSticky()"></select>
             </li>
         </ul>
         <p>Alter an option and then click through the demo again.  Check out <a href="https://github.com/matowens/ng-notify#configuration">the repo</a> for an example of how to set options for your project.</p>

@@ -3,13 +3,13 @@ ng-notify
 
 A simple, lightweight module for displaying notifications in your AngularJS app.
 
-Both JS and CSS files combine for ~3 kBs.
+Both JS and CSS files combine for < 4 kBs.
 
 IE8+ and the latest versions of Chrome, FireFox and Safari have been tested and are supported.  If you do run across any issues, please submit a [new issue](https://github.com/matowens/ng-notify/issues) and I'll take a look.
 
 You can check out the demo here: [http://matowens.github.io/ng-notify](http://matowens.github.io/ng-notify)
 
-See what's been updated in the [changelog](https://github.com/matowens/ng-notify/blob/master/CHANGELOG.md).
+New in v0.4.0 are **sticky notifications**.  When enabled, notifications won't fade out until the user dismisses them.  This, too, can be set as a default option for all notifications or just set for individual notifications on a case by case basis.  For more on how to use this sticky feature, check [Advanced Usage](#advanced-usage) below.  For more on updates, head on over to the [changelog](https://github.com/matowens/ng-notify/blob/master/CHANGELOG.md).
 
 Implementation
 ==============
@@ -45,21 +45,23 @@ Advanced Usage
 
 ###Default Configuration
 
-You can override a few of the default options for all notifications by using the `config` method. (For available options, check the [definitions](#definitions) below.)
+You can override the default options for all notifications by using the `config` method.  None of these options are required. (For available options, check the [definitions](#definitions) below.)
 
     ngNotify.config({
         theme: 'pure',
         position: 'bottom',
         duration: 3000,
-        defaultType: 'info'
+        type: 'info',
+        sticky: false
     });
 
 ###Individual Configurations
 
-As of version 0.3.0, you can pass an object of options to individual notifications.  You can pass through any combination of our 4 available options: type, theme, position and duration.  For example:
+You can also pass an object of options to individual notifications.  You can pass through any combination of our available options here as well.  (For available options, check the [definitions](#definitions) below.)  For example:
 
     ngNotify.set('Your first message.', {
-        position: 'top'
+        position: 'top',
+        sticky: true
     });
 
     ngNotify.set('Your second message.', {
@@ -79,11 +81,11 @@ There are two additional methods that allow you to create your own types and the
 
 #####Custom Notification Types
 
-Creating a custom type will allow you to add additional types of notifications within the current theme.  To create a new type, use the `addType` method.  The first param is the *id* you'll use to reference your new type.  The second param is the *class* you'll use to style your new notification type.
+Creating a custom type will allow you to add additional types of notifications to use throughout your application.  To create a new type, use the `addType` method.  The first param is the *name* you'll use to reference your new type.  The second param is the *class* you'll use to style your new notification type.
 
     ngNotify.addType('notice', 'my-notice-type');
 
-Then you can set any of your notifications up to use that type as you would any other.
+Then you can set any of your notifications up to use that type as you would any other, triggering it by using the name you gave it.
 
     ngNotify.set('This notification is using our new type!', 'notice');
 
@@ -94,11 +96,11 @@ To style your new type, pick a color you'd like to use and set it to the backgro
 
 #####Custom Themes
 
-Creating a custom theme will allow you to build an entirely new spectrum of notification messages utilizing the existing notification types.  To create a new theme, use the `addTheme` method.  The first param is the *id* you'll use to reference your new theme.  The second param is the *class* you'll use to style your new theme's notification types.
+Creating a custom theme will allow you to build an entirely new spectrum of notification messages utilizing the existing notification types.  To create a new theme, use the `addTheme` method.  The first param is the *name* you'll use to reference your new theme.  The second param is the *class* you'll use to style your new theme's notification types.
 
     ngNotify.addTheme('newTheme', 'my-new-theme');
 
-Now you can activate your new theme via the config method.
+Now you can activate your new theme via the config method, using the name you previously assigned to it.
 
     ngNotify.config({
         theme: 'newTheme'
@@ -146,7 +148,7 @@ Definitions
         - prime
         - pastel
         - pitchy
-    - **defaultType**: *string* - *optional* - sets the default notification type when a type isn't explicitly set.
+    - **type**: *string* - *optional* - sets the default notification type when a type isn't explicitly set.
         - info *(default)*
         - error
         - success
@@ -156,13 +158,14 @@ Definitions
         - bottom *(default)*
         - top
     - **duration**: *integer* - *optional* - the duration the notification stays visible to the user, in milliseconds.
+    - **sticky**: *bool* - *optional* - determines whether or not the message will fade at the end of the duration or if the message will persist until the user dismisses it themselves *(false by default)*.
 
-####addType(id, class)
-- **id**: *string* - *required* - the identifier used to trigger this notification type in the *set* method.
+####addType(name, class)
+- **name**: *string* - *required* - the name used to trigger this notification type in the *set* method.
 - **class**: *string* - *required* - the class used to target this type in the stylesheet.
 
-####addTheme(id, class)
-- **id**: *string* - *required* - the identifier used when setting the theme in the *config* object.
+####addTheme(name, class)
+- **name**: *string* - *required* - the name used when setting the theme in the *config* object.
 - **class**: *string* - *required* - the class used to target this theme in the stylesheet.
 
 ###Styles
@@ -182,6 +185,10 @@ Definitions
     - *.ngn-grimace*
 
 - **themes**: theme specific classes that are chained together with type classes to override default background colors.  *not always present, default excludes all of these.*
-    - *.ngn-prime
-    - *.ngn-pastel
-    - *.ngn-pitchy
+    - *.ngn-prime*
+    - *.ngn-pastel*
+    - *.ngn-pitchy*
+
+- **sticky**: styles responsible for displaying the dismissal button for sticky notifications.
+    - *.ngn-sticky* - displays the dismissal button when sticky is enabled.
+    - *.ngn-dismiss* - styles the dismissal button.

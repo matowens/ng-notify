@@ -1,14 +1,22 @@
 /* System notifications */
 .ngn
     color: #FFF
+    cursor: default
     display: block
     font-size: 1.3em
     left: 0
     opacity: 1
-    padding: 25px 50px
+    padding: 25px 80px
     position: fixed
     right: 0
     text-align: center
+
+    -webkit-touch-callout: none
+    -webkit-user-select: none
+    -khtml-user-select: none
+    -moz-user-select: none
+    -ms-user-select: none
+    user-select: none
 
 .ngn-top
     top: 0
@@ -16,11 +24,45 @@
 .ngn-bottom
     bottom: 0
 
+.ngn-dismiss
+    background-color: #333
+    border-radius: 15px
+    box-shadow: inset 2px 2px 7px 2px #000
+    color: #DDD
+    cursor: pointer
+    display: none
+    font-size: 1.25em
+    font-weight: bold
+    height: 30px
+    line-height: 30px
+    opacity: .2
+    position: absolute
+    right: 45px
+    text-shadow: 1px 1px 5px #000
+    width: 30px
+
+.ngn-sticky .ngn-dismiss
+    display: block
+
+.ngn-dismiss:hover
+    background-color: #000
+
+.ngn-dismiss:active
+    background-color: #666
+
 /* Reduce notification size for mobile */
 @media only screen and (max-width : 480px)
     .ngn
         font-size: 1em
         padding: 12px 25px
+
+    .ngn-dismiss
+        font-size: 1em
+        height: 20px
+        line-height: 20px
+        right: 5px
+        top: 5px
+        width: 20px
     
 /* Themes - Default - Pure */
 .ngn-info

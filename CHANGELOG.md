@@ -1,5 +1,10 @@
 #ng-notify changelog
 
+##v.0.4.0
+- **new feature**: sticky notifications, dismissable by the user
+- standardized comments throughout module
+- organized module structure
+
 ##v0.3.0
 - **new feature**: configurable options for individual notifications
 - renamed type option from *defaultType* to just *type* for consistency
