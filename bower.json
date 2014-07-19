@@ -5,7 +5,10 @@
     "Mat Owens <mat@peglegg.net>"
   ],
   "description": "A simple, lightweight module for displaying notifications in your AngularJS app.",
-  "main": "[\"js/ng-notify.js\", \"css/ng-notify.css\"]",
+  "main": [
+        "./src/scripts/ng-notify.js",
+        "./src/styles/ng-notify.css"
+  ],
   "keywords": [
     "AngularJS",
     "App",
