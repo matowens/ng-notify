@@ -1,5 +1,8 @@
 #ng-notify changelog
 
+##v0.4.1
+- pathing fix for bower, bower.json file.
+
 ##v0.4.0
 - **new feature**: sticky notifications, dismissable by the user
 - standardized comments throughout module
