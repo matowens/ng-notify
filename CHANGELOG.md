@@ -1,5 +1,9 @@
 #ng-notify changelog
 
+##v0.4.2
+- update for version bumps
+- same pathing fix for the package.json file.
+
 ##v0.4.1
 - pathing fix for bower, bower.json file.
 
