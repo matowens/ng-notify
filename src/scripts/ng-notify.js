@@ -303,6 +303,14 @@
                         });
                     },
 
+                    /**
+                     * Allows a developer to manually dismiss a notification that may be 
+                     * set to sticky, when the message is no longer warranted.
+                     */
+                    dismiss: function() {
+                        notifyScope.dismiss();
+                    },
+
                     // User customizations...
 
                     /**
