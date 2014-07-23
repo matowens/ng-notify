@@ -1,5 +1,8 @@
 #ng-notify changelog
 
+##v0.5.0
+- **new feature**: added a dismiss method to give additional dev control over how notifications display.
+
 ##v0.4.2
 - update for version bumps
 - same pathing fix for the package.json file.
