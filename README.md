@@ -9,7 +9,7 @@ IE8+ and the latest versions of Chrome, FireFox and Safari have been tested and 
 
 You can check out the demo here: [http://matowens.github.io/ng-notify](http://matowens.github.io/ng-notify)
 
-New in v0.4.0 are **sticky notifications**.  When enabled, notifications won't fade out until the user dismisses them.  This, too, can be set as a default option for all notifications or just set for individual notifications on a case by case basis.  For more on how to use this sticky feature, check [Advanced Usage](#advanced-usage) below.  For more on updates, head on over to the [changelog](https://github.com/matowens/ng-notify/blob/master/CHANGELOG.md).
+New in v0.4.0 are **sticky notifications**.  When enabled, notifications won't fade out until the user dismisses them.  This, too, can be set as a default option for all notifications or just set for individual notifications on a case by case basis.  For more on how to use this sticky feature, check out the [Sticky Notifications](#sticky-notifications) section below.  For more on updates, head on over to the [changelog](https://github.com/matowens/ng-notify/blob/master/CHANGELOG.md).
 
 Implementation
 ==============
@@ -75,6 +75,20 @@ You can also pass an object of options to individual notifications.  You can pas
         theme: 'pitchy'
     });
 
+###Sticky Notifications
+
+Sticky notifications allow you to set a perisistant notification that doesn't fade away.  To do this, simply set the `sticky` attribute to true:
+
+    ngNotify.set('This is sticky.', {
+        sticky: true
+    });
+
+This will give the user the option of closing the notification themselves.  If you need to dismiss a notification manually, you can do so with the `dismiss` method like this:
+    
+    ngNotify.dismiss();
+
+*Any time a notification is set to sticky, the duration attribute will be ignored since the notification will not be automatically fading out.*
+
 ###Roll Your Own
 
 There are two additional methods that allow you to create your own types and themes.
@@ -133,6 +147,7 @@ Definitions
 ###Methods
 
 ####set(message, type)
+displays a notification message and sets the formatting/behavioral options for this one notification.
 - **message**: *string* - *required* - the message to display in your notification.
 - **type**: *string* - *optional* - the type of notification to display.
     - info *(default)*
@@ -142,6 +157,7 @@ Definitions
     - grimace
 
 ####config(options)
+sets default settings for all notifications to take into account when displaying.
 - **options** - *object* - an object of options that overrides the default settings.
     - **theme**: *string* - *optional* - sets the theme to use, altering the styles for each notification type.
         - pure *(default)*
@@ -160,11 +176,16 @@ Definitions
     - **duration**: *integer* - *optional* - the duration the notification stays visible to the user, in milliseconds.
     - **sticky**: *bool* - *optional* - determines whether or not the message will fade at the end of the duration or if the message will persist until the user dismisses it themselves.  when true, duration will not be set, even if it has a value. *(false by default)*.
 
+####dismiss() 
+manually dismisses any sticky notifications that may still be set.
+
 ####addType(name, class)
+allows a dev to create a new type of notification to use in their app.
 - **name**: *string* - *required* - the name used to trigger this notification type in the *set* method.
 - **class**: *string* - *required* - the class used to target this type in the stylesheet.
 
 ####addTheme(name, class)
+allows a dev to create a whole new set of styles for each notification type.
 - **name**: *string* - *required* - the name used when setting the theme in the *config* object.
 - **class**: *string* - *required* - the class used to target this theme in the stylesheet.
 
