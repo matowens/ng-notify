@@ -107,6 +107,10 @@ app.controller('MainCtrl', ['$scope', 'ngNotify',
                 sticky: $scope.sticky
             });
         };
+
+        $scope.dismissNotify = function() {
+            ngNotify.dismiss();
+        };
     }
 ]);
 
