@@ -64,7 +64,7 @@
                 var tpl = $compile(
                     '<div class="ngn" ng-class="ngNotify.notifyClass">' +
                         '<span class="ngn-dismiss" ng-click="dismiss()">&times;</span>' +
-                        '<span ng-bind-html="ngNotify.notifyMessage"></span>' +
+                        '<span ng-bind="ngNotify.notifyMessage"></span>' +
                     '</div>'
                 )(notifyScope);
 
@@ -336,7 +336,6 @@
                         if (!typeName || !typeClass) { return; }
                         types[typeName + 'Class'] = typeClass;
                     }
-
                 };
 
                 return notifyObject;
