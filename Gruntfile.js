@@ -122,8 +122,6 @@ module.exports = function(grunt) {
         'uglify:demo'
     ]);
 
-
     grunt.registerTask('default', ['build']);
     grunt.registerTask('dev', ['build', 'watch']);
-
 };
