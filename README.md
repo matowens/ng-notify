@@ -3,9 +3,9 @@ ng-notify
 
 A simple, lightweight module for displaying notifications in your AngularJS app.
 
-Both JS and CSS files combine for < 4 kBs.
+Both JS and CSS files combine for ~4 kBs.
 
-IE8+ and the latest versions of Chrome, FireFox and Safari have been tested and are supported.  If you do run across any issues, please submit a [new issue](https://github.com/matowens/ng-notify/issues) and I'll take a look.
+IE8+ and the latest versions of Chrome, FireFox and Safari have been tested and are supported.  If you do run across any issues, please submit a [new issue](https://github.com/matowens/ng-notify/issues) and I'll take a look - or better yet - submit a PR with the bugfix and I'll merge it in.
 
 You can check out the demo here: [http://matowens.github.io/ng-notify](http://matowens.github.io/ng-notify)
 
@@ -30,15 +30,21 @@ You can also download source files straight from this repo, they're located in t
 
 After including *ng-notify.min.js* and *ng-notify.min.css*, inject the ng-notify provider into your project.
 
-    var app = angular.module('demo', ['ngNotify']);
+```javascript
+var app = angular.module('demo', ['ngNotify']);
+```
 
 Now you can trigger notifications from anywhere in your app.  To display a notification, just use the `set` method.
 
-    ngNotify.set('Your notification message goes here!');
+```javascript
+ngNotify.set('Your notification message goes here!');
+```
 
 To specify the *type* of notification to display, provide the optional *type* param. (For available types, check the [definitions](#definitions) below.)
 
-    ngNotify.set('Your error message goes here!', 'error');
+```javascript
+ngNotify.set('Your error message goes here!', 'error');
+```
 
 Advanced Usage
 ==============
@@ -47,45 +53,53 @@ Advanced Usage
 
 You can override the default options for all notifications by using the `config` method.  None of these options are required. (For available options, check the [definitions](#definitions) below.)
 
-    ngNotify.config({
-        theme: 'pure',
-        position: 'bottom',
-        duration: 3000,
-        type: 'info',
-        sticky: false
-    });
+```javascript
+ngNotify.config({
+    theme: 'pure',
+    position: 'bottom',
+    duration: 3000,
+    type: 'info',
+    sticky: false
+});
+```
 
 ###Individual Configurations
 
 You can also pass an object of options to individual notifications.  You can pass through any combination of our available options here as well.  (For available options, check the [definitions](#definitions) below.)  For example:
 
-    ngNotify.set('Your first message.', {
-        position: 'top',
-        sticky: true
-    });
+```javascript
+ngNotify.set('Your first message.', {
+    position: 'top',
+    sticky: true
+});
 
-    ngNotify.set('Your second message.', {
-        type: 'error',
-        duration: 2000
-    });
+ngNotify.set('Your second message.', {
+    type: 'error',
+    duration: 2000
+});
 
-    ngNotify.set('Your third message.', 'error'); // Original use case still works, too.
+ngNotify.set('Your third message.', 'error'); // Original use case still works, too.
 
-    ngNotify.set('Your fourth message.', {
-        theme: 'pitchy'
-    });
+ngNotify.set('Your fourth message.', {
+    theme: 'pitchy'
+});
+```
 
 ###Sticky Notifications
 
 Sticky notifications allow you to set a perisistant notification that doesn't fade away.  To do this, simply set the `sticky` attribute to true:
 
-    ngNotify.set('This is sticky.', {
-        sticky: true
-    });
+```javascript
+ngNotify.set('This is sticky.', {
+    sticky: true
+});
+```
 
 This will give the user the option of closing the notification themselves.  If you need to dismiss a notification manually, you can do so with the `dismiss` method like this:
-    
-    ngNotify.dismiss();
+
+```javascript
+ngNotify.dismiss();
+```
 
 *Any time a notification is set to sticky, the duration attribute will be ignored since the notification will not be automatically fading out.*
 
@@ -97,45 +111,57 @@ There are two additional methods that allow you to create your own types and the
 
 Creating a custom type will allow you to add additional types of notifications to use throughout your application.  To create a new type, use the `addType` method.  The first param is the *name* you'll use to reference your new type.  The second param is the *class* you'll use to style your new notification type.
 
-    ngNotify.addType('notice', 'my-notice-type');
+```javascript
+ngNotify.addType('notice', 'my-notice-type');
+```
 
 Then you can set any of your notifications up to use that type as you would any other, triggering it by using the name you gave it.
 
-    ngNotify.set('This notification is using our new type!', 'notice');
+```javascript
+ngNotify.set('This notification is using our new type!', 'notice');
+```
 
 To style your new type, pick a color you'd like to use and set it to the background color of your new style.
 
-    .my-notice-type
-        background-color: #ABC123
+```sass
+.my-notice-type
+    background-color: #ABC123
+```
 
 #####Custom Themes
 
 Creating a custom theme will allow you to build an entirely new spectrum of notification messages utilizing the existing notification types.  To create a new theme, use the `addTheme` method.  The first param is the *name* you'll use to reference your new theme.  The second param is the *class* you'll use to style your new theme's notification types.
 
-    ngNotify.addTheme('newTheme', 'my-new-theme');
+```javascript
+ngNotify.addTheme('newTheme', 'my-new-theme');
+```
 
 Now you can activate your new theme via the config method, using the name you previously assigned to it.
 
-    ngNotify.config({
-        theme: 'newTheme'
-    });
+```javascript
+ngNotify.config({
+    theme: 'newTheme'
+});
+```
 
 To style your new theme, pick a collection of colors you'd like to use for each notification type and set them to each type's background color.
 
-    .my-new-theme.ngn-info
-        background-color: #0033CC
+```sass
+.my-new-theme.ngn-info
+    background-color: #0033CC
 
-    .my-new-theme.ngn-error
-        background-color: #FF0000
+.my-new-theme.ngn-error
+    background-color: #FF0000
 
-    .my-new-theme.ngn-success
-        background-color: #00CC00
+.my-new-theme.ngn-success
+    background-color: #00CC00
 
-    .my-new-theme.ngn-warn
-        background-color: #FF9900
+.my-new-theme.ngn-warn
+    background-color: #FF9900
 
-    .my-new-theme.ngn-grimace
-        background-color: #660099
+.my-new-theme.ngn-grimace
+    background-color: #660099
+```
 
 #####Custom Styles
 
