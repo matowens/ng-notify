@@ -2,7 +2,7 @@
 .ngn {
   color: white;
   cursor: default;
-  display: block;
+  display: none;
   font-size: 1.3em;
   left: 0;
   opacity: 1;
