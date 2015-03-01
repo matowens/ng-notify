@@ -15,11 +15,20 @@
      */
      var module = angular.module('ngNotify', []);
 
+     module.run(['$templateCache', function($templateCache) {
+        $templateCache.put('templates/ng-notify/ngNotify.html',
+            '<div class="ngn" ng-class="ngNotify.notifyClass">' +
+                '<span class="ngn-dismiss" ng-click="dismiss()">&times;</span>' +
+                '<span ng-bind="ngNotify.notifyMessage"></span>' +
+            '</div>'
+        );
+     }]);
+
      module.provider('ngNotify', function() {
 
-        this.$get = ['$document', '$compile', '$rootScope', '$timeout', '$interval',
+        this.$get = ['$document', '$compile', '$rootScope', '$timeout', '$interval', '$templateCache',
 
-            function($document, $compile, $rootScope, $timeout, $interval) {
+            function($document, $compile, $rootScope, $timeout, $interval, $templateCache) {
 
                 // Defaults...
 
@@ -61,12 +70,7 @@
                 // Template and scope...
 
                 var notifyScope = $rootScope.$new();
-                var tpl = $compile(
-                    '<div class="ngn" ng-class="ngNotify.notifyClass">' +
-                        '<span class="ngn-dismiss" ng-click="dismiss()">&times;</span>' +
-                        '<span ng-bind="ngNotify.notifyMessage"></span>' +
-                    '</div>'
-                )(notifyScope);
+                var tpl = $compile($templateCache.get('templates/ng-notify/ngNotify.html'))(notifyScope);
 
                 $document.find('body').append(tpl);
 
