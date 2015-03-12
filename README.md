@@ -5,11 +5,11 @@ A simple, lightweight module for displaying notifications in your AngularJS app.
 
 Both JS and CSS files combine for ~4 kBs.
 
-IE8+ and the latest versions of Chrome, FireFox and Safari have been tested and are supported.  If you do run across any issues, please submit a [new issue](https://github.com/matowens/ng-notify/issues) and I'll take a look - or better yet - submit a PR with the bugfix and I'll merge it in.
+IE8+ and the latest versions of Chrome, FireFox and Safari have been tested and are supported.  If you do run across any issues, please submit a [new issue](https://github.com/matowens/ng-notify/issues) and I'll take a look - or better yet - submit a PR with the bug fix and I'll merge it in.
 
 You can check out the demo here: [http://matowens.github.io/ng-notify](http://matowens.github.io/ng-notify)
 
-New in v0.4.0 are **sticky notifications**.  When enabled, notifications won't fade out until the user dismisses them.  This, too, can be set as a default option for all notifications or just set for individual notifications on a case by case basis.  For more on how to use this sticky feature, check out the [Sticky Notifications](#sticky-notifications) section below.  For more on updates, head on over to the [changelog](https://github.com/matowens/ng-notify/blob/master/CHANGELOG.md).
+New in v0.4.0 are **sticky notifications**.  When enabled, notifications won't fade out until the user dismisses them.  This, too, can be set as a default option for all notifications or just set for individual notifications on a case by case basis.  For more on how to use this sticky feature, check out the [Sticky Notifications](#sticky-notifications) section below.  For more on updates, head on over to the [change log](https://github.com/matowens/ng-notify/blob/master/CHANGELOG.md).
 
 Implementation
 ==============
@@ -87,7 +87,7 @@ ngNotify.set('Your fourth message.', {
 
 ###Sticky Notifications
 
-Sticky notifications allow you to set a perisistant notification that doesn't fade away.  To do this, simply set the `sticky` attribute to true:
+Sticky notifications allow you to set a persistent notification that doesn't fade away.  To do this, simply set the `sticky` attribute to true:
 
 ```javascript
 ngNotify.set('This is sticky.', {

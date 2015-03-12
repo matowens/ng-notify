@@ -1,7 +1,7 @@
 /**
- * @license ng-notify v0.4.0
+ * @license ng-notify v0.5.2
  * http://matowens.github.io/ng-notify
- * (c) 2014 MIT License, matowens.com
+ * (c) 2014 MIT License, MatOwens.com
  */
 (function() {
     'use strict';
@@ -112,8 +112,8 @@
                 /**
                  * Sets how long (in ms) to display the notification for.
                  *
-                 * @param  {Integer} providedDuration - optional user provided number of ms a fade lasts.
-                 * @return {Integer}                  - the number of ms a fade on this notification will last.
+                 * @param  {Number} providedDuration - optional user provided number of ms a fade lasts.
+                 * @return {Number}                  - the number of ms a fade on this notification will last.
                  */
                 var setDuration = function(providedDuration) {
                     var duration = providedDuration || options.duration;
@@ -164,9 +164,9 @@
                 /**
                  * Handles the fading functionality and the duration for each fade.
                  *
-                 * @param {Integer}  mode     - used to trigger fade in or out, adds or subtracts opacity until visible or hidden.
-                 * @param {Integer   opacity  - initial opacity for our element.
-                 * @param {Integer}  duration - how long the fade should take to complete, in ms.
+                 * @param {Number}   mode     - used to trigger fade in or out, adds or subtracts opacity until visible or hidden.
+                 * @param {Number}   opacity  - initial opacity for our element.
+                 * @param {Number}   duration - how long the fade should take to complete, in ms.
                  * @param {Function} callback - function to invoke once our fade is complete.
                  */
                 fadeLib.fn.prototype._fade = function(mode, opacity, duration, callback) {
@@ -203,7 +203,7 @@
                 /**
                  * Triggers a fade in, opacity from 0 to 1.
                  *
-                 * @param  {Integer}  duration - how long the fade should take to complete, in ms.
+                 * @param  {Number}   duration - how long the fade should take to complete, in ms.
                  * @param  {Function} callback - function to invoke once fade has completed.
                  */
                 fadeLib.fn.prototype.fadeIn = function(duration, callback) {
@@ -215,8 +215,8 @@
                 /**
                  * Triggers a fade out, opacity from 1 to 0.
                  *
-                 * @param  {Integer}  duration - how long the fade should take to complete, in ms.
-                 * @param  {Function} callback - function to invoke once fade has completed.
+                 * @param {Number}   duration - how long the fade should take to complete, in ms.
+                 * @param {Function} callback - function to invoke once fade has completed.
                  */
                 fadeLib.fn.prototype.fadeOut = function(duration, callback) {
                     this._fade(-1, 1, duration, callback);
@@ -224,7 +224,6 @@
 
                 /**
                  * Dismisses our notification when called, attached to scope for ngCLick event to trigger.
-                 *
                  */
                 notifyScope.dismiss = function() {
                     el.fadeOut(500, function() {
@@ -233,7 +232,7 @@
                 };
 
                 /**
-                 * Our template bound to it's own personal scope and receiving our fade protoype functions.
+                 * Our template bound to it's own personal scope and receiving our fade prototype functions.
                  *
                  * @type {Object}
                  */
@@ -244,7 +243,7 @@
                  *
                  * @type {Object}
                  */
-                var notifyObject = {
+                return {
 
                     /**
                      * Merges our user specified options with our default set of options.
@@ -259,8 +258,12 @@
                     /**
                      * Sets, configures and displays each notification.
                      *
-                     * @param {String}             message - the message our notification will display to the user.
-                     * @param {String|Object|null} userOpt - optional parameter that contains the type or an object of options used to configure this notification.
+                     * @param {String}                   message - the message our notification will display to the user.
+                     * @param {String|Object|undefined}  userOpt - optional parameter that contains the type or an object of options used to configure this notification.
+                     * @param {String|undefined}         userOpt.theme
+                     * @param {String|undefined}         userOpt.position
+                     * @param {Number|undefined}         userOpt.duration
+                     * @param {Boolean|undefined}        userOpt.sticky
                      */
                     set: function(message, userOpt) {
 
@@ -331,7 +334,7 @@
 
                     /**
                      * Adds a new, user specified notification type that they
-                     * can then use throoughout their application.
+                     * can then use throughout their application.
                      *
                      * @param {String} typeName  - the name for this new type that will be used when applying it via configuration.
                      * @param {String} typeClass - the class that this type will use when applying it's styles.
@@ -342,7 +345,6 @@
                     }
                 };
 
-                return notifyObject;
             }
         ];
      });

@@ -1,4 +1,7 @@
-#ng-notify changelog
+#ng-notify Change Log
+
+##v0.5.2
+- leverage template cache. [#7](https://github.com/matowens/ng-notify/pull/7) - addition by [fduch2k](https://github.com/fduch2k)
 
 ##v0.5.1
 - use ng-bind-html for scope variable injection. - [#4](https://github.com/matowens/ng-notify/pull/4) - fix by [epigos](https://github.com/epigos)
@@ -10,20 +13,20 @@
 
 ##v0.4.2
 - update for version bumps
-- same pathing fix for the package.json file.
+- same path fix for the package.json file.
 
 ##v0.4.1
-- pathing fix for bower, bower.json file. - [#3](https://github.com/matowens/ng-notify/pull/3/files) - fix by [genu](https://github.com/genu)
+- path fix for bower, bower.json file. - [#3](https://github.com/matowens/ng-notify/pull/3/files) - fix by [genu](https://github.com/genu)
 
 ##v0.4.0
-- **new feature**: sticky notifications, dismissable by the user
+- **new feature**: sticky notifications, dismissible by the user
 - standardized comments throughout module
 - organized module structure
 
 ##v0.3.0
 - **new feature**: configurable options for individual notifications
 - renamed type option from *defaultType* to just *type* for consistency
-- introduced changelog
+- introduced change log
 
 ##v0.2.1
 - better organized for bower distribution
