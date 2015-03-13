@@ -1,4 +1,4 @@
-ng-notify [(live demo)](http://matowens.github.io/ng-notify/#demo)
+ng-notify ([live demo](http://matowens.github.io/ng-notify/#demo))
 =========
 
 A simple, lightweight module for displaying notifications in your AngularJS app.
