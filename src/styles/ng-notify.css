@@ -1,6 +1,6 @@
 /* System notifications */
 .ngn {
-  color: white;
+  color: #FFF;
   cursor: default;
   display: none;
   font-size: 1.3em;
@@ -24,10 +24,10 @@
   bottom: 0; }
 
 .ngn-dismiss {
-  background-color: #333333;
+  background-color: #333;
   border-radius: 15px;
-  box-shadow: inset 2px 2px 7px 2px black;
-  color: #dddddd;
+  box-shadow: inset 2px 2px 7px 2px #000;
+  color: #DDD;
   cursor: pointer;
   display: none;
   font-size: 1.25em;
@@ -37,17 +37,17 @@
   opacity: 0.2;
   position: absolute;
   right: 45px;
-  text-shadow: 1px 1px 5px black;
+  text-shadow: 1px 1px 5px #000;
   width: 30px; }
 
 .ngn-sticky .ngn-dismiss {
   display: block; }
 
 .ngn-dismiss:hover {
-  background-color: black; }
+  background-color: #000; }
 
 .ngn-dismiss:active {
-  background-color: #666666; }
+  background-color: #666; }
 
 /* Reduce notification size for mobile */
 @media only screen and (max-width: 480px) {
@@ -83,7 +83,7 @@
   background-color: #0033cc; }
 
 .ngn-prime.ngn-error {
-  background-color: red; }
+  background-color: #ff0000; }
 
 .ngn-prime.ngn-success {
   background-color: #00cc00; }
@@ -96,32 +96,34 @@
 
 /* Themes - Pastel */
 .ngn-pastel.ngn-info {
-  background-color: #7ea7d8; }
+  background-color: #7EA7D8; }
 
 .ngn-pastel.ngn-error {
-  background-color: #f6989d; }
+  background-color: #F6989D; }
 
 .ngn-pastel.ngn-success {
-  background-color: #82ca9d; }
+  background-color: #82CA9D; }
 
 .ngn-pastel.ngn-warn {
-  background-color: #fdc68a; }
+  background-color: #FDC68A; }
 
 .ngn-pastel.ngn-grimace {
-  background-color: #a187be; }
+  background-color: #A187BE; }
 
 /* Themes - Pitchy */
 .ngn-pitchy.ngn-info {
   background-color: #003471; }
 
 .ngn-pitchy.ngn-error {
-  background-color: #9e0b0f; }
+  background-color: #9E0B0F; }
 
 .ngn-pitchy.ngn-success {
   background-color: #007236; }
 
 .ngn-pitchy.ngn-warn {
-  background-color: #a36209; }
+  background-color: #A36209; }
 
 .ngn-pitchy.ngn-grimace {
-  background-color: #440e62; }
+  background-color: #440E62; }
+
+/*# sourceMappingURL=ng-notify.css.map */
