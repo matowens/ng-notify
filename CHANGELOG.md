@@ -1,5 +1,8 @@
 #ng-notify Change Log
 
+##v0.5.3
+- improvement to ensure notifications display on top layer via z-index. [#10](https://github.com/matowens/ng-notify/pull/10) - addition by [jessamynsmith](https://github.com/jessamynsmith) and [mgoku](https://github.com/mgoku)
+
 ##v0.5.2
 - leverage template cache. [#7](https://github.com/matowens/ng-notify/pull/7) - addition by [fduch2k](https://github.com/fduch2k)
 

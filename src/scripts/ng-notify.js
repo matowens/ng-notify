@@ -1,5 +1,5 @@
 /**
- * @license ng-notify v0.5.2
+ * @license ng-notify v0.5.3
  * http://matowens.github.io/ng-notify
  * (c) 2014 MIT License, MatOwens.com
  */

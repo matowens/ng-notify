@@ -5,4 +5,6 @@ This is just a little thank you to those that have contributed to this project i
 - [Alexander Hramov](https://github.com/fduch2k)
 - [Antch](https://github.com/antch)
 - [Eugen Istoc](https://github.com/genu)
+- [Jessamyn Smith](https://github.com/jessamynsmith)
+- [Munir](https://github.com/mgoku)
 - [Philip Adzanoukpe](https://github.com/epigos)
