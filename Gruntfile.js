@@ -102,13 +102,13 @@ module.exports = function(grunt) {
 
     - Lint JS
     - Clean old build
-    - Process styles 
-    - Process scripts 
+    - Process styles
+    - Process scripts
     - Process demo */
 
     grunt.registerTask('build', [
         'jshint',
-        'clean', 
+        'clean',
         'sass',
         'cssmin:build',
         'uglify:build',
@@ -116,10 +116,14 @@ module.exports = function(grunt) {
     ]);
 
     grunt.registerTask('demo', [
-        'processhtml', 
+        'processhtml',
         'htmlmin',
         'cssmin:demo',
         'uglify:demo'
+    ]);
+
+    grunt.registerTask('travis', [
+        'jshint'
     ]);
 
     grunt.registerTask('default', ['build']);
