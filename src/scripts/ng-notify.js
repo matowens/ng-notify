@@ -13,13 +13,14 @@
      * system for displaying notifications of varying degree to it's users.
      *
      */
-     var module = angular.module('ngNotify', []);
+     var module = angular.module('ngNotify', ['ngSanitize']);
 
      module.run(['$templateCache', function($templateCache) {
         $templateCache.put('templates/ng-notify/ngNotify.html',
             '<div class="ngn" ng-class="ngNotify.notifyClass">' +
                 '<span class="ngn-dismiss" ng-click="dismiss()">&times;</span>' +
-                '<span ng-bind="ngNotify.notifyMessage"></span>' +
+                '<span ng-if="ngNotify.notifyHtml" ng-bind-html="ngNotify.notifyMessage"></span>' +
+                '<span ng-if="!ngNotify.notifyHtml" ng-bind="ngNotify.notifyMessage"></span>' +
             '</div>'
         );
      }]);
@@ -282,10 +283,12 @@
                                 theme: userOpt.theme || undefined,
                                 position: userOpt.position || undefined,
                                 duration: userOpt.duration || undefined,
-                                sticky: userOpt.sticky || undefined
+                                sticky: userOpt.sticky || undefined,
+                                html: userOpt.html || false
                             };
                         } else {
                             userOpts.type = userOpt;
+                            userOpts.html = false;
                         }
 
                         var sticky = setSticky(userOpts.sticky);
@@ -298,7 +301,8 @@
 
                         notifyScope.ngNotify = {
                             notifyClass: notifyClass,
-                            notifyMessage: message
+                            notifyMessage: message,
+							notifyHtml: userOpts.html
                         };
 
                         el.fadeIn(200, function() {
