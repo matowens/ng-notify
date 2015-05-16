@@ -122,8 +122,16 @@ module.exports = function(grunt) {
         'uglify:demo'
     ]);
 
-    grunt.registerTask('travis', [
+    // A bit redundant, but explicit.  First test, good for local testing...
+
+    grunt.registerTask('test', [
         'jshint'
+    ]);
+
+    // ...and second test, used by Travis CI to trigger those same tests.
+
+    grunt.registerTask('travis', [
+        'test'
     ]);
 
     grunt.registerTask('default', ['build']);
