@@ -1,4 +1,4 @@
-ng-notify ([live demo](http://matowens.github.io/ng-notify/#demo))
+ng-notify ([live demo](http://matowens.github.io/ng-notify/#demo)) [![Build Status](https://travis-ci.org/matowens/ng-notify.svg?branch=travis-integration)](https://travis-ci.org/matowens/ng-notify)
 =========
 
 A simple, lightweight module for displaying notifications in your AngularJS app.
@@ -260,3 +260,35 @@ allows a dev to create a whole new set of styles for each notification type.
 - **sticky**: styles responsible for displaying the dismissal button for sticky notifications.
     - *.ngn-sticky* - displays the dismissal button when sticky is enabled.
     - *.ngn-dismiss* - styles the dismissal button.
+
+Development
+===========
+
+If you've forked or cloned the project and would like to make any sort of adjustments, there are few items to make note of.  First, your system will need to have the following bits in place:
+
+- Node & NPM
+- Grunt
+- Ruby
+- Sass
+
+Second, there are a few grunt tasks that you'll be able to leverage to help validate and prepare your changes for use.
+
+```shell
+grunt (or grunt build)
+```
+
+```shell
+grunt dev
+```
+
+```shell
+grunt test
+```
+
+Next, you'll want to do all of your development within two files.  If you add changes anywhere else, they're likely to be overwritten during the build process.  These two files are:
+
+`src/scripts/ng-notify.js` - for any script modifications.
+
+`src/ng-notify.sass` - for any style modifications.
+
+Lastly, once you've made your changes and run through the appropriate grunt tasks, your changes should now be ready for you to view in both the `demo` and the `dist` directory - as minified js and css files.
