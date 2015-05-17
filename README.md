@@ -295,6 +295,6 @@ Next, you'll want to do all of your development within two files.  If you add ch
 
 `src/scripts/ng-notify.js` - for any script modifications.
 
-`src/ng-notify.sass` - for any style modifications.
+`src/styles/ng-notify.sass` - for any style modifications.
 
 Lastly, once you've made your changes and run through the appropriate grunt tasks, your changes should now be ready for you to use in the `dist` directory - as minified js and css files.
