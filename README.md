@@ -3,13 +3,13 @@ ng-notify ([live demo](http://matowens.github.io/ng-notify/#demo))
 
 A simple, lightweight module for displaying notifications in your AngularJS app.
 
-Both JS and CSS files combine for ~4 kBs.
+Both JS and CSS files combine for ~4.6 kBs.
 
 IE8+ and the latest versions of Chrome, FireFox and Safari have been tested and are supported.  If you do run across any issues, please submit a [new issue](https://github.com/matowens/ng-notify/issues) and I'll take a look - or better yet - submit a PR with the bug fix and I'll merge it in.
 
 You can check out the vitals and demo here: [http://matowens.github.io/ng-notify](http://matowens.github.io/ng-notify)
 
-New in v0.4.0 are **sticky notifications**.  When enabled, notifications won't fade out until the user dismisses them.  This, too, can be set as a default option for all notifications or just set for individual notifications on a case by case basis.  For more on how to use this sticky feature, check out the [Sticky Notifications](#sticky-notifications) section below.  For more on updates, head on over to the [change log](https://github.com/matowens/ng-notify/blob/master/CHANGELOG.md).
+New in v0.6.0 is **HTML notifications**.  When enabled, you'll be able to display notifications with HTML content in them.  This too can be set as a default option for all notifications or just set for individual notifications on a case by case basis.  There is an extra requirement for this to function, the [ngSanitize](https://docs.angularjs.org/api/ngSanitize) script must be included in your app.  If ngSanitize is not available, ngNotify will gracefully degrade to displaying standard, HTML escaped notification messages.  For more on how to display HTML notifications, check out the [HTML Notifications](#html-notifications) section below.  For more on updates, head on over to the [change log](https://github.com/matowens/ng-notify/blob/master/CHANGELOG.md).
 
 Implementation
 ==============
@@ -102,6 +102,27 @@ ngNotify.dismiss();
 ```
 
 *Any time a notification is set to sticky, the duration attribute will be ignored since the notification will not be automatically fading out.*
+
+###HTML Notifications
+
+HTML notifications will allow you to display messages with HTML content in them.  To do this, you'll need to set the `html` attribute to true:
+
+```javascript
+ngNotify.set('This has <b>HTML</b> content!', {
+    html: true
+});
+```
+
+You can also set HTML notifications to be enabled for all of your notifications by adding it the ngNotify config like so:
+
+```javascript
+ngNotify.config({
+    html: true
+});
+```
+In order for HTML notifications to display, you are required to include the [ngSanitize](https://docs.angularjs.org/api/ngSanitize) script in your app (eg, via Google CDN, Bower, or code.angular.org).  There's no need to add it as a dependency to ngNotify.  If ngNotify has found the ngSanitize script, it will add it as a dependency to the ngNotify module dynamically.  Once included, you just need to toggle the `html` attribute to true and the module will handle the rest.
+
+If you don't have ngSanitize included and you do set `html` to true, ngNotify will gracefully degrade back to the default message display and print a debug message to remind you in your browser's console.
 
 ###Roll Your Own
 
@@ -202,7 +223,7 @@ sets default settings for all notifications to take into account when displaying
     - **duration**: *integer* - *optional* - the duration the notification stays visible to the user, in milliseconds.
     - **sticky**: *bool* - *optional* - determines whether or not the message will fade at the end of the duration or if the message will persist until the user dismisses it themselves.  when true, duration will not be set, even if it has a value. *(false by default)*.
 
-####dismiss() 
+####dismiss()
 manually dismisses any sticky notifications that may still be set.
 
 ####addType(name, class)
@@ -218,11 +239,11 @@ allows a dev to create a whole new set of styles for each notification type.
 ###Styles
 
 - **primary**: the class that's present on every notification and controls all of the primary styles.
-    - *.ngn* 
+    - *.ngn*
 
 - **position**: purely responsible for where notifications are displayed.  *default is set to bottom, one is present on every notification.*
     - *.ngn-top*
-    - *.ngn-bottom* 
+    - *.ngn-bottom*
 
 - **types**: default classes for setting each notification type's background color.  *default is set to info, one is present on every notification.*
     - *.ngn-info*

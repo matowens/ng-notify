@@ -27,13 +27,13 @@
     <div class="main">
         <h3>vitals</h3>
         <ul>
-            <li>version<br>v0.5.3</li>
+            <li>version<br>v0.6.0</li>
         </ul>
         <ul>
-            <li>total size<br> ~4 kBs</li>
+            <li>total size<br> ~4.6 kBs</li>
         </ul>
         <ul>
-            <li>files<br>ng-notify.min.js - 2.37 kBs<br>ng-notify.min.css - 1.69 kBs</li>
+            <li>files<br>ng-notify.min.js - 2.89 kBs<br>ng-notify.min.css - 1.71 kBs</li>
         </ul>
         <ul>
             <li>support<br>ie8+ and latest chrome, firefox & safari</li>
@@ -49,10 +49,12 @@
             <li><a class="btn success" ng-class="theme" ng-click="displayNotify('success')">success</a></li>
             <li><a class="btn info" ng-class="theme"  ng-click="displayNotify('info')">info</a></li>
             <li><a class="btn warn" ng-class="theme"  ng-click="displayNotify('warn')">warn</a></li>
-            <br>
+            <br />
             <li><a class="btn error" ng-class="theme"  ng-click="displayNotify('error')">error</a></li>
             <li><a class="btn grimace" ng-class="theme"  ng-click="displayNotify('grimace')">grimace</a></li>
             <li><a class="btn default" ng-click="displayNotify()">default</a></li>
+            <br />
+            <li><a class="btn default" ng-click="displayNotify('html')">w/ HTML</a></li>
             <!-- <li><a ng-click="dismissNotify()">Dismiss</a></li> -->
         </ul>
 
@@ -77,8 +79,12 @@
                 <select ng-model="duration" id="duration" ng-options="item.id as item.value for item in durationOptions" ng-change="setDefaultDuration()"></select>
             </li>
             <li>
-                <label for="sticky">sticky<span class="new">new</span></label>
+                <label for="sticky">sticky</label>
                 <select ng-model="sticky" id="sticky" ng-options="value for value in stickyOptions" ng-change="setDefaultSticky()"></select>
+            </li>
+            <li>
+                <label for="html">html<span class="new">new</span></label>
+                <select ng-model="html" id="html" ng-options="value for value in htmlOptions" ng-change="setDefaultHtml()"></select>
             </li>
         </ul>
         <p>Alter an option and then click through the demo again.  Check out <a href="https://github.com/matowens/ng-notify#configuration">the repo</a> for an example of how to set options for your project.</p>
@@ -108,6 +114,7 @@
 
     <!-- build:js demo.min.js -->
     <script src="../bower_components/angular/angular.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-sanitize.js"></script>
     <script src="../src/scripts/ng-notify.js"></script>
     <script src="demo.js"></script>
     <!-- /build -->

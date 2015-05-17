@@ -1,6 +1,6 @@
 var app = angular.module('demo', ['ngNotify']);
 
-app.controller('MainCtrl', ['$scope', 'ngNotify', 
+app.controller('MainCtrl', ['$scope', 'ngNotify',
     function($scope, ngNotify) {
         'use strict';
 
@@ -25,7 +25,7 @@ app.controller('MainCtrl', ['$scope', 'ngNotify',
         ngNotify.set('This is my notice type!', 'notice');
 
         */
-       
+
         // Demo notifications...
 
         $scope.displayNotify = function(notify) {
@@ -38,7 +38,7 @@ app.controller('MainCtrl', ['$scope', 'ngNotify',
                 case 'info':
                     ngNotify.set('You have a new message in your inbox.', 'info');
                     break;
-                case 'warn': 
+                case 'warn':
                     ngNotify.set('Please login before accessing that part of the site.', 'warn');
                     break;
                 case 'error':
@@ -46,6 +46,9 @@ app.controller('MainCtrl', ['$scope', 'ngNotify',
                     break;
                 case 'grimace':
                     ngNotify.set('An additional notification type to use.', 'grimace');
+                    break;
+                case 'html':
+                    ngNotify.set('<b>You</b> should be sure that the option <i>html</i> is set to <u>true</u>.');
                     break;
                 default:
                     ngNotify.set('This is the current default message type.');
@@ -60,10 +63,10 @@ app.controller('MainCtrl', ['$scope', 'ngNotify',
 
         $scope.duration = 4000;
         $scope.durationOptions = [
-            { id: 500, value: '500 ms' }, 
-            { id: 1000, value: '1000 ms' }, 
-            { id: 2000, value: '2000 ms' }, 
-            { id: 4000, value: '4000 ms' }, 
+            { id: 500, value: '500 ms' },
+            { id: 1000, value: '1000 ms' },
+            { id: 2000, value: '2000 ms' },
+            { id: 4000, value: '4000 ms' },
             { id: 8000 , value: '8000 ms'}
         ];
 
@@ -75,6 +78,9 @@ app.controller('MainCtrl', ['$scope', 'ngNotify',
 
         $scope.sticky = false;
         $scope.stickyOptions = [true, false];
+
+        $scope.html = false;
+        $scope.htmlOptions = [true, false];
 
         // Configuration actions...
 
@@ -105,6 +111,12 @@ app.controller('MainCtrl', ['$scope', 'ngNotify',
         $scope.setDefaultSticky = function() {
             ngNotify.config({
                 sticky: $scope.sticky
+            });
+        };
+
+        $scope.setDefaultHtml = function() {
+            ngNotify.config({
+                html: $scope.html
             });
         };
 
