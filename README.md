@@ -1,4 +1,4 @@
-ng-notify ([live demo](http://matowens.github.io/ng-notify/#demo)) [![Build Status](https://travis-ci.org/matowens/ng-notify.svg?branch=travis-integration)](https://travis-ci.org/matowens/ng-notify)
+ng-notify ([live demo](http://matowens.github.io/ng-notify/#demo)) [![Build Status](https://travis-ci.org/matowens/ng-notify.svg?branch=master)](https://travis-ci.org/matowens/ng-notify)
 =========
 
 A simple, lightweight module for displaying notifications in your AngularJS app.
