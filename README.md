@@ -273,15 +273,21 @@ If you've forked or cloned the project and would like to make any sort of adjust
 
 Second, there are a few grunt tasks that you'll be able to leverage to help validate and prepare your changes for use.
 
-```shell
+You can fire off a `grunt` or `grunt build` command manually at any time to lint, minify, and setup your demo (built in the _gh-pages dir) for testing.
+
+```console
 grunt (or grunt build)
 ```
 
-```shell
+Also, you can run `grunt dev` to lint, minify, and prep your demo for testing.  Once the build is complete, it'll also fire off a `watch` so that any changes you make to the the sass, js, and demo files will automatically trigger the build script to update your project.
+
+```console
 grunt dev
 ```
 
-```shell
+To run through the configured unit tests, we'll be utilizing `grunt test`.  This is sort of a placeholder at the moment until I can get to it.  Until then, this test will pass as long as the scripts pass the lint task.  Our Travis CI setup will use this to run through and validate that our project is in tip top shape.
+
+```console
 grunt test
 ```
 
@@ -291,4 +297,4 @@ Next, you'll want to do all of your development within two files.  If you add ch
 
 `src/ng-notify.sass` - for any style modifications.
 
-Lastly, once you've made your changes and run through the appropriate grunt tasks, your changes should now be ready for you to view in both the `demo` and the `dist` directory - as minified js and css files.
+Lastly, once you've made your changes and run through the appropriate grunt tasks, your changes should now be ready for you to use in the `dist` directory - as minified js and css files.
