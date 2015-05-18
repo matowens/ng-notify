@@ -82,6 +82,7 @@ module.exports = function(grunt) {
                 files: {
                     '_gh-pages/demo.min.js': [
                         'bower_components/angular/angular.js',
+                        'bower_components/angular-sanitize/angular-sanitize.js',
                         'src/scripts/ng-notify.js',
                         'demo/demo.js'
                     ]
