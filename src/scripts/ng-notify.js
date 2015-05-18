@@ -1,5 +1,5 @@
 /**
- * @license ng-notify v0.5.3
+ * @license ng-notify v0.6.0
  * http://matowens.github.io/ng-notify
  * (c) 2014 MIT License, MatOwens.com
  */
@@ -13,22 +13,53 @@
      * system for displaying notifications of varying degree to it's users.
      *
      */
-     var module = angular.module('ngNotify', []);
+    var module = angular.module('ngNotify', []);
 
-     module.run(['$templateCache', function($templateCache) {
-        $templateCache.put('templates/ng-notify/ngNotify.html',
-            '<div class="ngn" ng-class="ngNotify.notifyClass">' +
-                '<span class="ngn-dismiss" ng-click="dismiss()">&times;</span>' +
-                '<span ng-bind="ngNotify.notifyMessage"></span>' +
-            '</div>'
-        );
-     }]);
+    /**
+     * Check to see if the ngSanitize script has been included by the user.
+     * If so, pull it in and allow for it to be used when user has specified.
+     */
+    var hasSanitize = false;
 
-     module.provider('ngNotify', function() {
+    try {
 
-        this.$get = ['$document', '$compile', '$rootScope', '$timeout', '$interval', '$templateCache',
+        if (angular.module('ngSanitize')) {
 
-            function($document, $compile, $rootScope, $timeout, $interval, $templateCache) {
+            // Note on the requires array from module() source code:
+            // Holds the list of modules which the injector will load before the current module is loaded.
+
+            // A sort of lazy load for our dependency on ngSanitize, only if the module exists.
+            angular.module('ngNotify').requires.push('ngSanitize');
+
+            hasSanitize = true;
+        }
+
+    } catch (err) {
+        // Ignore error, we'll disable any sanitize related functionality...
+    }
+
+    // Generate ngNotify template and add it to cache...
+
+    var html =
+    '<div class="ngn" ng-class="ngNotify.notifyClass">' +
+        '<span class="ngn-dismiss" ng-click="dismiss()">&times;</span>' +
+        '<span ng-if="ngNotify.nofityHtml" ng-bind-html="ngNotify.notifyMessage"></span>' + // Display HTML notifications.
+        '<span ng-if="!ngNotify.nofityHtml" ng-bind="ngNotify.notifyMessage"></span>' + // Display escaped notifications.
+    '</div>';
+
+    module.run(['$templateCache',
+
+        function($templateCache) {
+
+            $templateCache.put('templates/ng-notify/ngNotify.html', html);
+        }
+    ]);
+
+    module.provider('ngNotify', function() {
+
+        this.$get = ['$document', '$compile', '$log', '$rootScope', '$timeout', '$interval', '$templateCache',
+
+            function($document, $compile, $log, $rootScope, $timeout, $interval, $templateCache) {
 
                 // Defaults...
 
@@ -37,7 +68,8 @@
                     position: 'bottom',
                     duration: 3000,
                     type: 'info',
-                    sticky: false
+                    sticky: false,
+                    html: false
                 };
 
                 // Options...
@@ -123,11 +155,37 @@
                 /**
                  * Sets our notification's sticky state, forcing the user to dismiss it when enabled.
                  *
-                 * @param {Bool} providedSticky - boolean on whether or not sticky state should be enabled.
+                 * @param  {Bool} providedSticky - boolean on whether or not sticky state should be enabled.
+                 * @return {Bool}                - whether we'll be showing a sticky notification or not.
                  */
                 var setSticky = function(providedSticky) {
                     var sticky = providedSticky || options.sticky;
                     return sticky ? true : false;
+                };
+
+                /**
+                 * Sets whether or not to allow HTML binding via ngSanitize or not.
+                 * Check to make sure ngSanitize is included in the project and warn the user if it's not.
+                 *
+                 * @param  {Bool} providedHtml - boolean on whether or not ng-bind-html should be used.
+                 * @return {Bool}              - whether we'll be using ng-bind-html or not.
+                 */
+                var setHtml = function(providedHtml) {
+
+                    if (!hasSanitize) {
+
+                        if (providedHtml || options.html) {
+                            $log.debug(
+                                'ngNotify warning:\nThe ngSanitize script couldn\'t be located.  In order to use the ' +
+                                '\'html\' option, be sure ngSanitize is included and added as a dependency to your app.'
+                            );
+                        }
+
+                        return false;
+                    }
+
+                    var html = providedHtml || options.html;
+                    return html ? true : false;
                 };
 
                 /**
@@ -264,6 +322,7 @@
                      * @param {String|undefined}         userOpt.position
                      * @param {Number|undefined}         userOpt.duration
                      * @param {Boolean|undefined}        userOpt.sticky
+                     * @param {Boolean|undefined}        userOpt.html
                      */
                     set: function(message, userOpt) {
 
@@ -282,12 +341,14 @@
                                 theme: userOpt.theme || undefined,
                                 position: userOpt.position || undefined,
                                 duration: userOpt.duration || undefined,
-                                sticky: userOpt.sticky || undefined
+                                sticky: userOpt.sticky || undefined,
+                                html: userOpt.html || undefined
                             };
                         } else {
                             userOpts.type = userOpt;
                         }
 
+                        var showHtml = setHtml(userOpts.html);
                         var sticky = setSticky(userOpts.sticky);
                         var duration = setDuration(userOpts.duration);
                         var notifyClass = setType(userOpts.type) + ' ' +
@@ -297,6 +358,7 @@
                         notifyClass += sticky ? ' ngn-sticky' : '';
 
                         notifyScope.ngNotify = {
+                            nofityHtml: showHtml,
                             notifyClass: notifyClass,
                             notifyMessage: message
                         };
@@ -344,8 +406,7 @@
                         types[typeName + 'Class'] = typeClass;
                     }
                 };
-
             }
         ];
-     });
+    });
 })();

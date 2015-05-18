@@ -82,6 +82,7 @@ module.exports = function(grunt) {
                 files: {
                     '_gh-pages/demo.min.js': [
                         'bower_components/angular/angular.js',
+                        'bower_components/angular-sanitize/angular-sanitize.js',
                         'src/scripts/ng-notify.js',
                         'demo/demo.js'
                     ]
@@ -102,13 +103,13 @@ module.exports = function(grunt) {
 
     - Lint JS
     - Clean old build
-    - Process styles 
-    - Process scripts 
+    - Process styles
+    - Process scripts
     - Process demo */
 
     grunt.registerTask('build', [
         'jshint',
-        'clean', 
+        'clean',
         'sass',
         'cssmin:build',
         'uglify:build',
@@ -116,10 +117,22 @@ module.exports = function(grunt) {
     ]);
 
     grunt.registerTask('demo', [
-        'processhtml', 
+        'processhtml',
         'htmlmin',
         'cssmin:demo',
         'uglify:demo'
+    ]);
+
+    // A bit redundant, but explicit.  First test, good for local testing...
+
+    grunt.registerTask('test', [
+        'jshint'
+    ]);
+
+    // ...and second test, used by Travis CI to trigger those same tests.
+
+    grunt.registerTask('travis', [
+        'test'
     ]);
 
     grunt.registerTask('default', ['build']);

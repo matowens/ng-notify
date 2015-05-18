@@ -1,20 +1,23 @@
 {
   "name": "ng-notify",
-  "version": "0.5.3",
+  "version": "0.6.0",
   "description": "A simple, lightweight module for displaying notifications in your AngularJS app.",
   "main": "./src/scripts/ng-notify.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "grunt travis"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/matowens/ng-notify"
+    "url": "git://github.com/matowens/ng-notify.git"
   },
   "keywords": [
     "AngularJS",
     "App",
     "notify",
-    "Provider"
+    "Provider",
+    "notification",
+    "alert",
+    "notice"
   ],
   "author": "Mat Owens <mat@peglegg.net>",
   "license": "MIT",
