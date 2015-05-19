@@ -10,13 +10,16 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-watch');
 
+    grunt.loadNpmTasks('grunt-karma');
+
     grunt.initConfig({
 
         jshint: {
             files: [
                 'Gruntfile.js',
                 'src/scripts/**/*.js',
-                'demo/**/*.js'
+                'demo/**/*.js',
+                'test/**/*.js'
             ],
             options: {
                 jshintrc: '.jshintrc'
@@ -90,6 +93,14 @@ module.exports = function(grunt) {
             }
         },
 
+        karma: {
+            unit: {
+                options: {
+                    configFile: 'my.conf.js'
+                }
+            }
+        },
+
         watch: {
             scripts: {
                 files: ['src/**/*', 'demo/**/*'],
@@ -126,7 +137,8 @@ module.exports = function(grunt) {
     // A bit redundant, but explicit.  First test, good for local testing...
 
     grunt.registerTask('test', [
-        'jshint'
+        'jshint',
+        'karma'
     ]);
 
     // ...and second test, used by Travis CI to trigger those same tests.
