@@ -41,13 +41,13 @@
     "undef"         : true,     // Require all non-global variables be declared before they are used.
     "strict"        : true,     // Require `use strict` pragma in every file.
     "trailing"      : true,     // Prohibit trailing whitespaces.
-    
+
     // == Relaxing Options ================================================
     //
     // These options allow you to suppress certain types of warnings. Use
     // them only if you are absolutely positive that you know what you are
     // doing.
-    
+
     "asi"           : false,    // Tolerate Automatic Semicolon Insertion (no semicolons).
     "boss"          : false,    // Tolerate assignments inside if, for & while. Usually conditions & loops are for comparison, not assignments.
     "debug"         : false,    // Allow debugger statements e.g. browser breakpoints.
@@ -73,35 +73,36 @@
     "sub"           : false,    // Tolerate all forms of subscript notation besides dot notation e.g. `dict['key']` instead of `dict.key`.
     "supernew"      : false,    // Tolerate `new function () { ... };` and `new Object;`.
     "validthis"     : false,    // Tolerate strict violations when the code is running in strict mode and you use this in a non-constructor function.
-    
+
     // == Environments ====================================================
     //
     // These options pre-define global variables that are exposed by
     // popular JavaScript libraries and runtime environments—such as
     // browser or node.js.
-    
-    "browser"       : true,     // Standard browser globals e.g. `window`, `document`.
+
+    "browser"       : false,    // Standard browser globals e.g. `window`, `document`.
     "couch"         : false,    // Enable globals exposed by CouchDB.
     "devel"         : true,     // Allow development statements e.g. `console.log();`.
     "dojo"          : false,    // Enable globals exposed by Dojo Toolkit.
-    "jquery"        : false,    // Enable globals exposed by jQuery JavaScript library.
+    "jquery"        : true,     // Enable globals exposed by jQuery JavaScript library.
     "mootools"      : false,    // Enable globals exposed by MooTools JavaScript framework.
     "node"          : false,    // Enable globals available when code is running inside of the NodeJS runtime environment.
     "nonstandard"   : false,    // Define non-standard but widely adopted globals such as escape and unescape.
     "prototypejs"   : false,    // Enable globals exposed by Prototype JavaScript framework.
     "rhino"         : false,    // Enable globals available when your code is running inside of the Rhino runtime environment.
     "wsh"           : false,    // Enable globals available when your code is running as a script for the Windows Script Host.
-    
+    "jasmine"       : true,     // This option defines globals exposed by the Jasmine unit testing framework.
+
     // == JSLint Legacy ===================================================
     //
     // These options are legacy from JSLint. Aside from bug fixes they will
     // not be improved in any way and might be removed at any point.
-    
+
     "nomen"         : false,    // Prohibit use of initial or trailing underbars in names.
     "onevar"        : false,    // Allow only one `var` statement per function.
     "passfail"      : false,    // Stop on first error.
     "white"         : false,    // Check against strict whitespace and indentation rules.
-    
+
     // == Undocumented Options ============================================
     //
     // While I've found these options in [example1][2] and [example2][3]
@@ -112,7 +113,8 @@
     "maxerr"        : 100,      // Maximum errors before stopping.
     "predef"        : [         // Extra globals.
         "module",
-        "angular"
+        "angular",
+        "inject"
     ],
     "indent"        : 4         // Specify indentation spacing
 }
