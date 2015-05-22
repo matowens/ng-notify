@@ -77,6 +77,9 @@ module.exports = function(grunt) {
 
         uglify: {
             build: {
+                options: {
+                    sourceMap: true
+                },
                 files: {
                     'dist/ng-notify.min.js': 'src/**/*.js'
                 }
