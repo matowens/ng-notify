@@ -1,4 +1,4 @@
-ng-notify ([live demo](http://matowens.github.io/ng-notify/#demo)) [![Build Status](https://travis-ci.org/matowens/ng-notify.svg?branch=master)](https://travis-ci.org/matowens/ng-notify)
+ng-notify ([live demo](http://matowens.github.io/ng-notify/#demo)) [![Build Status](https://travis-ci.org/matowens/ng-notify.svg?branch=master)](https://travis-ci.org/matowens/ng-notify) [![Code Climate](https://codeclimate.com/github/matowens/ng-notify/badges/gpa.svg)](https://codeclimate.com/github/matowens/ng-notify)
 =========
 
 A simple, lightweight module for displaying notifications in your AngularJS app.
@@ -62,6 +62,8 @@ ngNotify.config({
     sticky: false
 });
 ```
+
+Default configuration options can be set during the `run()` block.  If your app utilizes a global controller, the config options could be set there just as well.  For a discussion and working example on this topic, checkout [this comment](https://github.com/matowens/ng-notify/issues/16#issuecomment-104492193).
 
 ###Individual Configurations
 
