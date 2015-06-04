@@ -1,5 +1,5 @@
 /**
- * @license ng-notify v0.6.0
+ * @license ng-notify v0.6.1
  * http://matowens.github.io/ng-notify
  * (c) 2014 MIT License, MatOwens.com
  */
@@ -43,8 +43,8 @@
     var html =
     '<div class="ngn" ng-class="ngNotify.notifyClass">' +
         '<span class="ngn-dismiss" ng-click="dismiss()">&times;</span>' +
-        '<span ng-if="ngNotify.nofityHtml" ng-bind-html="ngNotify.notifyMessage"></span>' + // Display HTML notifications.
-        '<span ng-if="!ngNotify.nofityHtml" ng-bind="ngNotify.notifyMessage"></span>' + // Display escaped notifications.
+        '<span ng-if="ngNotify.notifyHtml" ng-bind-html="ngNotify.notifyMessage"></span>' + // Display HTML notifications.
+        '<span ng-if="!ngNotify.notifyHtml" ng-bind="ngNotify.notifyMessage"></span>' + // Display escaped notifications.
     '</div>';
 
     module.run(['$templateCache',
@@ -155,8 +155,8 @@
                 /**
                  * Sets our notification's sticky state, forcing the user to dismiss it when enabled.
                  *
-                 * @param  {Bool} providedSticky - boolean on whether or not sticky state should be enabled.
-                 * @return {Bool}                - whether we'll be showing a sticky notification or not.
+                 * @param  {Boolean} providedSticky - boolean on whether or not sticky state should be enabled.
+                 * @return {Boolean}                - whether we'll be showing a sticky notification or not.
                  */
                 var setSticky = function(providedSticky) {
                     var sticky = providedSticky || options.sticky;
@@ -167,8 +167,8 @@
                  * Sets whether or not to allow HTML binding via ngSanitize or not.
                  * Check to make sure ngSanitize is included in the project and warn the user if it's not.
                  *
-                 * @param  {Bool} providedHtml - boolean on whether or not ng-bind-html should be used.
-                 * @return {Bool}              - whether we'll be using ng-bind-html or not.
+                 * @param  {Boolean} providedHtml - boolean on whether or not ng-bind-html should be used.
+                 * @return {Boolean}              - whether we'll be using ng-bind-html or not.
                  */
                 var setHtml = function(providedHtml) {
 
@@ -318,6 +318,7 @@
                      *
                      * @param {String}                   message - the message our notification will display to the user.
                      * @param {String|Object|undefined}  userOpt - optional parameter that contains the type or an object of options used to configure this notification.
+                     * @param {String|undefined}         userOpt.type
                      * @param {String|undefined}         userOpt.theme
                      * @param {String|undefined}         userOpt.position
                      * @param {Number|undefined}         userOpt.duration
@@ -358,7 +359,7 @@
                         notifyClass += sticky ? ' ngn-sticky' : '';
 
                         notifyScope.ngNotify = {
-                            nofityHtml: showHtml,
+                            notifyHtml: showHtml,
                             notifyClass: notifyClass,
                             notifyMessage: message
                         };
