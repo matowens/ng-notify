@@ -1,5 +1,12 @@
 #ng-notify Change Log
 
+##v0.6.1
+- unit tests and [Travis CI](https://travis-ci.org/matowens/ng-notify) integration.
+- [code climate](https://codeclimate.com/github/matowens/ng-notify) monitoring.
+- cdn addition via [jsDelivr](http://www.jsdelivr.com/#!angular.ng-notify).
+- updated to angular 1.4.0.
+- minor code cleanup.
+
 ##v0.6.0
 - **new feature**: html notifications, possible if ngSanitize is included. w/ help from [gaetancollaud](https://github.com/gaetancollaud) and [NetanelBasal](https://github.com/NetanelBasal) in [#12](https://github.com/matowens/ng-notify/issues/12), [deegale](https://github.com/deegale) in [#6](https://github.com/matowens/ng-notify/issues/6), and [epigos](https://github.com/epigos) in [#4](https://github.com/matowens/ng-notify/pull/4)
 
