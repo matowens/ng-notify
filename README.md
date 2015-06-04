@@ -26,8 +26,8 @@ You can install ng-notify with Bower.
 
 As of v0.6.0, ng-notify is now available via the jsDelivr CDN if you'd prefer to go down that route.
 
-    //cdn.jsdelivr.net/angular.ng-notify/{version-number-here}/ng-notify.min.js
-    //cdn.jsdelivr.net/angular.ng-notify/{version-number-here}/ng-notify.min.css
+    //cdn.jsdelivr.net/angular.ng-notify/{version.number.here}/ng-notify.min.js
+    //cdn.jsdelivr.net/angular.ng-notify/{version.number.here}/ng-notify.min.css
 
 For example:
 
