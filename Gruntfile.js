@@ -99,7 +99,7 @@ module.exports = function(grunt) {
         karma: {
             unit: {
                 options: {
-                    configFile: 'my.conf.js'
+                    configFile: 'test/conf/karma.conf.js'
                 }
             }
         },

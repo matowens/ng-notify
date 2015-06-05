@@ -1,12 +1,12 @@
 // Karma configuration
 // Generated on Mon May 18 2015 20:33:21 GMT-0500 (Central Daylight Time)
-
 module.exports = function(config) {
+    'use strict';
 
     config.set({
 
         // base path that will be used to resolve all patterns (eg. files, exclude)
-        basePath: '',
+        basePath: '../../',
 
         // frameworks to use
         // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
@@ -19,7 +19,7 @@ module.exports = function(config) {
             'bower_components/angular-mocks/angular-mocks.js',
             'src/scripts/ng-notify.js',
             'src/styles/ng-notify.css',
-            'test/**/*.js'
+            'test/unit/**/*.js'
         ],
 
         // list of files to exclude
