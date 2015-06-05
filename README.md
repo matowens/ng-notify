@@ -303,7 +303,7 @@ To run through the configured unit tests, you can run `grunt test`.  This will f
 grunt test
 ```
 
-Next, you'll want to do all of your development within three locations.  If you add changes anywhere else, they're likely to be overwritten during the build process.  These two files are:
+Next, you'll want to do all of your development within three locations.  If you add changes anywhere else, they're likely to be overwritten during the build process.  These locations are:
 
 `src/scripts/ng-notify.js` - for any script modifications.
 
