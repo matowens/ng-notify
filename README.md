@@ -69,7 +69,8 @@ ngNotify.config({
     position: 'bottom',
     duration: 3000,
     type: 'info',
-    sticky: false
+    sticky: false,
+    html: false
 });
 ```
 
@@ -92,8 +93,9 @@ ngNotify.set('Your second message.', {
 
 ngNotify.set('Your third message.', 'error'); // Original use case still works, too.
 
-ngNotify.set('Your fourth message.', {
-    theme: 'pitchy'
+ngNotify.set('Your <i>fourth</i> message.', {
+    theme: 'pitchy',
+    html: true
 });
 ```
 
@@ -311,4 +313,4 @@ Next, you'll want to do all of your development within three locations.  If you 
 
 `demo/*` - for any modifications to the demo.
 
-Lastly, once you've made your changes and run through the appropriate grunt tasks, your changes should now be ready for you in the `dist` directory - as minified js and css files.
+Lastly, once you've made your changes and run through the appropriate grunt tasks, your changes should be baked and ready for you to consume - located in the `dist` directory as minified js and css files.
