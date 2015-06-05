@@ -291,22 +291,24 @@ You can fire off a `grunt` or `grunt build` command manually at any time to lint
 grunt (or grunt build)
 ```
 
-Also, you can run `grunt dev` to lint, minify, and prep your demo for testing.  Once the build is complete, it'll also fire off a `watch` so that any changes you make to the the sass, js, and demo files will automatically trigger the build script to update your project.
+Also, you can run `grunt dev` to lint, minify, and prep your demo for testing.  Once the build is complete, it'll also fire off a `watch` so that any changes that are made to the the sass, js, and demo files will automatically trigger the build script to update your project.
 
 ```console
 grunt dev
 ```
 
-To run through the configured unit tests, we'll be utilizing `grunt test`.  This is sort of a placeholder at the moment until I can get to it.  Until then, this test will pass as long as the scripts pass the lint task.  Our Travis CI setup will use this to run through and validate that our project is in tip top shape.
+To run through the configured unit tests, you can run `grunt test`.  This will fire off a series of tests that check that all default options are set correctly, all configurable options are able to be set correctly, and that all methods carry out the functionality that they're supposed to.  These tests should let you know if any of the updates that you've made have negatively effected any preexisting functionality.
 
 ```console
 grunt test
 ```
 
-Next, you'll want to do all of your development within two files.  If you add changes anywhere else, they're likely to be overwritten during the build process.  These two files are:
+Next, you'll want to do all of your development within three locations.  If you add changes anywhere else, they're likely to be overwritten during the build process.  These two files are:
 
 `src/scripts/ng-notify.js` - for any script modifications.
 
 `src/styles/ng-notify.sass` - for any style modifications.
 
-Lastly, once you've made your changes and run through the appropriate grunt tasks, your changes should now be ready for you to use in the `dist` directory - as minified js and css files.
+`demo/*` - for any modifications to the demo.
+
+Lastly, once you've made your changes and run through the appropriate grunt tasks, your changes should now be ready for you in the `dist` directory - as minified js and css files.
