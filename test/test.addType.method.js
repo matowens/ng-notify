@@ -50,7 +50,7 @@ describe('ngNotify addType method', function() {
         ngNotify.set(message, newTypeName);
 
         expect(
-            scope.ngNotify.notifyClass.indexOf("ngn-" + newTypeName) > -1
+            scope.ngNotify.notifyClass.indexOf(newTypeClass) > -1
         ).toBe(false);
     });
 
@@ -61,7 +61,7 @@ describe('ngNotify addType method', function() {
         });
 
         expect(
-            scope.ngNotify.notifyClass.indexOf("ngn-" + newTypeName) > -1
+            scope.ngNotify.notifyClass.indexOf(newTypeClass) > -1
         ).toBe(false);
     });
 
@@ -74,7 +74,7 @@ describe('ngNotify addType method', function() {
         ngNotify.set(message);
 
         expect(
-            scope.ngNotify.notifyClass.indexOf("ngn-" + newTypeName) > -1
+            scope.ngNotify.notifyClass.indexOf(newTypeClass) > -1
         ).toBe(false);
     });
 
@@ -85,7 +85,7 @@ describe('ngNotify addType method', function() {
         ngNotify.set(message, newTypeName);
 
         expect(
-            scope.ngNotify.notifyClass.indexOf("ngn-" + newTypeName) > -1
+            scope.ngNotify.notifyClass.indexOf(newTypeClass) > -1
         ).toBe(true);
     });
 
@@ -98,7 +98,7 @@ describe('ngNotify addType method', function() {
         });
 
         expect(
-            scope.ngNotify.notifyClass.indexOf("ngn-" + newTypeName) > -1
+            scope.ngNotify.notifyClass.indexOf(newTypeClass) > -1
         ).toBe(true);
     });
 
@@ -113,7 +113,7 @@ describe('ngNotify addType method', function() {
         ngNotify.set(message);
 
         expect(
-            scope.ngNotify.notifyClass.indexOf("ngn-" + newTypeName) > -1
+            scope.ngNotify.notifyClass.indexOf(newTypeClass) > -1
         ).toBe(true);
     });
 
