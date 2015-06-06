@@ -49,6 +49,17 @@ describe('ngNotify config method', function() {
      * is done in each config's specific test.
      */
 
+    it('is empty', function() {
+
+        ngNotify.config();
+
+        ngNotify.set(message);
+
+        expect(
+            scope.ngNotify.notifyClass.indexOf("ngn-info") > -1
+        ).toBe(true);
+    });
+
     it('type warn is set', function() {
 
         ngNotify.config({
@@ -112,6 +123,20 @@ describe('ngNotify config method', function() {
         expect(
             scope.ngNotify.notifyClass.indexOf("ngn-top") > -1
         ).toBe(true);
+    });
+
+    it('duration abc is set', function() {
+
+        ngNotify.config({
+            duration: 'abc'
+        });
+
+        ngNotify.set(message);
+
+        expect(
+            scope.ngNotify.notifyMessage
+        ).toEqual(message);
+
     });
 
     it('duration 1000 is set', function() {

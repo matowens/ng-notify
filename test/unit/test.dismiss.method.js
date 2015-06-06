@@ -1,8 +1,6 @@
 /**
  * Test that we're able to dismiss our notification
  * by calling the dismiss method.
- *
- * TODO: Add ability to test dismiss via scope?  Use ngStyle?
  */
 describe('ngNotify dismiss method', function() {
     'use strict';
@@ -42,23 +40,18 @@ describe('ngNotify dismiss method', function() {
     });
 
     /**
-     * Setup addTheme method tests.
+     * Setup dismiss method tests.
      */
 
     it('is triggered', function() {
 
-        /*
+        spyOn(scope, 'dismiss');
 
         ngNotify.set(message);
 
-        console.log(scope.ngNotify);
-
         ngNotify.dismiss();
 
-        console.log(scope.ngNotify);
-
-        */
-
+        expect(scope.dismiss).toHaveBeenCalled();
     });
 
 });

@@ -7,11 +7,14 @@ Desktop.ini
 # Project
 
 .idea
-vendor
-node_modules
-bower_components
-dist/demo
-.temp
-logs
 .sass-cache
+.temp
+
 _gh-pages
+
+bower_components
+coverage
+dist/demo
+logs
+node_modules
+vendor

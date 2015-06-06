@@ -69,6 +69,21 @@ describe('ngNotify addTheme method', function() {
         ).toBe(false);
     });
 
+    it('empty theme is not set', function() {
+
+        ngNotify.addTheme();
+
+        ngNotify.config({
+            theme: newThemeName
+        });
+
+        ngNotify.set(message);
+
+        expect(
+            scope.ngNotify.notifyClass.indexOf(newThemeClass) > -1
+        ).toBe(false);
+    });
+
     it('object theme is set', function() {
 
         ngNotify.addTheme(newThemeName, newThemeClass);

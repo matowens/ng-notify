@@ -24,8 +24,6 @@ describe('ngNotify default configuration', function() {
 
         ngNotify = $injector.get('ngNotify');
 
-        ngNotify.set(message);
-
         doc = $document;
 
         element = angular.element(
@@ -47,7 +45,18 @@ describe('ngNotify default configuration', function() {
      * Configure each default test.
      */
 
+    it('message is not set', function() {
+
+        ngNotify.set();
+
+        expect(
+            scope.ngNotify
+        ).toEqual(undefined);
+    });
+
     it('message is set', function() {
+
+        ngNotify.set(message);
 
         expect(
             scope.ngNotify.notifyMessage
@@ -56,12 +65,16 @@ describe('ngNotify default configuration', function() {
 
     it('position is bottom', function() {
 
+        ngNotify.set(message);
+
         expect(
             scope.ngNotify.notifyClass.indexOf("ngn-bottom") > -1
         ).toBe(true);
     });
 
     it('type is info', function() {
+
+        ngNotify.set(message);
 
         expect(
             scope.ngNotify.notifyClass.indexOf("ngn-info") > -1
@@ -70,6 +83,8 @@ describe('ngNotify default configuration', function() {
 
     it('sticky is false', function() {
 
+        ngNotify.set(message);
+
         expect(
             scope.ngNotify.notifyClass.indexOf("ngn-sticky") > -1
         ).toBe(false);
@@ -77,12 +92,16 @@ describe('ngNotify default configuration', function() {
 
     it('html is false', function() {
 
+        ngNotify.set(message);
+
         expect(
             scope.ngNotify.notifyHtml
         ).toBe(false);
     });
 
     it('duration is 3000', function() {
+
+        ngNotify.set(message);
 
         // ????
 

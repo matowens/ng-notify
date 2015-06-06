@@ -78,6 +78,21 @@ describe('ngNotify addType method', function() {
         ).toBe(false);
     });
 
+    it('empty type notice is not set', function() {
+
+        ngNotify.addType();
+
+        ngNotify.config({
+            type: newTypeName
+        });
+
+        ngNotify.set(message);
+
+        expect(
+            scope.ngNotify.notifyClass.indexOf(newTypeClass) > -1
+        ).toBe(false);
+    });
+
     it('string type notice is set', function() {
 
         ngNotify.addType(newTypeName, newTypeClass);
