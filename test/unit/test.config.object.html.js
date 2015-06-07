@@ -43,6 +43,22 @@ describe('ngNotify html configuration', function() {
      * Configure html tests.
      */
 
+    it('object html set to false overrides config', function() {
+
+        ngNotify.config({
+            html: true
+        });
+
+        ngNotify.set(message, {
+            html: false
+        });
+
+        expect(
+            scope.ngNotify.notifyHtml
+        ).toBe(false);
+
+    });
+
     it('object html is set to true', function() {
 
         ngNotify.set(message, {
