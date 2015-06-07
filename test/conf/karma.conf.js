@@ -17,8 +17,8 @@ module.exports = function(config) {
             'bower_components/angular/angular.js',
             'bower_components/angular-sanitize/angular-sanitize.js',
             'bower_components/angular-mocks/angular-mocks.js',
-            'dist/ng-notify.min.js',
-            'dist/ng-notify.min.css',
+            'src/scripts/ng-notify.js',
+            'src/styles/ng-notify.css',
             'test/unit/**/*.js'
         ],
 
