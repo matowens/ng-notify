@@ -4,14 +4,23 @@ app.controller('MainCtrl', ['$scope', 'ngNotify',
     function($scope, ngNotify) {
         'use strict';
 
-        // Custom additons...
+        // Custom additions, helpful when testing...
 
         /*
 
-        ngNotify.addTheme('newtheme', 'my-new-class');
+        ngNotify.config({
+            theme: 'pastel',
+            position: 'top',
+            duration: 'f',
+            type: 'success',
+            sticky: true,
+            html: true
+        });
+
+        ngNotify.addTheme('newTheme', 'my-new-class');
 
         ngNotify.config({
-            theme: 'newtheme'
+            theme: 'newTheme'
         });
 
         */
@@ -48,7 +57,7 @@ app.controller('MainCtrl', ['$scope', 'ngNotify',
                     ngNotify.set('An additional notification type to use.', 'grimace');
                     break;
                 case 'html':
-                    ngNotify.set('<b>You</b> should be sure that the option <i>html</i> is set to <u>true</u>.');
+                    ngNotify.set('&iexcl;<i>You</i> should &copy;heck to make sure the <b>html</b> option is set to true!');
                     break;
                 default:
                     ngNotify.set('This is the current default message type.');
