@@ -3,7 +3,7 @@ ng-notify ([live demo](http://matowens.github.io/ng-notify/#demo)) [![Build Stat
 
 A simple, lightweight module for displaying notifications in your AngularJS app.
 
-Both JS and CSS files combine for ~4.6 kBs.
+Both JS and CSS files combine for ~4.3 kBs.
 
 IE9+ (AngularJS v1.3.x no longer supports IE8) and the latest versions of Chrome, FireFox and Safari have been tested and are supported.  If you do run across any issues, please submit a [new issue](https://github.com/matowens/ng-notify/issues) and I'll take a look - or better yet - submit a PR with the bug fix and I'll merge it in.
 
@@ -299,7 +299,7 @@ Also, you can run `grunt dev` to lint, minify, and prep your demo for testing.  
 grunt dev
 ```
 
-To run through the configured unit tests, you can run `grunt test`.  This will fire off a series of tests that check that all default options are set correctly, all configurable options are able to be set correctly, and that all methods carry out the functionality that they're supposed to.  These tests should let you know if any of the updates that you've made have negatively effected any preexisting functionality.
+To run through the configured unit tests, you can run `grunt test`.  This will fire off a series of tests that check that all default options are set correctly, all configurable options are able to be set correctly, and that all methods carry out the functionality that they're supposed to.  These tests should let you know if any of the updates that you've made have negatively effected any preexisting functionality.  Also, when the tests complete, there will be a test coverage report generated and stored in the `coverage` directory.
 
 ```console
 grunt test
