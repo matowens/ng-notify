@@ -1,5 +1,12 @@
 #ng-notify Change Log
 
+##v0.6.2
+- refactored fade functionality to utilize ngStyle.
+- added unit tests for sticky and duration cases.
+- test coverage integration, report generated when `grunt test` is fired.
+- minor bugfix: setting either *html* or *sticky* to false on individual notifications was ignored and remained true if global config for either was set to true.
+- additional code organization updates.
+
 ##v0.6.1
 - unit tests and [Travis CI](https://travis-ci.org/matowens/ng-notify) integration.
 - [code climate](https://codeclimate.com/github/matowens/ng-notify) monitoring.
