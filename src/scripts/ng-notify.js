@@ -277,12 +277,15 @@
                         if (opacity <= OPACITY_MIN || OPACITY_MAX <= opacity) {
 
                             $interval.cancel(notifyInterval);
+                            notifyInterval = false;
 
                             callback();
                         }
                     };
 
-                    notifyInterval = $interval(func, FADE_INTERVAL);
+                    if (!notifyInterval) {
+                        notifyInterval = $interval(func, FADE_INTERVAL);
+                    }
                 };
 
                 /**
@@ -350,6 +353,8 @@
                         }
 
                         $interval.cancel(notifyInterval);
+                        notifyInterval = false;
+
                         $timeout.cancel(notifyTimeout);
 
                         var userOpts = {};
