@@ -4,9 +4,11 @@ This is just a little thank you to those that have contributed to this project i
 
 - [Alexander Hramov](https://github.com/fduch2k)
 - [Antch](https://github.com/antch)
+- [Droritos](https://github.com/Droritos)
 - [Eugen Istoc](https://github.com/genu)
 - [Gaétan Collaud](https://github.com/gaetancollaud)
 - [Jessamyn Smith](https://github.com/jessamynsmith)
 - [Munir](https://github.com/mgoku)
 - [Netanel](https://github.com/NetanelBasal)
+- [Nikolay](https://github.com/nzamosenchuk)
 - [Philip Adzanoukpe](https://github.com/epigos)

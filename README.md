@@ -3,7 +3,7 @@ ng-notify ([live demo](http://matowens.github.io/ng-notify/#demo)) [![Build Stat
 
 A simple, lightweight module for displaying notifications in your AngularJS app.
 
-Both JS and CSS files combine for ~4.3 kBs.
+Both JS and CSS files combine for ~4.4 kBs.
 
 IE9+ (AngularJS v1.3.x no longer supports IE8) and the latest versions of Chrome, FireFox and Safari have been tested and are supported.  If you do run across any issues, please submit a [new issue](https://github.com/matowens/ng-notify/issues) and I'll take a look - or better yet - submit a PR with the bug fix and I'll merge it in.
 

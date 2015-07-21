@@ -1,5 +1,8 @@
 #ng-notify Change Log
 
+##v0.6.3
+- bugfix: concurrent triggers of set() or dismiss() caused infinite, permanent display issues. w/ help from [nzamosenchuk](https://github.com/nzamosenchuk) in [#17](https://github.com/matowens/ng-notify/issues/17) and [Droritos](https://github.com/Droritos) in [#18](https://github.com/matowens/ng-notify/issues/18)
+
 ##v0.6.2
 - refactored fade functionality to utilize ngStyle.
 - added unit tests for sticky and duration cases.
