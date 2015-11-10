@@ -20,9 +20,10 @@ describe('ngNotify addType method', function() {
 
     beforeEach(module('ngNotify'));
 
-    beforeEach(inject(function($injector, $document) {
+    beforeEach(inject(function($injector, $document, $timeout) {
 
         ngNotify = $injector.get('ngNotify');
+        $timeout.flush();
 
         doc = $document;
 
