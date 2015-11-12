@@ -43,7 +43,7 @@
 
     var html =
         '<div class="ngn" ng-class="ngNotify.notifyClass" ng-style="ngNotify.notifyStyle">' +
-            '<span class="ngn-dismiss" ng-click="dismiss()">&times;</span>' +
+            '<span ng-show="ngNotify.notifyButton" class="ngn-dismiss" ng-click="dismiss()">&times;</span>' +
             '<span ng-if="ngNotify.notifyHtml" ng-bind-html="ngNotify.notifyMessage"></span>' + // Display HTML notifications.
             '<span ng-if="!ngNotify.notifyHtml" ng-bind="ngNotify.notifyMessage"></span>' + // Display escaped notifications.
         '</div>';
@@ -86,6 +86,7 @@
                     duration: DEFAULT_DURATION,
                     type: 'info',
                     sticky: false,
+                    button: true,
                     html: false
                 };
 
@@ -200,6 +201,20 @@
                 var getSticky = function(userOpts) {
                     var sticky = userOpts.sticky !== undefined ? userOpts.sticky : defaultOptions.sticky;
                     return sticky ? true : false;
+                };
+
+                /**
+                 * Gets whether or not we'd like to show the close button on our sticky notification.
+                 * Notification is required to be sticky.
+                 *
+                 * @param {Object} userOpts - object containing user defined options.
+                 * @param {Boolean} isSticky - bool whether we'll be showing a sticky notification or not.
+                 *
+                 * @returns {Boolean} - whether or now we should display the close button.
+                 */
+                var showButton = function(userOpts, isSticky) {
+                    var showButton = userOpts.button !== undefined ? userOpts.button : defaultOptions.button;
+                    return showButton && isSticky;
                 };
 
                 /**
@@ -346,6 +361,7 @@
                      * @param {String|undefined}         userOpt.position
                      * @param {Number|undefined}         userOpt.duration
                      * @param {Boolean|undefined}        userOpt.sticky
+                     * @param {Boolean|undefined}        userOpt.button
                      * @param {Boolean|undefined}        userOpt.html
                      */
                     set: function(message, userOpt) {
@@ -375,6 +391,7 @@
                         angular.extend(notifyScope.ngNotify, {
                             notifyHtml: getHtml(userOpts),
                             notifyClass: getClasses(userOpts, isSticky),
+                            notifyButton: showButton(userOpts, isSticky),
                             notifyMessage: message
                         });
 

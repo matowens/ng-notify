@@ -88,6 +88,9 @@ app.controller('MainCtrl', ['$scope', 'ngNotify',
         $scope.sticky = false;
         $scope.stickyOptions = [true, false];
 
+        $scope.button = true;
+        $scope.buttonOptions = [true, false];
+
         $scope.html = false;
         $scope.htmlOptions = [true, false];
 
@@ -120,6 +123,12 @@ app.controller('MainCtrl', ['$scope', 'ngNotify',
         $scope.setDefaultSticky = function() {
             ngNotify.config({
                 sticky: $scope.sticky
+            });
+        };
+
+        $scope.setDefaultButton = function() {
+            ngNotify.config({
+                button: $scope.button
             });
         };
 
