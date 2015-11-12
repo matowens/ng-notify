@@ -1,6 +1,6 @@
 {
   "name": "ng-notify",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "A simple, lightweight module for displaying notifications in your AngularJS app.",
   "main": "./src/scripts/ng-notify.js",
   "scripts": {

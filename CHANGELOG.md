@@ -1,5 +1,8 @@
 #ng-notify Change Log
 
+##v0.7.1
+- version bump to work around the npm "feature" that republishing is no longer supported, while I was figuring out how the publish process works.
+
 ##v0.7.0
 - **new feature**: new parameter to disable the close button for sticky notifications. w/ help from [programming-kid](https://github.com/programming-kid) and [maksad](https://github.com/maksad).
 - bugfix: timeout added to avoid compiling issue when setting config in the run block.  solution by [idpaterson](https://github.com/idpaterson) in [#23](https://github.com/matowens/ng-notify/pull/23).

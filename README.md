@@ -22,7 +22,7 @@ You can install ng-notify with Bower.
 
     bower install ng-notify --save
 
-You can also install ng-notify with NPM.
+You can also install ng-notify with npm.
 
     npm install ng-notify --save
 
