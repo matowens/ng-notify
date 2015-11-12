@@ -248,6 +248,7 @@ sets default settings for all notifications to take into account when displaying
         - top
     - **duration**: *integer* - *optional* - the duration the notification stays visible to the user, in milliseconds.
     - **sticky**: *bool* - *optional* - determines whether or not the message will fade at the end of the duration or if the message will persist until the user dismisses it themselves.  when true, duration will not be set, even if it has a value. *(false by default)*.
+    - **button**: *bool* - *optional* - determines whether or not the dismiss button will show on sticky notifications.  when true, the button will display.  when false, the button wil not display.  sticky must be set to true in order to control the visibility of the dismiss button. *(true by default)*.
 
 ####dismiss()
 manually dismisses any sticky notifications that may still be set.
