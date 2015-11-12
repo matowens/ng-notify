@@ -72,6 +72,7 @@ ngNotify.config({
     duration: 3000,
     type: 'info',
     sticky: false,
+    button: true,
     html: false
 });
 ```
@@ -115,6 +116,15 @@ This will give the user the option of closing the notification themselves.  If y
 
 ```javascript
 ngNotify.dismiss();
+```
+
+If you'd prefer to dismiss the notification programmtically and prevent the user from doing so, you can add an option to remove the button:
+
+```javascript
+ngNotify.set('This is sticky without a button.', {
+    sticky: true,
+    button: false
+});
 ```
 
 *Any time a notification is set to sticky, the duration attribute will be ignored since the notification will not be automatically fading out.*
