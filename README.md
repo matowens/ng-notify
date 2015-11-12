@@ -3,13 +3,11 @@ ng-notify ([live demo](http://matowens.github.io/ng-notify/#demo)) [![Build Stat
 
 A simple, lightweight module for displaying notifications in your AngularJS app.
 
-Both JS and CSS files combine for ~4.4 kBs.
+Both JS and CSS files combine for ~4.5 kBs.
 
 IE9+ (AngularJS v1.3.x no longer supports IE8) and the latest versions of Chrome, FireFox and Safari have been tested and are supported.  If you do run across any issues, please submit a [new issue](https://github.com/matowens/ng-notify/issues) and I'll take a look - or better yet - submit a PR with the bug fix and I'll merge it in.
 
 You can check out the vitals and demo here: [http://matowens.github.io/ng-notify](http://matowens.github.io/ng-notify)
-
-New in v0.6.0 is **HTML notifications**.  When enabled, you'll be able to display notifications with HTML content in them.  This too can be set as a default option for all notifications or just set for individual notifications on a case by case basis.  There is an extra requirement for this to function, the [ngSanitize](https://docs.angularjs.org/api/ngSanitize) script must be included in your app.  If ngSanitize is not available, ngNotify will gracefully degrade to displaying standard, HTML escaped notification messages.  For more on how to display HTML notifications, check out the [HTML Notifications](#html-notifications) section below.  For more on updates, head on over to the [change log](https://github.com/matowens/ng-notify/blob/master/CHANGELOG.md).
 
 Implementation
 ==============
@@ -23,6 +21,10 @@ AngularJS is the only dependency.  Animation is achieved with pure JS, jQuery no
 You can install ng-notify with Bower.
 
     bower install ng-notify --save
+
+You can also install ng-notify with NPM.
+
+    npm install ng-notify --save
 
 As of v0.6.0, ng-notify is now available via the jsDelivr CDN if you'd prefer to go down that route.
 

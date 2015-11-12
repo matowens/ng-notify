@@ -1,5 +1,10 @@
 #ng-notify Change Log
 
+##v0.7.0
+- **new feature**: new parameter to disable the close button for sticky notifications. w/ help from [programming-kid](https://github.com/programming-kid) and [maksad](https://github.com/maksad).
+- bugfix: timeout added to avoid compiling issue when setting config in the run block.  solution by [idpaterson](https://github.com/idpaterson) in [#23](https://github.com/matowens/ng-notify/pull/23).
+- added to npm. w/ help from [totaskin](https://github.com/totaskin) and [simiographics](https://github.com/simiographics)
+
 ##v0.6.3
 - bugfix: concurrent triggers of set() or dismiss() caused infinite, permanent display issues. w/ help from [nzamosenchuk](https://github.com/nzamosenchuk) in [#17](https://github.com/matowens/ng-notify/issues/17) and [Droritos](https://github.com/Droritos) in [#18](https://github.com/matowens/ng-notify/issues/18)
 
