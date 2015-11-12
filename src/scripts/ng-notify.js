@@ -136,7 +136,9 @@
 
                 // Add the template to the page...
 
-                $document.find('body').append(tpl);
+                $timeout(function() {
+                    $document.find('body').append(tpl);
+                });
 
                 // Private methods...
 

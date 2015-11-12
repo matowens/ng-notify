@@ -23,6 +23,7 @@ describe('ngNotify sticky configuration', function() {
     beforeEach(inject(function($injector, $document, $interval, $timeout) {
 
         ngNotify = $injector.get('ngNotify');
+        $timeout.flush();
 
         doc = $document;
         interval = $interval;
