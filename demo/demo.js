@@ -37,6 +37,8 @@ app.controller('MainCtrl', ['$scope', 'ngNotify',
 
         // Demo notifications...
 
+        $scope.text = "This text is injected from the scope";
+
         $scope.displayNotify = function(notify) {
             switch(notify) {
                 case 'success':
@@ -58,6 +60,9 @@ app.controller('MainCtrl', ['$scope', 'ngNotify',
                     break;
                 case 'html':
                     ngNotify.set('&iexcl;<i>You</i> should &copy;heck to make sure the <b>html</b> option is set to true!');
+                    break;
+                case 'scope':
+                    ngNotify.set('<span>{{text}}</span>', { scope: $scope });
                     break;
                 default:
                     ngNotify.set('This is the current default message type.');

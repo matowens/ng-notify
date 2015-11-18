@@ -13,6 +13,7 @@
     <!-- build:css demo.min.css -->
     <link href="demo.css" media="all" rel="stylesheet" type="text/css">
     <link href="../dist/ng-notify.min.css" rel="stylesheet" type="text/css">
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
     <!-- /build -->
 
 </head>
@@ -55,6 +56,7 @@
             <li><a class="btn default" ng-click="displayNotify()">default</a></li>
             <br />
             <li><a class="btn default" ng-click="displayNotify('html')">w/ HTML</a></li>
+            <li><a class="btn default" ng-click="displayNotify('scope')">w/ scope</a></li>
             <!-- <li><a ng-click="dismissNotify()">Dismiss</a></li> -->
         </ul>
 
