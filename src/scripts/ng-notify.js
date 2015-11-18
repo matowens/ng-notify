@@ -44,7 +44,8 @@
     var html =
         '<div class="ngn" ng-class="ngNotify.notifyClass" ng-style="ngNotify.notifyStyle">' +
             '<span ng-show="ngNotify.notifyButton" class="ngn-dismiss" ng-click="dismiss()">&times;</span>' +
-            '<span ng-if="ngNotify.notifyHtml" ng-bind-html="ngNotify.notifyMessage"></span>' + // Display HTML notifications.
+            '<span ng-if="ngNotify.notifyHtml && !ngNotify.useScope" ng-bind-html="ngNotify.notifyMessage"></span>' + // Display HTML notifications.
+            '<span ng-if="ngNotify.notifyHtml && ngNotify.useScope" class="ng-notify-injection-element"></span>' + // Display HTML and scope notifications.
             '<span ng-if="!ngNotify.notifyHtml" ng-bind="ngNotify.notifyMessage"></span>' + // Display escaped notifications.
         '</div>';
 
@@ -395,11 +396,17 @@
                             notifyHtml: getHtml(userOpts),
                             notifyClass: getClasses(userOpts, isSticky),
                             notifyButton: showButton(userOpts, isSticky),
-                            notifyMessage: message
+                            useScope: userOpts.scope ? true : false
                         });
 
-                        if (userOpts.scope && typeof userOpts.scope === "object" && userOpts.html) {
-                            notifyScope.ngNotify.notrifyMessage = $compile(userOpts.html)(userOpts.scope);
+                        if (userOpts.scope && getHtml(userOpts)) {
+                            $timeout(function () {
+                                $document.find("span.ng-notify-injection-element").append($compile(message)(userOpts.scope));
+                            });
+                        } else {
+                            angular.extend(notifyScope.ngNotify, {
+                                notifyMessage:  message
+                            });
                         }
 
                         fadeIn(FADE_IN_DURATION, function() {
