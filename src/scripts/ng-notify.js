@@ -363,6 +363,7 @@
                      * @param {Boolean|undefined}        userOpt.sticky
                      * @param {Boolean|undefined}        userOpt.button
                      * @param {Boolean|undefined}        userOpt.html
+                     * @param {Object|undefined}         userOpt.scope
                      */
                     set: function(message, userOpt) {
 
@@ -392,8 +393,12 @@
                             notifyHtml: getHtml(userOpts),
                             notifyClass: getClasses(userOpts, isSticky),
                             notifyButton: showButton(userOpts, isSticky),
-                            notifyMessage: message
+                            notrifyMessage: message
                         });
+
+                        if (userOpts.scope && typeof userOpts.scope === "object") {
+                            angular.extend(notifyScope.ngNotify, userOpts.scope);
+                        }
 
                         fadeIn(FADE_IN_DURATION, function() {
 
