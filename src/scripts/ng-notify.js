@@ -364,6 +364,8 @@
                      * @param {Boolean|undefined}        userOpt.button
                      * @param {Boolean|undefined}        userOpt.html
                      * @param {Object|undefined}         userOpt.scope
+                     * @param {Function|undefined}       userOpt.swipeLeft
+                     * @param {Function|undefined}       userOpt.swipeRight
                      */
                     set: function(message, userOpt) {
 
@@ -393,11 +395,11 @@
                             notifyHtml: getHtml(userOpts),
                             notifyClass: getClasses(userOpts, isSticky),
                             notifyButton: showButton(userOpts, isSticky),
-                            notrifyMessage: message
+                            notifyMessage: message
                         });
 
-                        if (userOpts.scope && typeof userOpts.scope === "object") {
-                            angular.extend(notifyScope.ngNotify, userOpts.scope);
+                        if (userOpts.scope && typeof userOpts.scope === "object" && userOpts.html) {
+                            notifyScope.ngNotify.notrifyMessage = $compile(userOpts.html)(userOpts.scope);
                         }
 
                         fadeIn(FADE_IN_DURATION, function() {
