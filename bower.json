@@ -1,6 +1,6 @@
 {
   "name": "ng-notify",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "authors": [
     "Mat Owens <mat@peglegg.net>"
   ],
@@ -30,7 +30,7 @@
     "package.json"
   ],
   "dependencies": {
-    "angular": "~1.4.0"
+    "angular": "~1.x"
   },
   "devDependencies": {
     "angular-sanitize": "~1.4.0",
