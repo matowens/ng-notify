@@ -1,5 +1,8 @@
 #ng-notify Change Log
 
+##v0.7.2
+- bugfix: fixed issue with requirement of Angular 1.4, changed to allow Anuglar 1.x. w/ help from [solo12zw74](https://github.com/solo12zw74).
+
 ##v0.7.1
 - version bump to work around the npm "feature" that republishing is no longer supported, while I was figuring out how the publish process works.
 

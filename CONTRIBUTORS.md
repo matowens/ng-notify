@@ -4,6 +4,7 @@ This is just a little thank you to those that have contributed to this project i
 
 - [Alexander Hramov](https://github.com/fduch2k)
 - [Antch](https://github.com/antch)
+- [Саша Иванов](https://github.com/solo12zw74)
 - [Droritos](https://github.com/Droritos)
 - [Eugen Istoc](https://github.com/genu)
 - [Gaétan Collaud](https://github.com/gaetancollaud)

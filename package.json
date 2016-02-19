@@ -1,6 +1,6 @@
 {
   "name": "ng-notify",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "description": "A simple, lightweight module for displaying notifications in your AngularJS app.",
   "main": "./src/scripts/ng-notify.js",
   "scripts": {
@@ -40,6 +40,6 @@
     "karma": "^0.12.31",
     "karma-coverage": "^0.3.1",
     "karma-jasmine": "^0.3.5",
-    "karma-phantomjs-launcher": "^0.1.4"
+    "karma-phantomjs-launcher": "^1.0.0"
   }
 }
