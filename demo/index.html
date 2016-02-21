@@ -25,6 +25,7 @@
     </div>
 
     <div class="main">
+
         <h3>vitals</h3>
         <ul>
             <li>version<br>v0.7.2</li>
@@ -45,18 +46,21 @@
         <span class="spacer" id="demo"></span>
 
         <h3>demo</h3>
-        <ul>
-            <li><a class="btn success" ng-class="theme" ng-click="displayNotify('success')">success</a></li>
-            <li><a class="btn info" ng-class="theme"  ng-click="displayNotify('info')">info</a></li>
-            <li><a class="btn warn" ng-class="theme"  ng-click="displayNotify('warn')">warn</a></li>
-            <br />
-            <li><a class="btn error" ng-class="theme"  ng-click="displayNotify('error')">error</a></li>
-            <li><a class="btn grimace" ng-class="theme"  ng-click="displayNotify('grimace')">grimace</a></li>
-            <li><a class="btn default" ng-click="displayNotify()">default</a></li>
-            <br />
-            <li><a class="btn default" ng-click="displayNotify('html')">w/ HTML</a></li>
-            <!-- <li><a ng-click="dismissNotify()">Dismiss</a></li> -->
-        </ul>
+        <div id="component">
+            <ul>
+                <li><a class="btn success" ng-class="theme" ng-click="displayNotify('success')">success</a></li>
+                <li><a class="btn info" ng-class="theme"  ng-click="displayNotify('info')">info</a></li>
+                <li><a class="btn warn" ng-class="theme"  ng-click="displayNotify('warn')">warn</a></li>
+                <br />
+                <li><a class="btn error" ng-class="theme"  ng-click="displayNotify('error')">error</a></li>
+                <li><a class="btn grimace" ng-class="theme"  ng-click="displayNotify('grimace')">grimace</a></li>
+                <li><a class="btn default" ng-click="displayNotify()">default</a></li>
+                <br />
+                <li><a class="btn default" ng-click="displayNotify('html')">w/ HTML</a></li>
+                <li><a class="btn default" ng-click="displayNotify('component')">Componentized</a></li>
+                <!-- <li><a ng-click="dismissNotify()">Dismiss</a></li> -->
+            </ul>
+        </div>
 
         <span class="spacer"></span>
 
@@ -121,7 +125,7 @@
     <!-- build:js demo.min.js -->
     <script src="../bower_components/angular/angular.js"></script>
     <script src="../bower_components/angular-sanitize/angular-sanitize.js"></script>
-    <script src="../dist/ng-notify.min.js"></script>
+    <script src="../src/scripts/ng-notify.js"></script>
     <script src="demo.js"></script>
     <!-- /build -->
 

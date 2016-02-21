@@ -66,7 +66,7 @@ ul {
 
 li {
     display: inline-block;
-}   
+}
 
 .spacer {
     display: block;
@@ -120,6 +120,15 @@ li {
     color: red;
     position: absolute;
     margin-top: -10px;
+}
+
+#component {
+    background: #FFF;
+    border: 1px solid #DDD;
+    margin: 0 auto;
+    padding: 25px;
+    position: relative;
+    width: 80%;
 }
 
 /* Theme - Default - Pure */
