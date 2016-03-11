@@ -61,9 +61,9 @@
 
     var html =
         '<div class="ngn" ng-class="ngNotify.notifyClass">' +
-            '<span ng-show="ngNotify.notifyButton" class="ngn-dismiss" ng-click="dismiss()">&times;</span>' +
             '<span ng-if="ngNotify.notifyHtml" class="ngn-message" ng-bind-html="ngNotify.notifyMessage"></span>' + // Display HTML notifications.
             '<span ng-if="!ngNotify.notifyHtml" class="ngn-message" ng-bind="ngNotify.notifyMessage"></span>' + // Display escaped notifications.
+            '<span ng-show="ngNotify.notifyButton" class="ngn-dismiss" ng-click="dismiss()">&times;</span>' +
         '</div>';
 
     module.run(['$templateCache',
@@ -408,7 +408,7 @@
                     if ((userOpts.html || DEFAULT_OPTIONS.html) && !hasSanitize) {
 
                         $log.debug(
-                            "ngNotify warning: \ngSanitize couldn't be located.  In order to use the " +
+                            "ngNotify warning:\nngSanitize couldn't be located.  In order to use the " +
                             "'html' option, be sure the ngSanitize source is included in your project."
                         );
 
