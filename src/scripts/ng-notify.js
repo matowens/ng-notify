@@ -1,7 +1,7 @@
 /**
  * @license ng-notify v0.6.2
  * http://matowens.github.io/ng-notify
- * (c) 2014 MIT License, MatOwens.com
+ * (c) 2014-2016 MIT License, MatOwens.com
  */
 (function() {
     'use strict';
@@ -16,12 +16,38 @@
     var module = angular.module('ngNotify', []);
 
     /**
+     * Cache template in run block.
+     */
+    module.run(['$templateCache', ngNotifyCache]);
+
+    /**
+     * Notifcation instances, visibility functionality, and post notification cleanup.
+     */
+    module.factory('NgNotifyFactory', ngNotifyFactory);
+
+    /**
+     * Notification configuration, management, and API exposure.
+     */
+    module.provider('ngNotify', NgNotifyService);
+
+    /**
+     *              _   _       _   _  __
+     *  _ __   __ _| \ | | ___ | |_(_)/ _|_   _
+     * | '_ \ / _` |  \| |/ _ \| __| | |_| | | |
+     * | | | | (_| | |\  | (_) | |_| |  _| |_| |
+     * |_| |_|\__, |_| \_|\___/ \__|_|_|  \__, |
+     *        |___/                       |___/
+     */
+
+    /**
      * Check to see if the ngSanitize script has been included by the user.
      * If so, pull it in and allow for it to be used when user has specified.
      */
     var hasSanitize = false;
 
     // Constants...
+
+    var TEMPLATE = 'templates/ng-notify/ng-notify.html';
 
     var EMPTY = '';
     var SPACER = ' ';
@@ -57,34 +83,41 @@
         // Ignore error, we'll disable any sanitize related functionality...
     }
 
-    // Generate ngNotify template and add it to cache...
+    /**
+     * Generate ngNotify template and add it to our cache.
+     *
+     * @param {Object} $templateCache -
+     */
+    function ngNotifyCache($templateCache) {
 
-    var html =
-        '<div class="ngn" ng-class="ngNotify.notifyClass">' +
+        var html =
+            '<div class="ngn" ng-class="ngNotify.notifyClass">' +
             '<span ng-if="ngNotify.notifyHtml" class="ngn-message" ng-bind-html="ngNotify.notifyMessage"></span>' + // Display HTML notifications.
             '<span ng-if="!ngNotify.notifyHtml" class="ngn-message" ng-bind="ngNotify.notifyMessage"></span>' + // Display escaped notifications.
             '<span ng-show="ngNotify.notifyButton" class="ngn-dismiss" ng-click="dismiss()">&times;</span>' +
-        '</div>';
+            '</div>';
 
-    module.run(['$templateCache',
+        $templateCache.put(TEMPLATE, html);
+    }
 
-        function($templateCache) {
-
-            $templateCache.put('templates/ng-notify/ng-notify.html', html);
-        }
-    ]);
-
-    module.factory('Notify', function() {
+    /**
+     * Class that handles the visual display of our notificaitons and is
+     * responsible for handling clean up for each notification when
+     * it's time has run it's course.
+     *
+     * @returns {NgNotifyFactory}
+     */
+    function ngNotifyFactory() {
 
         var notifyInterval;
 
-        function Notify(scope, template, options) {
+        function NgNotifyFactory(scope, template, options) {
             this.scope = scope;
             this.options = options;
             this.template = fadeLib(template);
         }
 
-        Notify.prototype = {
+        NgNotifyFactory.prototype = {
 
             /**
              * Triggers a fade in, opacity from 0 to 1.
@@ -104,10 +137,24 @@
                 this.template.fadeOut(FADE_OUT_DURATION, this.destroy.bind(this));
             },
 
+            /**
+             * Destroys our notification and triggers the callback if provided.
+             */
             destroy: function() {
+
                 clearInterval(notifyInterval);
+
+                if (this.options.userCallback) {
+                    this.options.userCallback();
+                }
+
                 this.scope.$destroy();
+                this.scope = null;
+
+                this.options = null;
+
                 this.template.el.remove();
+                this.template = null;
             }
         };
 
@@ -191,14 +238,22 @@
             this._fade(FADE_OUT_MODE, OPACITY_MAX, duration, callback);
         };
 
-        return Notify;
-    });
+        return NgNotifyFactory;
+    }
 
-    module.provider('ngNotify', function() {
+    /**
+     * Our notification service that reads our user's configuration options and spins
+     * up new notification instances while providing the API for managing those
+     * notifications within our user's app.
+     */
+    function NgNotifyService() {
 
-        this.$get = ['$document', '$compile', '$log', '$rootScope', '$timeout', '$templateCache', 'Notify',
+        this.$get = ['$document', '$compile', '$log', '$rootScope', '$timeout', '$templateCache', 'NgNotifyFactory',
 
-            function($document, $compile, $log, $rootScope, $timeout, $templateCache, Notify) {
+            function($document, $compile, $log, $rootScope, $timeout, $templateCache, NgNotifyFactory) {
+
+                var notification;
+                var notifyTimeout;
 
                 // Defaults...
 
@@ -240,11 +295,6 @@
                     top: 'ngn-top'
                 };
 
-                // Global variables...
-
-                var notification;
-                var notifyTimeout;
-
                 // Private methods...
 
                 /**
@@ -272,10 +322,11 @@
                  *
                  * @param {String}                   message - the message our notification will display to the user.
                  * @param {String|Object|undefined}  userOpt - optional parameter that contains the type or an object of options used to configure this notification.
+                 * @param {Function|null}            callback - optional method to fire after we've shown, faded, and removed our notification.
                  *
                  * @returns {Notify}
                  */
-                var notifyInit = function(message, userOpt) {
+                var notifyInit = function(message, userOpt, callback) {
 
                     var userOpts = {};
                     var notifyScope = scopeInit();
@@ -292,7 +343,8 @@
 
                     var notifyOptions = {
                         isSticky: getSticky(userOpts),
-                        duration: getDuration(userOpts)
+                        duration: getDuration(userOpts),
+                        userCallback: callback
                     };
 
                     angular.extend(notifyScope.ngNotify, {
@@ -302,11 +354,13 @@
                         notifyMessage: message
                     });
 
-                    var template = $compile($templateCache.get('templates/ng-notify/ng-notify.html'))(notifyScope);
+                    var template = $compile(
+                        $templateCache.get(TEMPLATE)
+                    )(notifyScope);
 
                     notifyTarget.append(template);
 
-                    return new Notify(notifyScope, template, notifyOptions);
+                    return new NgNotifyFactory(notifyScope, template, notifyOptions);
                 };
 
                 /**
@@ -430,8 +484,8 @@
                 var getClasses = function(userOpts, isSticky) {
 
                     var classes = getType(userOpts) +
-                                  getTheme(userOpts) +
-                                  getPosition(userOpts);
+                        getTheme(userOpts) +
+                        getPosition(userOpts);
 
                     classes += isSticky ? STICKY_CLASS + SPACER : EMPTY;
                     classes += getSelector(userOpts) !== SELECTOR ? COMPONENT_CLASS + SPACER : EMPTY;
@@ -500,7 +554,10 @@
                         return;
                     }
 
-                    notification.destroy();
+                    if (notification.scope) {
+                        notification.destroy();
+                    }
+
                     notification = null;
                 };
 
@@ -526,8 +583,9 @@
                      *
                      * @param {String}                   message - the message our notification will display to the user.
                      * @param {String|Object|undefined}  userOpt - optional parameter that contains the type or an object of options used to configure this notification.
+                     * @param {Function|null}            callback - optional method to fire after we've shown and removed our notification.
                      */
-                    set: function(message, userOpt) {
+                    set: function(message, userOpt, callback) {
 
                         if (!message) {
                             return;
@@ -537,7 +595,7 @@
                         clearResidue(notification);
 
                         // Build our new notification.
-                        notification = notifyInit(message, userOpt);
+                        notification = notifyInit(message, userOpt, callback);
 
                         // Handle the display of our notification.
                         notification.show(afterShow);
@@ -587,5 +645,6 @@
                 };
             }
         ];
-    });
+    }
+
 })();
