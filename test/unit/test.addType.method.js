@@ -6,9 +6,7 @@ describe('ngNotify addType method', function() {
     'use strict';
 
     var ngNotify,
-        doc,
-        element,
-        scope;
+        doc;
 
     var message = 'Message to display during tests.';
     var newTypeName = 'notice';
@@ -20,18 +18,11 @@ describe('ngNotify addType method', function() {
 
     beforeEach(module('ngNotify'));
 
-    beforeEach(inject(function($injector, $document, $timeout) {
+    beforeEach(inject(function($injector, $document) {
 
         ngNotify = $injector.get('ngNotify');
-        $timeout.flush();
 
         doc = $document;
-
-        element = angular.element(
-            document.querySelector('.ngn')
-        );
-
-        scope = element.scope();
     }));
 
     /**
@@ -50,6 +41,12 @@ describe('ngNotify addType method', function() {
 
         ngNotify.set(message, newTypeName);
 
+        var element = angular.element(
+            document.querySelector('.ngn')
+        );
+
+        var scope = element.scope();
+
         expect(
             scope.ngNotify.notifyClass.indexOf(newTypeClass) > -1
         ).toBe(false);
@@ -60,6 +57,12 @@ describe('ngNotify addType method', function() {
         ngNotify.set(message, {
             type: newTypeName
         });
+
+        var element = angular.element(
+            document.querySelector('.ngn')
+        );
+
+        var scope = element.scope();
 
         expect(
             scope.ngNotify.notifyClass.indexOf(newTypeClass) > -1
@@ -73,6 +76,12 @@ describe('ngNotify addType method', function() {
         });
 
         ngNotify.set(message);
+
+        var element = angular.element(
+            document.querySelector('.ngn')
+        );
+
+        var scope = element.scope();
 
         expect(
             scope.ngNotify.notifyClass.indexOf(newTypeClass) > -1
@@ -89,6 +98,12 @@ describe('ngNotify addType method', function() {
 
         ngNotify.set(message);
 
+        var element = angular.element(
+            document.querySelector('.ngn')
+        );
+
+        var scope = element.scope();
+
         expect(
             scope.ngNotify.notifyClass.indexOf(newTypeClass) > -1
         ).toBe(false);
@@ -99,6 +114,12 @@ describe('ngNotify addType method', function() {
         ngNotify.addType(newTypeName, newTypeClass);
 
         ngNotify.set(message, newTypeName);
+
+        var element = angular.element(
+            document.querySelector('.ngn')
+        );
+
+        var scope = element.scope();
 
         expect(
             scope.ngNotify.notifyClass.indexOf(newTypeClass) > -1
@@ -112,6 +133,12 @@ describe('ngNotify addType method', function() {
         ngNotify.set(message, {
             type: newTypeName
         });
+
+        var element = angular.element(
+            document.querySelector('.ngn')
+        );
+
+        var scope = element.scope();
 
         expect(
             scope.ngNotify.notifyClass.indexOf(newTypeClass) > -1
@@ -127,6 +154,12 @@ describe('ngNotify addType method', function() {
         });
 
         ngNotify.set(message);
+
+        var element = angular.element(
+            document.querySelector('.ngn')
+        );
+
+        var scope = element.scope();
 
         expect(
             scope.ngNotify.notifyClass.indexOf(newTypeClass) > -1

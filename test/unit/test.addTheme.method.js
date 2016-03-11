@@ -6,9 +6,7 @@ describe('ngNotify addTheme method', function() {
     'use strict';
 
     var ngNotify,
-        doc,
-        element,
-        scope;
+        doc;
 
     var message = 'Message to display during tests.';
     var newThemeName = 'newTheme';
@@ -20,18 +18,11 @@ describe('ngNotify addTheme method', function() {
 
     beforeEach(module('ngNotify'));
 
-    beforeEach(inject(function($injector, $document, $timeout) {
+    beforeEach(inject(function($injector, $document) {
 
         ngNotify = $injector.get('ngNotify');
-        $timeout.flush();
 
         doc = $document;
-
-        element = angular.element(
-            document.querySelector('.ngn')
-        );
-
-        scope = element.scope();
     }));
 
     /**
@@ -52,6 +43,12 @@ describe('ngNotify addTheme method', function() {
             theme: newThemeName
         });
 
+        var element = angular.element(
+            document.querySelector('.ngn')
+        );
+
+        var scope = element.scope();
+
         expect(
             scope.ngNotify.notifyClass.indexOf(newThemeClass) > -1
         ).toBe(false);
@@ -64,6 +61,12 @@ describe('ngNotify addTheme method', function() {
         });
 
         ngNotify.set(message);
+
+        var element = angular.element(
+            document.querySelector('.ngn')
+        );
+
+        var scope = element.scope();
 
         expect(
             scope.ngNotify.notifyClass.indexOf(newThemeClass) > -1
@@ -80,6 +83,12 @@ describe('ngNotify addTheme method', function() {
 
         ngNotify.set(message);
 
+        var element = angular.element(
+            document.querySelector('.ngn')
+        );
+
+        var scope = element.scope();
+
         expect(
             scope.ngNotify.notifyClass.indexOf(newThemeClass) > -1
         ).toBe(false);
@@ -92,6 +101,12 @@ describe('ngNotify addTheme method', function() {
         ngNotify.set(message, {
             theme: newThemeName
         });
+
+        var element = angular.element(
+            document.querySelector('.ngn')
+        );
+
+        var scope = element.scope();
 
         expect(
             scope.ngNotify.notifyClass.indexOf(newThemeClass) > -1
@@ -107,6 +122,12 @@ describe('ngNotify addTheme method', function() {
         });
 
         ngNotify.set(message);
+
+        var element = angular.element(
+            document.querySelector('.ngn')
+        );
+
+        var scope = element.scope();
 
         expect(
             scope.ngNotify.notifyClass.indexOf(newThemeClass) > -1
