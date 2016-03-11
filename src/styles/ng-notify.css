@@ -40,8 +40,9 @@
   line-height: 30px;
   opacity: 0.2;
   position: absolute;
-  right: 45px;
+  right: 40px;
   text-shadow: 1px 1px 5px #000;
+  top: 25px;
   width: 30px; }
 
 .ngn-sticky .ngn-dismiss {
