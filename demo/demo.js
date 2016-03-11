@@ -7,7 +7,6 @@ app.controller('MainCtrl', ['$scope', 'ngNotify',
         // Custom additions, helpful when testing...
 
         /*
-
         ngNotify.config({
             theme: 'pastel',
             position: 'top',
@@ -34,6 +33,10 @@ app.controller('MainCtrl', ['$scope', 'ngNotify',
         ngNotify.set('This is my notice type!', 'notice');
 
         */
+
+        var userCallback = function() {
+            console.log('Callback triggered after message fades.');
+        };
 
         // Demo notifications...
 
@@ -62,7 +65,7 @@ app.controller('MainCtrl', ['$scope', 'ngNotify',
                 case 'component':
                     ngNotify.set('Fully componentized notification example, bound within our container.', {
                         target: '#component'
-                    });
+                    }, userCallback);
                     break;
                 default:
                     ngNotify.set('This is the current default message type.');
