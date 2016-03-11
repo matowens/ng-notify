@@ -43,9 +43,9 @@
 
     var html =
         '<div class="ngn" ng-class="ngNotify.notifyClass" ng-style="ngNotify.notifyStyle">' +
-            '<span ng-show="ngNotify.notifyButton" class="ngn-dismiss" ng-click="dismiss()">&times;</span>' +
             '<span ng-if="ngNotify.notifyHtml" ng-bind-html="ngNotify.notifyMessage"></span>' + // Display HTML notifications.
             '<span ng-if="!ngNotify.notifyHtml" ng-bind="ngNotify.notifyMessage"></span>' + // Display escaped notifications.
+            '<span ng-show="ngNotify.notifyButton" class="ngn-dismiss" ng-click="dismiss()">&times;</span>' +
         '</div>';
 
     module.run(['$templateCache',
