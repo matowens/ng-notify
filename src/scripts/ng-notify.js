@@ -231,7 +231,7 @@
                     if ((userOpts.html || defaultOptions.html) && !hasSanitize) {
 
                         $log.debug(
-                            "ngNotify warning: \ngSanitize couldn't be located.  In order to use the " +
+                            "ngNotify warning:\nngSanitize couldn't be located.  In order to use the " +
                             "'html' option, be sure the ngSanitize source is included in your project."
                         );
 
