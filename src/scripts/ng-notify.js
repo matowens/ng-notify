@@ -62,8 +62,8 @@
     var html =
         '<div class="ngn" ng-class="ngNotify.notifyClass">' +
             '<span ng-show="ngNotify.notifyButton" class="ngn-dismiss" ng-click="dismiss()">&times;</span>' +
-            '<span ng-if="ngNotify.notifyHtml" class="ng-message" ng-bind-html="ngNotify.notifyMessage"></span>' + // Display HTML notifications.
-            '<span ng-if="!ngNotify.notifyHtml" class="ng-message" ng-bind="ngNotify.notifyMessage"></span>' + // Display escaped notifications.
+            '<span ng-if="ngNotify.notifyHtml" class="ngn-message" ng-bind-html="ngNotify.notifyMessage"></span>' + // Display HTML notifications.
+            '<span ng-if="!ngNotify.notifyHtml" class="ngn-message" ng-bind="ngNotify.notifyMessage"></span>' + // Display escaped notifications.
         '</div>';
 
     module.run(['$templateCache',
