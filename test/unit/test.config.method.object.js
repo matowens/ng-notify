@@ -8,9 +8,7 @@ describe('ngNotify config method', function() {
     var ngNotify,
         doc,
         interval,
-        timeout,
-        element,
-        scope;
+        timeout;
 
     var message = 'Message to display during tests.';
 
@@ -23,17 +21,10 @@ describe('ngNotify config method', function() {
     beforeEach(inject(function($injector, $document, $interval, $timeout) {
 
         ngNotify = $injector.get('ngNotify');
-        $timeout.flush();
 
         doc = $document;
         interval = $interval;
         timeout = $timeout;
-
-        element = angular.element(
-            document.querySelector('.ngn')
-        );
-
-        scope = element.scope();
     }));
 
     /**
@@ -58,6 +49,12 @@ describe('ngNotify config method', function() {
 
         ngNotify.set(message);
 
+        var element = angular.element(
+            document.querySelector('.ngn')
+        );
+
+        var scope = element.scope();
+
         expect(
             scope.ngNotify.notifyClass.indexOf("ngn-info") > -1
         ).toBe(true);
@@ -70,6 +67,12 @@ describe('ngNotify config method', function() {
         });
 
         ngNotify.set(message);
+
+        var element = angular.element(
+            document.querySelector('.ngn')
+        );
+
+        var scope = element.scope();
 
         expect(
             scope.ngNotify.notifyClass.indexOf("ngn-warn") > -1
@@ -84,6 +87,12 @@ describe('ngNotify config method', function() {
 
         ngNotify.set(message);
 
+        var element = angular.element(
+            document.querySelector('.ngn')
+        );
+
+        var scope = element.scope();
+
         expect(
             scope.ngNotify.notifyClass.indexOf("ngn-pastel") > -1
         ).toBe(true);
@@ -96,6 +105,12 @@ describe('ngNotify config method', function() {
         });
 
         ngNotify.set(message);
+
+        var element = angular.element(
+            document.querySelector('.ngn')
+        );
+
+        var scope = element.scope();
 
         expect(
             scope.ngNotify.notifyHtml
@@ -110,6 +125,13 @@ describe('ngNotify config method', function() {
 
         ngNotify.set(message);
 
+        var element = angular.element(
+            document.querySelector('.ngn')
+        );
+
+        var scope = element.scope();
+
+        timeout.flush();
         interval.flush(200);
 
         expect(
@@ -119,31 +141,28 @@ describe('ngNotify config method', function() {
         // Expect to always be visible, even after default duration would have expired.
 
         timeout.flush(6000);
-
         interval.flush(500);
 
         expect(
-            scope.ngNotify.notifyStyle.display
+            element.css('display')
         ).toBe('block');
 
         expect(
-            scope.ngNotify.notifyStyle.opacity
-        ).toBe(1);
+            element.css('opacity')
+        ).toBe('1');
 
         // Manually closing the notification should hide it.
 
         ngNotify.dismiss();
-
         interval.flush(500);
 
         expect(
-            scope.ngNotify.notifyStyle.display
+            element.css('display')
         ).toBe('none');
 
         expect(
-            scope.ngNotify.notifyStyle.opacity
-        ).toBe(0);
-
+            element.css('opacity')
+        ).toBeCloseTo('0', 1);
     });
 
     it('position top is set', function() {
@@ -153,6 +172,12 @@ describe('ngNotify config method', function() {
         });
 
         ngNotify.set(message);
+
+        var element = angular.element(
+            document.querySelector('.ngn')
+        );
+
+        var scope = element.scope();
 
         expect(
             scope.ngNotify.notifyClass.indexOf("ngn-top") > -1
@@ -167,54 +192,56 @@ describe('ngNotify config method', function() {
             duration: 'abc'
         });
 
-        expect(
-            scope.ngNotify.notifyStyle.display
-        ).toBe('none');
-
-        expect(
-            scope.ngNotify.notifyStyle.opacity
-        ).toBe(0);
-
         ngNotify.set(message);
 
-        interval.flush(200);
+        var element = angular.element(
+            document.querySelector('.ngn')
+        );
 
         expect(
-            scope.ngNotify.notifyStyle.display
+            element.css('display')
         ).toBe('block');
 
         expect(
-            scope.ngNotify.notifyStyle.opacity
-        ).toBe(1);
+            element.css('opacity')
+        ).toBe('0');
+
+        timeout.flush();
+        interval.flush(200);
+
+        expect(
+            element.css('display')
+        ).toBe('block');
+
+        expect(
+            element.css('opacity')
+        ).toBe('1');
 
         // 1ms before the duration concludes, notification should still be visible.
 
         timeout.flush(2999);
-
         interval.flush(500);
 
         expect(
-            scope.ngNotify.notifyStyle.display
+            element.css('display')
         ).toBe('block');
 
         expect(
-            scope.ngNotify.notifyStyle.opacity
-        ).toBe(1);
+            element.css('opacity')
+        ).toBe('1');
 
         // Step forward 1ms and our fadeOut should be triggered.
 
         timeout.flush(1);
-
         interval.flush(500);
 
         expect(
-            scope.ngNotify.notifyStyle.display
+            element.css('display')
         ).toBe('none');
 
         expect(
-            scope.ngNotify.notifyStyle.opacity
-        ).toBe(0);
-
+            element.css('opacity')
+        ).toBeCloseTo('0', 1);
     });
 
     it('duration 1000 is set', function() {
@@ -223,56 +250,60 @@ describe('ngNotify config method', function() {
             duration: 1000
         });
 
-        expect(
-            scope.ngNotify.notifyStyle.display
-        ).toBe('none');
-
-        expect(
-            scope.ngNotify.notifyStyle.opacity
-        ).toBe(0);
-
         // Initial fadeIn.
 
         ngNotify.set(message);
 
-        interval.flush(200);
+        var element = angular.element(
+            document.querySelector('.ngn')
+        );
+
+        var scope = element.scope();
 
         expect(
-            scope.ngNotify.notifyStyle.display
+            element.css('display')
         ).toBe('block');
 
         expect(
-            scope.ngNotify.notifyStyle.opacity
-        ).toBe(1);
+            element.css('opacity')
+        ).toBe('0');
+
+        timeout.flush();
+        interval.flush(200);
+
+        expect(
+            element.css('display')
+        ).toBe('block');
+
+        expect(
+            element.css('opacity')
+        ).toBe('1');
 
         // 1ms before the duration concludes, notification should still be visible.
 
         timeout.flush(999);
-
         interval.flush(500);
 
         expect(
-            scope.ngNotify.notifyStyle.display
+            element.css('display')
         ).toBe('block');
 
         expect(
-            scope.ngNotify.notifyStyle.opacity
-        ).toBe(1);
+            element.css('opacity')
+        ).toBe('1');
 
         // Step forward 1ms and our fadeOut should be triggered.
 
         timeout.flush(1);
-
         interval.flush(500);
 
         expect(
-            scope.ngNotify.notifyStyle.display
+            element.css('display')
         ).toBe('none');
 
         expect(
-            scope.ngNotify.notifyStyle.opacity
-        ).toBe(0);
-
+            element.css('opacity')
+        ).toBeCloseTo('0', 1);
     });
 
     it('all non-default options (except duration) are set', function() {
@@ -291,6 +322,13 @@ describe('ngNotify config method', function() {
 
         ngNotify.set(message);
 
+        var element = angular.element(
+            document.querySelector('.ngn')
+        );
+
+        var scope = element.scope();
+
+        timeout.flush();
         interval.flush(200);
 
         expect(
@@ -316,31 +354,28 @@ describe('ngNotify config method', function() {
         // Expect to always be visible, even after default duration would have expired.
 
         timeout.flush(8000);
-
         interval.flush(500);
 
         expect(
-            scope.ngNotify.notifyStyle.display
+            element.css('display')
         ).toBe('block');
 
         expect(
-            scope.ngNotify.notifyStyle.opacity
-        ).toBe(1);
+            element.css('opacity')
+        ).toBe('1');
 
         // Manually closing the notification should hide it.
 
         ngNotify.dismiss();
-
         interval.flush(500);
 
         expect(
-            scope.ngNotify.notifyStyle.display
+            element.css('display')
         ).toBe('none');
 
         expect(
-            scope.ngNotify.notifyStyle.opacity
-        ).toBe(0);
-
+            element.css('opacity')
+        ).toBeCloseTo('0', 1);
     });
 
     it('all non-default options (except sticky) are set', function() {
@@ -357,18 +392,25 @@ describe('ngNotify config method', function() {
             sticky: false
         });
 
-        expect(
-            scope.ngNotify.notifyStyle.display
-        ).toBe('none');
-
-        expect(
-            scope.ngNotify.notifyStyle.opacity
-        ).toBe(0);
-
         // Initial fadeIn.
 
         ngNotify.set(message);
 
+        var element = angular.element(
+            document.querySelector('.ngn')
+        );
+
+        var scope = element.scope();
+
+        expect(
+            element.css('display')
+        ).toBe('block');
+
+        expect(
+            element.css('opacity')
+        ).toBe('0');
+
+        timeout.flush();
         interval.flush(200);
 
         expect(
@@ -394,41 +436,38 @@ describe('ngNotify config method', function() {
         // Duration tests...
 
         expect(
-            scope.ngNotify.notifyStyle.display
+            element.css('display')
         ).toBe('block');
 
         expect(
-            scope.ngNotify.notifyStyle.opacity
-        ).toBe(1);
+            element.css('opacity')
+        ).toBe('1');
 
         // 1ms before the duration concludes, notification should still be visible.
 
         timeout.flush(9875);
-
         interval.flush(500);
 
         expect(
-            scope.ngNotify.notifyStyle.display
+            element.css('display')
         ).toBe('block');
 
         expect(
-            scope.ngNotify.notifyStyle.opacity
-        ).toBe(1);
+            element.css('opacity')
+        ).toBe('1');
 
         // Step forward 1ms and our fadeOut should be triggered.
 
         timeout.flush(1);
-
         interval.flush(500);
 
         expect(
-            scope.ngNotify.notifyStyle.display
+            element.css('display')
         ).toBe('none');
 
         expect(
-            scope.ngNotify.notifyStyle.opacity
-        ).toBe(0);
-
+            element.css('opacity')
+        ).toBeCloseTo('0', 1);
     });
 
 });

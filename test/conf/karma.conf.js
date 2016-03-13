@@ -19,7 +19,8 @@ module.exports = function(config) {
             'bower_components/angular-mocks/angular-mocks.js',
             'src/scripts/ng-notify.js',
             'src/styles/ng-notify.css',
-            'test/unit/**/*.js'
+            //'test/unit/**/*.js'
+            'test/unit/test.config.method.object.js'
         ],
 
         // list of files to exclude
