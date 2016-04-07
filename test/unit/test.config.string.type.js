@@ -6,9 +6,7 @@ describe('ngNotify type string configuration', function() {
     'use strict';
 
     var ngNotify,
-        doc,
-        element,
-        scope;
+        doc;
 
     var message = 'Message to display during tests.';
 
@@ -21,15 +19,8 @@ describe('ngNotify type string configuration', function() {
     beforeEach(inject(function($injector, $document, $timeout) {
 
         ngNotify = $injector.get('ngNotify');
-        $timeout.flush();
 
         doc = $document;
-
-        element = angular.element(
-            document.querySelector('.ngn')
-        );
-
-        scope = element.scope();
     }));
 
     /**
@@ -48,6 +39,12 @@ describe('ngNotify type string configuration', function() {
 
         ngNotify.set(message, 'info');
 
+        var element = angular.element(
+            document.querySelector('.ngn')
+        );
+
+        var scope = element.scope();
+
         expect(
             scope.ngNotify.notifyClass.indexOf("ngn-info") > -1
         ).toBe(true);
@@ -56,6 +53,12 @@ describe('ngNotify type string configuration', function() {
     it('string type warn is set', function() {
 
         ngNotify.set(message, 'warn');
+
+        var element = angular.element(
+            document.querySelector('.ngn')
+        );
+
+        var scope = element.scope();
 
         expect(
             scope.ngNotify.notifyClass.indexOf("ngn-warn") > -1
@@ -66,6 +69,12 @@ describe('ngNotify type string configuration', function() {
 
         ngNotify.set(message, 'error');
 
+        var element = angular.element(
+            document.querySelector('.ngn')
+        );
+
+        var scope = element.scope();
+
         expect(
             scope.ngNotify.notifyClass.indexOf("ngn-error") > -1
         ).toBe(true);
@@ -75,6 +84,12 @@ describe('ngNotify type string configuration', function() {
 
         ngNotify.set(message, 'success');
 
+        var element = angular.element(
+            document.querySelector('.ngn')
+        );
+
+        var scope = element.scope();
+
         expect(
             scope.ngNotify.notifyClass.indexOf("ngn-success") > -1
         ).toBe(true);
@@ -83,6 +98,12 @@ describe('ngNotify type string configuration', function() {
     it('string type warn is set', function() {
 
         ngNotify.set(message, 'grimace');
+
+        var element = angular.element(
+            document.querySelector('.ngn')
+        );
+
+        var scope = element.scope();
 
         expect(
             scope.ngNotify.notifyClass.indexOf("ngn-grimace") > -1

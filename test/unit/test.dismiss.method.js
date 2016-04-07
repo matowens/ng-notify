@@ -7,8 +7,8 @@ describe('ngNotify dismiss method', function() {
 
     var ngNotify,
         doc,
-        element,
-        scope;
+        timeout,
+        interval;
 
     var message = 'Message to display during tests.';
 
@@ -18,18 +18,13 @@ describe('ngNotify dismiss method', function() {
 
     beforeEach(module('ngNotify'));
 
-    beforeEach(inject(function($injector, $document, $timeout) {
+    beforeEach(inject(function($injector, $document, $timeout, $interval) {
 
         ngNotify = $injector.get('ngNotify');
-        $timeout.flush();
 
         doc = $document;
-
-        element = angular.element(
-            document.querySelector('.ngn')
-        );
-
-        scope = element.scope();
+        timeout = $timeout;
+        interval = $interval;
     }));
 
     /**
@@ -46,13 +41,40 @@ describe('ngNotify dismiss method', function() {
 
     it('is triggered', function() {
 
-        spyOn(scope, 'dismiss');
+        ngNotify.set(message, {
+            'sticky': true
+        });
 
-        ngNotify.set(message);
+        var element = angular.element(
+            document.querySelector('.ngn')
+        );
+
+        expect(
+            element.css('opacity')
+        ).toBeCloseTo('0', 1);
+
+        timeout.flush();
+        interval.flush(200);
+
+        element = angular.element(
+            document.querySelector('.ngn')
+        );
+
+        expect(
+            element.css('opacity')
+        ).toBeCloseTo('1', 1);
 
         ngNotify.dismiss();
 
-        expect(scope.dismiss).toHaveBeenCalled();
+        interval.flush(500);
+
+        element = angular.element(
+            document.querySelector('.ngn')
+        );
+
+        expect(
+            element
+        ).toEqual({});
     });
 
 });

@@ -6,9 +6,7 @@ describe('ngNotify theme configuration', function() {
     'use strict';
 
     var ngNotify,
-        doc,
-        element,
-        scope;
+        doc;
 
     var message = 'Message to display during tests.';
 
@@ -18,18 +16,11 @@ describe('ngNotify theme configuration', function() {
 
     beforeEach(module('ngNotify'));
 
-    beforeEach(inject(function($injector, $document, $timeout) {
+    beforeEach(inject(function($injector, $document) {
 
         ngNotify = $injector.get('ngNotify');
-        $timeout.flush();
 
         doc = $document;
-
-        element = angular.element(
-            document.querySelector('.ngn')
-        );
-
-        scope = element.scope();
     }));
 
     /**
@@ -50,6 +41,12 @@ describe('ngNotify theme configuration', function() {
             theme: 'prime'
         });
 
+        var element = angular.element(
+            document.querySelector('.ngn')
+        );
+
+        var scope = element.scope();
+
         expect(
             scope.ngNotify.notifyClass.indexOf("ngn-prime") > -1
         ).toBe(true);
@@ -60,6 +57,12 @@ describe('ngNotify theme configuration', function() {
         ngNotify.set(message, {
             theme: 'pastel'
         });
+
+        var element = angular.element(
+            document.querySelector('.ngn')
+        );
+
+        var scope = element.scope();
 
         expect(
             scope.ngNotify.notifyClass.indexOf("ngn-pastel") > -1
@@ -72,6 +75,12 @@ describe('ngNotify theme configuration', function() {
             theme: 'pitchy'
         });
 
+        var element = angular.element(
+            document.querySelector('.ngn')
+        );
+
+        var scope = element.scope();
+
         expect(
             scope.ngNotify.notifyClass.indexOf("ngn-pitchy") > -1
         ).toBe(true);
@@ -82,6 +91,12 @@ describe('ngNotify theme configuration', function() {
         ngNotify.set(message, {
             theme: 'random'
         });
+
+        var element = angular.element(
+            document.querySelector('.ngn')
+        );
+
+        var scope = element.scope();
 
         expect(
             scope.ngNotify.notifyClass.indexOf("ngn-random") > -1

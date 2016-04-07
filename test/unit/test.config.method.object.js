@@ -258,8 +258,6 @@ describe('ngNotify config method', function() {
             document.querySelector('.ngn')
         );
 
-        var scope = element.scope();
-
         expect(
             element.css('display')
         ).toBe('block');

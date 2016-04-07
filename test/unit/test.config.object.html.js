@@ -6,9 +6,7 @@ describe('ngNotify html configuration', function() {
     'use strict';
 
     var ngNotify,
-        doc,
-        element,
-        scope;
+        doc;
 
     var message = 'Message to display during tests.';
 
@@ -18,18 +16,11 @@ describe('ngNotify html configuration', function() {
 
     beforeEach(module('ngNotify'));
 
-    beforeEach(inject(function($injector, $document, $timeout) {
+    beforeEach(inject(function($injector, $document) {
 
         ngNotify = $injector.get('ngNotify');
-        $timeout.flush();
 
         doc = $document;
-
-        element = angular.element(
-            document.querySelector('.ngn')
-        );
-
-        scope = element.scope();
     }));
 
     /**
@@ -54,6 +45,12 @@ describe('ngNotify html configuration', function() {
             html: false
         });
 
+        var element = angular.element(
+            document.querySelector('.ngn')
+        );
+
+        var scope = element.scope();
+
         expect(
             scope.ngNotify.notifyHtml
         ).toBe(false);
@@ -66,6 +63,12 @@ describe('ngNotify html configuration', function() {
             html: false
         });
 
+        var element = angular.element(
+            document.querySelector('.ngn')
+        );
+
+        var scope = element.scope();
+
         expect(
             scope.ngNotify.notifyHtml
         ).toBe(false);
@@ -76,6 +79,12 @@ describe('ngNotify html configuration', function() {
         ngNotify.set(message, {
             html: true
         });
+
+        var element = angular.element(
+            document.querySelector('.ngn')
+        );
+
+        var scope = element.scope();
 
         expect(
             scope.ngNotify.notifyHtml
