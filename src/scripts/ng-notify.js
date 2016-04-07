@@ -1,5 +1,5 @@
 /**
- * @license ng-notify v0.6.2
+ * @license ng-notify v0.8.0
  * http://matowens.github.io/ng-notify
  * (c) 2014-2016 MIT License, MatOwens.com
  */
@@ -23,7 +23,7 @@
     /**
      * Notifcation instances, visibility functionality, and post notification cleanup.
      */
-    module.factory('NgNotifyFactory', ngNotifyFactory);
+    module.factory('NgNotifyFactory', ['$interval', ngNotifyFactory]);
 
     /**
      * Notification configuration, management, and API exposure.
@@ -92,9 +92,9 @@
 
         var html =
             '<div class="ngn" ng-class="ngNotify.notifyClass">' +
-            '<span ng-if="ngNotify.notifyHtml" class="ngn-message" ng-bind-html="ngNotify.notifyMessage"></span>' + // Display HTML notifications.
-            '<span ng-if="!ngNotify.notifyHtml" class="ngn-message" ng-bind="ngNotify.notifyMessage"></span>' + // Display escaped notifications.
-            '<span ng-show="ngNotify.notifyButton" class="ngn-dismiss" ng-click="dismiss()">&times;</span>' +
+                '<span ng-if="ngNotify.notifyHtml" class="ngn-message" ng-bind-html="ngNotify.notifyMessage"></span>' + // Display HTML notifications.
+                '<span ng-if="!ngNotify.notifyHtml" class="ngn-message" ng-bind="ngNotify.notifyMessage"></span>' + // Display escaped notifications.
+                '<span ng-show="ngNotify.notifyButton" class="ngn-dismiss" ng-click="dismiss()">&times;</span>' +
             '</div>';
 
         $templateCache.put(TEMPLATE, html);
@@ -107,7 +107,7 @@
      *
      * @returns {NgNotifyFactory}
      */
-    function ngNotifyFactory() {
+    function ngNotifyFactory($interval) {
 
         var notifyInterval;
 
@@ -142,18 +142,22 @@
              */
             destroy: function() {
 
-                clearInterval(notifyInterval);
+                $interval.cancel(notifyInterval);
 
-                if (this.options.userCallback) {
+                if (this.options && this.options.userCallback) {
                     this.options.userCallback();
                 }
 
-                this.scope.$destroy();
+                if (this.scope) {
+                    this.scope.$destroy();
+                }
+
+                if (this.template) {
+                    this.template.el.remove();
+                }
+
                 this.scope = null;
-
                 this.options = null;
-
-                this.template.el.remove();
                 this.template = null;
             }
         };
@@ -202,7 +206,7 @@
                 el.css('opacity', opacity);
 
                 if (opacity <= OPACITY_MIN || opacity >= OPACITY_MAX) {
-                    clearInterval(notifyInterval);
+                    $interval.cancel(notifyInterval);
 
                     if (opacity <= OPACITY_MIN) {
                         el.css('display', 'none');
@@ -214,7 +218,7 @@
                 }
             };
 
-            notifyInterval = setInterval(func, FADE_INTERVAL);
+            notifyInterval = $interval(func, FADE_INTERVAL);
         };
 
         /**
@@ -349,7 +353,7 @@
 
                     angular.extend(notifyScope.ngNotify, {
                         notifyHtml: getHtml(userOpts),
-                        notifyClass: getClasses(userOpts, notifyOptions.isSticky),
+                        notifyClass: getClasses(userOpts, notifyOptions.isSticky, notifyTarget.found),
                         notifyButton: showButton(userOpts, notifyOptions.isSticky),
                         notifyMessage: message
                     });
@@ -358,7 +362,7 @@
                         $templateCache.get(TEMPLATE)
                     )(notifyScope);
 
-                    notifyTarget.append(template);
+                    notifyTarget.target.append(template);
 
                     return new NgNotifyFactory(notifyScope, template, notifyOptions);
                 };
@@ -478,17 +482,18 @@
                  *
                  * @param {Object}  userOpts - object containing user defined options.
                  * @param {Boolean} isSticky - optional bool indicating if the message is sticky or not.
+                 * @param {Boolean} foundTarget - optional bool indicating that we've found the user's target container.
                  *
                  * @returns {string}
                  */
-                var getClasses = function(userOpts, isSticky) {
+                var getClasses = function(userOpts, isSticky, foundTarget) {
 
                     var classes = getType(userOpts) +
                         getTheme(userOpts) +
                         getPosition(userOpts);
 
                     classes += isSticky ? STICKY_CLASS + SPACER : EMPTY;
-                    classes += getSelector(userOpts) !== SELECTOR ? COMPONENT_CLASS + SPACER : EMPTY;
+                    classes += getSelector(userOpts) !== SELECTOR && foundTarget ? COMPONENT_CLASS + SPACER : EMPTY;
 
                     return classes;
                 };
@@ -507,12 +512,18 @@
                     );
 
                     if (target) {
-                        return angular.element(target);
+                        return {
+                            target: angular.element(target),
+                            found: true
+                        };
                     }
 
-                    return angular.element(
-                        document.querySelector(SELECTOR)
-                    );
+                    return {
+                        target: angular.element(
+                            document.querySelector(SELECTOR)
+                        ),
+                        found: false
+                    };
                 };
 
                 /**
@@ -524,7 +535,7 @@
                         return;
                     }
 
-                    notifyTimeout = setTimeout(function() {
+                    notifyTimeout = $timeout(function() {
                         notification.dismiss();
                     }, notification.options.duration);
                 };
@@ -544,11 +555,11 @@
                 /**
                  * Cleans up an existing notification.
                  *
-                 * @param {Notify|Null} notification - object containing our notification or false.
+                 * @param {NgNotifyFactory|Null} notification - object containing our notification or false.
                  */
                 var clearResidue = function(notification) {
 
-                    clearTimeout(notifyTimeout);
+                    $timeout.cancel(notifyTimeout);
 
                     if (!notification) {
                         return;

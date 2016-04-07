@@ -1,4 +1,9 @@
-#ng-notify Change Log
+# ng-notify Change Lo
+g
+##v0.8.0
+- targeting
+- callbacks
+- rebuild
 
 ##v0.7.2
 - bugfix: fixed issue with requirement of Angular 1.4, changed to allow Anuglar 1.x. w/ help from [solo12zw74](https://github.com/solo12zw74).
