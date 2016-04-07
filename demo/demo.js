@@ -5,15 +5,16 @@ app.controller('MainCtrl', ['$scope', 'ngNotify',
         'use strict';
 
         // Custom additions, helpful when testing...
-
         /*
+
         ngNotify.config({
             theme: 'pastel',
             position: 'top',
             duration: 'f',
             type: 'success',
             sticky: true,
-            html: true
+            html: true,
+            target: '#component'
         });
 
         ngNotify.addTheme('newTheme', 'my-new-class');
