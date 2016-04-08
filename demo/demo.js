@@ -14,7 +14,7 @@ app.controller('MainCtrl', ['$scope', 'ngNotify',
             type: 'success',
             sticky: true,
             html: true,
-            target: '#component'
+            target: '#modular'
         });
 
         ngNotify.addTheme('newTheme', 'my-new-class');
@@ -63,9 +63,9 @@ app.controller('MainCtrl', ['$scope', 'ngNotify',
                 case 'html':
                     ngNotify.set('&iexcl;<i>You</i> should &copy;heck to make sure the <b>html</b> option is set to true!');
                     break;
-                case 'component':
-                    ngNotify.set('Fully componentized notification example, bound within our container.', {
-                        target: '#component'
+                case 'modular':
+                    ngNotify.set('Modular notification example, bound within our container.', {
+                        target: '#modular'
                     }, userCallback);
                     break;
                 default:

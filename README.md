@@ -11,7 +11,7 @@ You can check out the vitals and demo here: [http://matowens.github.io/ng-notify
 
 #### Newest Additions
 
-With v0.8.0 comes a couple new features.  The first, being able to target a specific container for your notification to display in - for a more component style display.  To do so, simply specify a `target` option with the value set to a CSS selector string when you set a message or setup the intitial configuration. [More on that below](#componentized-notifications).  In addition, you are now able to provide a callback that will fire after fadeout and the notification has been removed from view.  This callback can be added as an optional third parameter when calling the set() method.  [More on that here](#notification-callbacks).  With these changes comes a refactor that uses notification instnaces which will assist with future development as we look to introduce new features like stacked notifications and upgrade for use with Angular 2.
+With v0.8.0 comes a couple new features.  The first, being able to target a specific container for your notification to display in - for a more modular style display.  To do so, simply specify a `target` option with the value set to a CSS selector string when you set a message or setup the initial configuration. [More on that below](#modular-notifications).  In addition, you are now able to provide a callback that will fire after fadeout and the notification has been removed from view.  This callback can be added as an optional third parameter when calling the set() method.  [More on that here](#notification-callbacks).  With these changes comes a refactor that uses notification instances which will assist with future development as we look to introduce new features like stacked notifications and upgrade for use with Angular 2.
 
 Implementation
 ==============
@@ -122,7 +122,7 @@ This will give the user the option of closing the notification themselves.  If y
 ngNotify.dismiss();
 ```
 
-If you'd prefer to dismiss the notification programmtically and prevent the user from doing so, you can add an option to remove the button:
+If you'd prefer to dismiss the notification programmatically and prevent the user from doing so, you can add an option to remove the button:
 
 ```javascript
 ngNotify.set('This is sticky without a button.', {
@@ -154,9 +154,9 @@ In order for HTML notifications to display, you are required to include the [ngS
 
 If you don't have ngSanitize included and you do set `html` to true, ngNotify will gracefully degrade back to the default message display and print a debug message to remind you in your browser's console.
 
-### Componentized Notifications
+### Modular Notifications
 
-By specifiying a `target` option, you are able to control where your notifications are displayed.  By default, the target is set to the body tag but you may provide any other CSS selector in order to control where the notification is appended.  For example:
+By specifying a `target` option, you are able to control where your notifications are displayed.  By default, the target is set to the body tag but you may provide any other CSS selector in order to control where the notification is appended.  For example:
 
 ```javascript
 ngNotify.set('This message has a specific container!', {
@@ -172,7 +172,7 @@ ngNotify.config({
 });
 ```
 
-* Notifications that have a custom target specified are set to display with absolute positioning, overriding the default fixed positioning.  It's impossible to tailor ngNotify's style to fit every situation for every app, so you may have to tweak the styles to fit your specific needs when not appending notificaitons to the body tag - using anything other than the default target.
+* Notifications that have a custom target specified are set to display with absolute positioning, overriding the default fixed positioning.  It's impossible to tailor ngNotify's style to fit every situation for every app, so you may have to tweak the styles to fit your specific needs when not appending notifications to the body tag - using anything other than the default target.
 
 ### Notification Callbacks
 
