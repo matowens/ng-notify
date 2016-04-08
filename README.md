@@ -11,8 +11,7 @@ You can check out the vitals and demo here: [http://matowens.github.io/ng-notify
 
 #### Newest Additions
 
-With v0.8.0 comes a couple new features.  The first, being able to target a specific container for your notification to display in - for a more component style display.  To do so, simply specify a `target` option with the value set to a string CSS selector when you set a message or setup the intitial configuration. [More on that below](#componentized-notifications).  In addition, you are now able to provide a callback that will fire after fadeout and the notification has been removed from view.  This callback can be added as an optional third parameter when calling the set() method.  [More on that here](#notification-callbacks).  With these changes came a slight refactor that uses notification instnaces that will assist with future development as we look to introduce new features like stacked notifications and upgrade for use with Angular 2.
-    
+With v0.8.0 comes a couple new features.  The first, being able to target a specific container for your notification to display in - for a more component style display.  To do so, simply specify a `target` option with the value set to a CSS selector string when you set a message or setup the intitial configuration. [More on that below](#componentized-notifications).  In addition, you are now able to provide a callback that will fire after fadeout and the notification has been removed from view.  This callback can be added as an optional third parameter when calling the set() method.  [More on that here](#notification-callbacks).  With these changes comes a refactor that uses notification instnaces which will assist with future development as we look to introduce new features like stacked notifications and upgrade for use with Angular 2.
 
 Implementation
 ==============
@@ -173,8 +172,19 @@ ngNotify.config({
 });
 ```
 
+* Notifications that have a custom target specified are set to display with absolute positioning, overriding the default fixed positioning.  It's impossible to tailor ngNotify's style to fit every situation for every app, so you may have to tweak the styles to fit your specific needs when not appending notificaitons to the body tag - using anything other than the default target.
+
 ### Notification Callbacks
 
+You have an option to call a function when a notification has completed.  This callback can only be called through the set() method and is passed as an optional third parameter.  For example:
+
+```javascript
+var callback = function() {};
+
+ngNotify.set('This message has a callback.', {}, callback);
+```
+
+The callback will fire every time it is specified, even if the notification is dismissed early through the dismiss method.  The callback fires once the notification has faded out.
 
 ### Roll Your Own
 

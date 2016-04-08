@@ -16,7 +16,7 @@ describe('ngNotify type string configuration', function() {
 
     beforeEach(module('ngNotify'));
 
-    beforeEach(inject(function($injector, $document, $timeout) {
+    beforeEach(inject(function($injector, $document) {
 
         ngNotify = $injector.get('ngNotify');
 
