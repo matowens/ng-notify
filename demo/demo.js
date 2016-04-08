@@ -5,7 +5,6 @@ app.controller('MainCtrl', ['$scope', 'ngNotify',
         'use strict';
 
         // Custom additions, helpful when testing...
-
         /*
 
         ngNotify.config({
@@ -14,7 +13,8 @@ app.controller('MainCtrl', ['$scope', 'ngNotify',
             duration: 'f',
             type: 'success',
             sticky: true,
-            html: true
+            html: true,
+            target: '#modular'
         });
 
         ngNotify.addTheme('newTheme', 'my-new-class');
@@ -34,6 +34,10 @@ app.controller('MainCtrl', ['$scope', 'ngNotify',
         ngNotify.set('This is my notice type!', 'notice');
 
         */
+
+        var userCallback = function() {
+            console.log('Callback triggered after message fades.');
+        };
 
         // Demo notifications...
 
@@ -58,6 +62,11 @@ app.controller('MainCtrl', ['$scope', 'ngNotify',
                     break;
                 case 'html':
                     ngNotify.set('&iexcl;<i>You</i> should &copy;heck to make sure the <b>html</b> option is set to true!');
+                    break;
+                case 'modular':
+                    ngNotify.set('Modular notification example, bound within our container.', {
+                        target: '#modular'
+                    }, userCallback);
                     break;
                 default:
                     ngNotify.set('This is the current default message type.');

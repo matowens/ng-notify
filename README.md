@@ -3,20 +3,24 @@ ng-notify ([live demo](http://matowens.github.io/ng-notify/#demo)) [![Build Stat
 
 A simple, lightweight module for displaying notifications in your AngularJS app.
 
-Both JS and CSS files combine for ~4.5 kBs.
+Both JS and CSS files combine for ~5.5 kBs.
 
 IE9+ (AngularJS v1.3.x no longer supports IE8) and the latest versions of Chrome, FireFox and Safari have been tested and are supported.  If you do run across any issues, please submit a [new issue](https://github.com/matowens/ng-notify/issues) and I'll take a look - or better yet - submit a PR with the bug fix and I'll merge it in.
 
 You can check out the vitals and demo here: [http://matowens.github.io/ng-notify](http://matowens.github.io/ng-notify)
 
+#### Newest Additions
+
+With v0.8.0 comes a couple new features.  The first, being able to target a specific container for your notification to display in - for a more modular style display.  To do so, simply specify a `target` option with the value set to a CSS selector string when you set a message or setup the initial configuration. [More on that below](#modular-notifications).  In addition, you are now able to provide a callback that will fire after fadeout and the notification has been removed from view.  This callback can be added as an optional third parameter when calling the set() method.  [More on that here](#notification-callbacks).  With these changes comes a refactor that uses notification instances which will assist with future development as we look to introduce new features like stacked notifications and upgrade for use with Angular 2.
+
 Implementation
 ==============
 
-###Requirements
+### Requirements
 
 AngularJS is the only dependency.  Animation is achieved with pure JS, jQuery not necessary.
 
-###Installation
+### Installation
 
 You can install ng-notify with Bower.
 
@@ -38,7 +42,7 @@ For example:
 
 And as always, you can download the source files straight from this repo - they're located in the `dist` dir.  Be sure to include the minified version of both js and css files.
 
-###Usage
+### Usage
 
 After including *ng-notify.min.js* and *ng-notify.min.css*, inject the ng-notify provider into your project.
 
@@ -61,7 +65,7 @@ ngNotify.set('Your error message goes here!', 'error');
 Advanced Usage
 ==============
 
-###Default Configuration
+### Default Configuration
 
 You can override the default options for all notifications by using the `config` method.  None of these options are required. (For available options, check the [definitions](#definitions) below.)
 
@@ -79,7 +83,7 @@ ngNotify.config({
 
 Default configuration options can be set during the `run()` block.  If your app utilizes a global controller, the config options could be set there just as well.  For a discussion and working example on this topic, checkout [this comment](https://github.com/matowens/ng-notify/issues/16#issuecomment-104492193).
 
-###Individual Configurations
+### Individual Configurations
 
 You can also pass an object of options to individual notifications.  You can pass through any combination of our available options here as well.  (For available options, check the [definitions](#definitions) below.)  For example:
 
@@ -102,7 +106,7 @@ ngNotify.set('Your <i>fourth</i> message.', {
 });
 ```
 
-###Sticky Notifications
+### Sticky Notifications
 
 Sticky notifications allow you to set a persistent notification that doesn't fade away.  To do this, simply set the `sticky` attribute to true:
 
@@ -118,7 +122,7 @@ This will give the user the option of closing the notification themselves.  If y
 ngNotify.dismiss();
 ```
 
-If you'd prefer to dismiss the notification programmtically and prevent the user from doing so, you can add an option to remove the button:
+If you'd prefer to dismiss the notification programmatically and prevent the user from doing so, you can add an option to remove the button:
 
 ```javascript
 ngNotify.set('This is sticky without a button.', {
@@ -129,7 +133,7 @@ ngNotify.set('This is sticky without a button.', {
 
 *Any time a notification is set to sticky, the duration attribute will be ignored since the notification will not be automatically fading out.*
 
-###HTML Notifications
+### HTML Notifications
 
 HTML notifications will allow you to display messages with HTML content in them.  To do this, you'll need to set the `html` attribute to true:
 
@@ -150,11 +154,43 @@ In order for HTML notifications to display, you are required to include the [ngS
 
 If you don't have ngSanitize included and you do set `html` to true, ngNotify will gracefully degrade back to the default message display and print a debug message to remind you in your browser's console.
 
-###Roll Your Own
+### Modular Notifications
+
+By specifying a `target` option, you are able to control where your notifications are displayed.  By default, the target is set to the body tag but you may provide any other CSS selector in order to control where the notification is appended.  For example:
+
+```javascript
+ngNotify.set('This message has a specific container!', {
+    target: '#new-container'
+});
+```
+
+You may also specific a default target for all notifications by adding it to the ngNotify config, for example:
+
+```javascript
+ngNotify.config({
+    target: '#new-container'
+});
+```
+
+* Notifications that have a custom target specified are set to display with absolute positioning, overriding the default fixed positioning.  It's impossible to tailor ngNotify's style to fit every situation for every app, so you may have to tweak the styles to fit your specific needs when not appending notifications to the body tag - using anything other than the default target.
+
+### Notification Callbacks
+
+You have an option to call a function when a notification has completed.  This callback can only be called through the set() method and is passed as an optional third parameter.  For example:
+
+```javascript
+var callback = function() {};
+
+ngNotify.set('This message has a callback.', {}, callback);
+```
+
+The callback will fire every time it is specified, even if the notification is dismissed early through the dismiss method.  The callback fires once the notification has faded out.
+
+### Roll Your Own
 
 There are two additional methods that allow you to create your own types and themes.
 
-#####Custom Notification Types
+##### Custom Notification Types
 
 Creating a custom type will allow you to add additional types of notifications to use throughout your application.  To create a new type, use the `addType` method.  The first param is the *name* you'll use to reference your new type.  The second param is the *class* you'll use to style your new notification type.
 
@@ -175,7 +211,7 @@ To style your new type, pick a color you'd like to use and set it to the backgro
     background-color: #ABC123
 ```
 
-#####Custom Themes
+##### Custom Themes
 
 Creating a custom theme will allow you to build an entirely new spectrum of notification messages utilizing the existing notification types.  To create a new theme, use the `addTheme` method.  The first param is the *name* you'll use to reference your new theme.  The second param is the *class* you'll use to style your new theme's notification types.
 
@@ -210,26 +246,29 @@ To style your new theme, pick a collection of colors you'd like to use for each 
     background-color: #660099
 ```
 
-#####Custom Styles
+##### Custom Styles
 
 The position, size, color, alignment and more are all styled based on the notification's classes and are all specified in the CSS file. See the [style definitions](#styles) below to see which classes can be used to override any of the styles within your own application.
 
 Definitions
 ===========
 
-###Methods
+### Methods
 
-####set(message, type)
+#### set(message, type|config, callback)
 displays a notification message and sets the formatting/behavioral options for this one notification.
 - **message**: *string* - *required* - the message to display in your notification.
-- **type**: *string* - *optional* - the type of notification to display.
-    - info *(default)*
-    - error
-    - success
-    - warn
-    - grimace
+- **type**: *string|object* - *optional* - the type of notification to display (string) OR an object of options.
+    - types:
+        - info *(default)*
+        - error
+        - success
+        - warn
+        - grimace
+    - options: (see config below)
+- **callback**: *string* - *optional* - target to append notification to, value set to CSS selector.
 
-####config(options)
+#### config(options)
 sets default settings for all notifications to take into account when displaying.
 - **options** - *object* - an object of options that overrides the default settings.
     - **theme**: *string* - *optional* - sets the theme to use, altering the styles for each notification type.
@@ -249,21 +288,22 @@ sets default settings for all notifications to take into account when displaying
     - **duration**: *integer* - *optional* - the duration the notification stays visible to the user, in milliseconds.
     - **sticky**: *bool* - *optional* - determines whether or not the message will fade at the end of the duration or if the message will persist until the user dismisses it themselves.  when true, duration will not be set, even if it has a value. *(false by default)*.
     - **button**: *bool* - *optional* - determines whether or not the dismiss button will show on sticky notifications.  when true, the button will display.  when false, the button wil not display.  sticky must be set to true in order to control the visibility of the dismiss button. *(true by default)*.
+    - **target**: *string* - *optional* - CSS selector where the notification(s) should be appended to.  *(body by default)*.
 
-####dismiss()
+#### dismiss()
 manually dismisses any sticky notifications that may still be set.
 
-####addType(name, class)
+#### addType(name, class)
 allows a dev to create a new type of notification to use in their app.
 - **name**: *string* - *required* - the name used to trigger this notification type in the *set* method.
 - **class**: *string* - *required* - the class used to target this type in the stylesheet.
 
-####addTheme(name, class)
+#### addTheme(name, class)
 allows a dev to create a whole new set of styles for each notification type.
 - **name**: *string* - *required* - the name used when setting the theme in the *config* object.
 - **class**: *string* - *required* - the class used to target this theme in the stylesheet.
 
-###Styles
+### Styles
 
 - **primary**: the class that's present on every notification and controls all of the primary styles.
     - *.ngn*

@@ -8,9 +8,7 @@ describe('ngNotify sticky configuration', function() {
     var ngNotify,
         doc,
         interval,
-        timeout,
-        element,
-        scope;
+        timeout;
 
     var message = 'Message to display during tests.';
 
@@ -23,17 +21,10 @@ describe('ngNotify sticky configuration', function() {
     beforeEach(inject(function($injector, $document, $interval, $timeout) {
 
         ngNotify = $injector.get('ngNotify');
-        $timeout.flush();
 
         doc = $document;
         interval = $interval;
         timeout = $timeout;
-
-        element = angular.element(
-            document.querySelector('.ngn')
-        );
-
-        scope = element.scope();
     }));
 
     /**
@@ -58,41 +49,53 @@ describe('ngNotify sticky configuration', function() {
             sticky: false
         });
 
+        var element = angular.element(
+            document.querySelector('.ngn')
+        );
+
+        var scope = element.scope();
+
         expect(
             scope.ngNotify.notifyClass.indexOf("ngn-sticky") > -1
         ).toBe(false);
-
     });
 
     it('object sticky is set to false', function() {
 
         // Default duration should hold true, fadingIn and fadingOut.
 
-        expect(
-            scope.ngNotify.notifyStyle.display
-        ).toBe('none');
-
-        expect(
-            scope.ngNotify.notifyStyle.opacity
-        ).toBe(0);
-
         ngNotify.set(message, {
             sticky: false
         });
+
+        var element = angular.element(
+            document.querySelector('.ngn')
+        );
+
+        var scope = element.scope();
+
+        expect(
+            element.css('display')
+        ).toBe('block');
+
+        expect(
+            element.css('opacity')
+        ).toBe('0');
 
         expect(
             scope.ngNotify.notifyClass.indexOf("ngn-sticky") > -1
         ).toBe(false);
 
+        timeout.flush();
         interval.flush(200);
 
         expect(
-            scope.ngNotify.notifyStyle.display
+            element.css('display')
         ).toBe('block');
 
         expect(
-            scope.ngNotify.notifyStyle.opacity
-        ).toBe(1);
+            element.css('opacity')
+        ).toBe('1');
 
         // 1ms before the duration concludes, notification should still be visible.
 
@@ -101,12 +104,12 @@ describe('ngNotify sticky configuration', function() {
         interval.flush(500);
 
         expect(
-            scope.ngNotify.notifyStyle.display
+            element.css('display')
         ).toBe('block');
 
         expect(
-            scope.ngNotify.notifyStyle.opacity
-        ).toBe(1);
+            element.css('opacity')
+        ).toBe('1');
 
         // Step forward 1ms and our fadeOut should be triggered.
 
@@ -115,13 +118,12 @@ describe('ngNotify sticky configuration', function() {
         interval.flush(500);
 
         expect(
-            scope.ngNotify.notifyStyle.display
+            element.css('display')
         ).toBe('none');
 
         expect(
-            scope.ngNotify.notifyStyle.opacity
-        ).toBe(0);
-
+            element.css('opacity')
+        ).toBeCloseTo('0', 1);
     });
 
     it('object sticky is set to true', function() {
@@ -129,17 +131,23 @@ describe('ngNotify sticky configuration', function() {
         // Notification should remain well after the default
         // duration would have expired.
 
-        expect(
-            scope.ngNotify.notifyStyle.display
-        ).toBe('none');
-
-        expect(
-            scope.ngNotify.notifyStyle.opacity
-        ).toBe(0);
-
         ngNotify.set(message, {
             sticky: true
         });
+
+        var element = angular.element(
+            document.querySelector('.ngn')
+        );
+
+        var scope = element.scope();
+
+        expect(
+            element.css('display')
+        ).toBe('block');
+
+        expect(
+            element.css('opacity')
+        ).toBe('0');
 
         expect(
             scope.ngNotify.notifyClass.indexOf("ngn-sticky") > -1
@@ -147,15 +155,16 @@ describe('ngNotify sticky configuration', function() {
 
         // Initial fadeIn.
 
+        timeout.flush();
         interval.flush(200);
 
         expect(
-            scope.ngNotify.notifyStyle.display
+            element.css('display')
         ).toBe('block');
 
         expect(
-            scope.ngNotify.notifyStyle.opacity
-        ).toBe(1);
+            element.css('opacity')
+        ).toBe('1');
 
         // Message should remain until we manually dismiss it...
 
@@ -164,12 +173,12 @@ describe('ngNotify sticky configuration', function() {
         interval.flush(500);
 
         expect(
-            scope.ngNotify.notifyStyle.display
+            element.css('display')
         ).toBe('block');
 
         expect(
-            scope.ngNotify.notifyStyle.opacity
-        ).toBe(1);
+            element.css('opacity')
+        ).toBe('1');
 
         // Manually closing the notification should hide it.
 
@@ -178,13 +187,12 @@ describe('ngNotify sticky configuration', function() {
         interval.flush(500);
 
         expect(
-            scope.ngNotify.notifyStyle.display
+            element.css('display')
         ).toBe('none');
 
         expect(
-            scope.ngNotify.notifyStyle.opacity
-        ).toBe(0);
-
+            element.css('opacity')
+        ).toBeCloseTo('0', 1);
     });
 
 });

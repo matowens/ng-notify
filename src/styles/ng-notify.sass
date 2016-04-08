@@ -10,14 +10,17 @@
     position: fixed
     right: 0
     text-align: center
+    user-select: none
+    z-index: 9999
 
     -webkit-touch-callout: none
     -webkit-user-select: none
     -khtml-user-select: none
     -moz-user-select: none
     -ms-user-select: none
-    user-select: none
-    z-index: 9999
+
+.ngn-component
+    position: absolute
 
 .ngn-top
     top: 0
@@ -38,8 +41,9 @@
     line-height: 30px
     opacity: .2
     position: absolute
-    right: 45px
+    right: 40px
     text-shadow: 1px 1px 5px #000
+    top: 25px
     width: 30px
 
 .ngn-sticky .ngn-dismiss
@@ -64,7 +68,7 @@
         right: 5px
         top: 5px
         width: 20px
-    
+
 /* Themes - Default - Pure */
 .ngn-info
     background-color: #0e90d2
