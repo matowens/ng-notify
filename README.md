@@ -172,7 +172,7 @@ ngNotify.config({
 });
 ```
 
-* Notifications that have a custom target specified are set to display with absolute positioning, overriding the default fixed positioning.  It's impossible to tailor ngNotify's style to fit every situation for every app, so you may have to tweak the styles to fit your specific needs when not appending notifications to the body tag - using anything other than the default target.
+** Notifications that have a custom target specified are set to display with absolute positioning, overriding the default fixed positioning.  It's impossible to tailor ngNotify's style to fit every situation for every app, so you may have to tweak the styles to fit your specific needs when not appending notifications to the body tag - using anything other than the default target.
 
 ### Notification Callbacks
 
