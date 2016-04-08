@@ -2,8 +2,8 @@
 ##v0.8.0
 - **new feature**: new parameter to specific the target element in which to append a notification to. [#27](https://github.com/matowens/ng-notify/issues/27)
 - **new feature**: callbacks can be passed via the set method to call a function after a notification has displayed. [#20](https://github.com/matowens/ng-notify/issues/20), [#30](https://github.com/matowens/ng-notify/issues/30)
-- reorder button and notification container in tpl. [29](https://github.com/matowens/ng-notify/pull/29)
-- updates to phrasing and spelling. [31](https://github.com/matowens/ng-notify/pull/31)
+- reorder button and notification container in tpl. [#29](https://github.com/matowens/ng-notify/pull/29)
+- updates to phrasing and spelling. [#31](https://github.com/matowens/ng-notify/pull/31)
 - a refactor to replace a single notification object with notification instances.  will assist with future development plans for stacked notifications and Angular 2 support.
 - shoutouts: [systemaker](https://github.com/systemaker), [sinsunsan](https://github.com/sinsunsan), [mrweiland](https://github.com/mrweiland), [qoshi](https://github.com/qoshi), [Droritos](https://github.com/Droritos), [danjarvis](https://github.com/danjarvis)
 
