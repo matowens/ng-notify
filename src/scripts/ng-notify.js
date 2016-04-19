@@ -252,30 +252,35 @@
      */
     function NgNotifyService() {
 
+        // Defaults...
+
+        var DEFAULT_OPTIONS = {
+            theme: 'pure',
+            position: 'bottom',
+            duration: DEFAULT_DURATION,
+            type: 'info',
+            sticky: false,
+            button: true,
+            html: false,
+            target: SELECTOR
+        };
+
+        var DEFAULT_SCOPE = {
+            notifyClass: '',
+            notifyMessage: ''
+        };
+
+        this.options = function (params) {
+            params = params || {};
+            angular.extend(DEFAULT_OPTIONS, params);
+        };
+
         this.$get = ['$document', '$compile', '$log', '$rootScope', '$timeout', '$templateCache', 'NgNotifyFactory',
 
             function($document, $compile, $log, $rootScope, $timeout, $templateCache, NgNotifyFactory) {
 
                 var notification;
                 var notifyTimeout;
-
-                // Defaults...
-
-                var DEFAULT_OPTIONS = {
-                    theme: 'pure',
-                    position: 'bottom',
-                    duration: DEFAULT_DURATION,
-                    type: 'info',
-                    sticky: false,
-                    button: true,
-                    html: false,
-                    target: SELECTOR
-                };
-
-                var DEFAULT_SCOPE = {
-                    notifyClass: '',
-                    notifyMessage: ''
-                };
 
                 // Options...
 

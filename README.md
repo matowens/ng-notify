@@ -83,7 +83,22 @@ ngNotify.config({
 });
 ```
 
-Default configuration options can be set during the `run()` block.  If your app utilizes a global controller, the config options could be set there just as well.  For a discussion and working example on this topic, checkout [this comment](https://github.com/matowens/ng-notify/issues/16#issuecomment-104492193).
+Default configuration options can be set in the `config()` block by calling the `options()` method of the provider object
+```javascript
+angular
+    .module('myApp', ['ngNotify'])
+    .config(['ngNotifyProvider', function(ngNotifyProvider) {
+        ngNotifyProvider.options({
+            theme: 'pure',
+            position: 'bottom',
+            duration: 3000,
+            type: 'info',
+            sticky: false,
+            button: true,
+            html: false
+        });
+    }]);
+```
 
 ### Individual Configurations
 
