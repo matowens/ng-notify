@@ -3,6 +3,7 @@
   "version": "0.8.0",
   "description": "A simple, lightweight module for displaying notifications in your AngularJS app.",
   "main": "./src/scripts/ng-notify.js",
+  "jsdelivr": "dist/ng-notify.min.js",
   "scripts": {
     "test": "grunt travis"
   },
