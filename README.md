@@ -34,13 +34,13 @@ You can also install ng-notify with npm.
 
 As of v0.6.0, ng-notify is now available via the jsDelivr CDN if you'd prefer to go down that route.
 
-    //cdn.jsdelivr.net/angular.ng-notify/{version.number.here}/ng-notify.min.js
-    //cdn.jsdelivr.net/angular.ng-notify/{version.number.here}/ng-notify.min.css
+    //cdn.jsdelivr.net/npm/ng-notify@{version.number.here}/dist/ng-notify.min.js
+    //cdn.jsdelivr.net/npm/ng-notify@{version.number.here}/dist/ng-notify.min.css
 
 For example:
 
-    //cdn.jsdelivr.net/angular.ng-notify/0.6.0/ng-notify.min.js
-    //cdn.jsdelivr.net/angular.ng-notify/0.6.0/ng-notify.min.css
+    //cdn.jsdelivr.net/npm/ng-notify@0.7.1/dist/ng-notify.min.js
+    //cdn.jsdelivr.net/npm/ng-notify@0.7.1/dist/ng-notify.min.css
 
 And as always, you can download the source files straight from this repo - they're located in the `dist` dir.  Be sure to include the minified version of both js and css files.
 
